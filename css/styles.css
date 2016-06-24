@@ -6525,35 +6525,35 @@ Markup:
 
 Styleguide 5.2
 */
-.b-top-section, #homepage .b-highlights {
+.b-top-section, #homepage .b-highlights, #conference-page .b-conference-header {
   background-color: #333;
   color: rgba(255, 255, 255, 0.8);
   padding-top: 70px;
   padding-bottom: 30px; }
-  .b-top-section h2, #homepage .b-highlights h2 {
+  .b-top-section h2, #homepage .b-highlights h2, #conference-page .b-conference-header h2 {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 100;
     font-size: 30px;
     margin-top: 0; }
-  .b-top-section h3, #homepage .b-highlights h3 {
+  .b-top-section h3, #homepage .b-highlights h3, #conference-page .b-conference-header h3 {
     text-align: center;
     margin-bottom: 30px;
     text-transform: none;
     font-size: 22px;
     font-weight: 100; }
 
-.b-top-section.m-orange, #homepage .m-orange.b-highlights {
+.b-top-section.m-orange, #homepage .m-orange.b-highlights, #conference-page .m-orange.b-conference-header {
   background-color: #ee5b43; }
 
-.b-top-section.m-purple, #homepage .m-purple.b-highlights {
+.b-top-section.m-purple, #homepage .m-purple.b-highlights, #conference-page .m-purple.b-conference-header {
   background-color: #523080; }
 
-.b-top-section.m-blue, #homepage .m-blue.b-highlights {
+.b-top-section.m-blue, #homepage .m-blue.b-highlights, #conference-page .m-blue.b-conference-header {
   background-color: #008ab3; }
 
-.b-top-section.m-teal, #homepage .m-teal.b-highlights {
+.b-top-section.m-teal, #homepage .m-teal.b-highlights, #conference-page .m-teal.b-conference-header {
   background-color: #008895; }
 
 /*
@@ -7343,18 +7343,18 @@ code.m-negative {
   text-align: center;
   font-weight: 200; }
 
-#topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights {
+#topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights, #topics-page #conference-page .b-conference-header, #conference-page #topics-page .b-conference-header {
   height: 48vh;
   position: relative;
   color: white;
   background: no-repeat center;
   background-size: cover; }
-  #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group {
+  #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group, #topics-page #conference-page .b-conference-header .title-group, #conference-page #topics-page .b-conference-header .title-group {
     padding-top: 58px; }
-  #topics-page .b-top-section .e-title, #topics-page #homepage .b-highlights .e-title, #homepage #topics-page .b-highlights .e-title {
+  #topics-page .b-top-section .e-title, #topics-page #homepage .b-highlights .e-title, #homepage #topics-page .b-highlights .e-title, #topics-page #conference-page .b-conference-header .e-title, #conference-page #topics-page .b-conference-header .e-title {
     font-size: 2.2em;
     font-weight: 400; }
-  #topics-page .b-top-section .e-subtitle, #topics-page #homepage .b-highlights .e-subtitle, #homepage #topics-page .b-highlights .e-subtitle {
+  #topics-page .b-top-section .e-subtitle, #topics-page #homepage .b-highlights .e-subtitle, #homepage #topics-page .b-highlights .e-subtitle, #topics-page #conference-page .b-conference-header .e-subtitle, #conference-page #topics-page .b-conference-header .e-subtitle {
     font-size: 1.5em;
     font-weight: 400; }
 
@@ -7400,3 +7400,29 @@ code.m-negative {
 .b-divider.m-next div a:hover h2 {
   color: white;
   transition: all .4s ease; }
+
+#conference-page .b-conference-header {
+  position: relative;
+  color: white;
+  background: no-repeat center;
+  background-size: cover;
+  padding-bottom: 0; }
+  #conference-page .b-conference-header .title-group {
+    padding: 50px; }
+  #conference-page .b-conference-header .e-title {
+    font-size: 2.2em;
+    font-weight: 400; }
+  #conference-page .b-conference-header .e-subtitle {
+    font-size: 1.5em;
+    font-weight: 400; }
+  #conference-page .b-conference-header .e-conference-details {
+    padding: 40px 0;
+    background-color: rgba(51, 51, 51, 0.5); }
+    #conference-page .b-conference-header .e-conference-details h2 {
+      font-size: 1.2rem;
+      font-weight: 500; }
+    #conference-page .b-conference-header .e-conference-details h3 {
+      margin: 0;
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 500; }
