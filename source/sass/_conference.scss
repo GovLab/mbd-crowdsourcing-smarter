@@ -1,4 +1,5 @@
 #conference-page {
+  &ul {color:red;}
   .b-conference-header {
     @extend .b-top-section;
     position: relative;
@@ -35,5 +36,4 @@
       }
     }
   }
-
 }
