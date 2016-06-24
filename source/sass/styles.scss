@@ -3,4 +3,9 @@
 // add any site-specific sass you want to use here using an @import
 @import '../../node_modules/govlab-styleguide/sass/styles'; // govlab-styleguide sass
 
+@import 'variables';
+
 @import 'custom';
+@import 'base';
+@import 'homepage';
+@import 'small_screens';
