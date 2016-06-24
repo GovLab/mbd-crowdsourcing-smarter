@@ -1,0 +1,39 @@
+#conference-page {
+  .b-conference-header {
+    @extend .b-top-section;
+    position: relative;
+    color: white;
+    background: no-repeat center; 
+    background-size: cover;
+    padding-bottom: 0;
+    .title-group {
+      padding: 50px;
+    }
+    .e-title {
+      font-size: 2.2em;
+      font-weight: 400;
+    }
+    .e-subtitle {
+      font-size: 1.5em;
+      font-weight: 400;
+    }
+
+    .e-conference-details {
+      padding: 40px 0;
+      background-color: rgba($black, .5);
+
+      h2 { 
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+      h3 { 
+        margin: 0; 
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        // opacity: .6;
+      }
+    }
+  }
+
+}
