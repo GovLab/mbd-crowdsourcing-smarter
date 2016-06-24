@@ -7232,6 +7232,19 @@ code.m-negative {
 .m-caps {
   text-transform: uppercase; }
 
+.e-mbd-button {
+  color: white;
+  width: 100%;
+  height: 49px;
+  font-weight: 700; }
+
+.b-divider :first-child h2 {
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 24px; }
+
 .no-padding {
   padding: 0;
   padding-bottom: 0;
@@ -7330,40 +7343,60 @@ code.m-negative {
   text-align: center;
   font-weight: 200; }
 
-#homepage .e-mbd-button {
+#topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights {
+  height: 48vh;
+  position: relative;
   color: white;
-  width: 100%;
-  height: 49px;
-  font-weight: 700; }
+  background: no-repeat center;
+  background-size: cover; }
+  #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group {
+    padding-top: 58px; }
+  #topics-page .b-top-section .e-title, #topics-page #homepage .b-highlights .e-title, #homepage #topics-page .b-highlights .e-title {
+    font-size: 2.2em;
+    font-weight: 400; }
+  #topics-page .b-top-section .e-subtitle, #topics-page #homepage .b-highlights .e-subtitle, #homepage #topics-page .b-highlights .e-subtitle {
+    font-size: 1.5em;
+    font-weight: 400; }
 
-.b-main-categories .e-item {
-  font-size: 1.4rem;
+#topics-page .b-topics {
+  margin: 40px 0px;
+  padding: 10px; }
+  #topics-page .b-topics .row {
+    margin-top: 20px; }
+  #topics-page .b-topics .e-description-title {
+    padding-left: 0;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 22px;
+    text-align: left; }
+    @media screen and (min-width: 64.0625em) {
+      #topics-page .b-topics .e-description-title {
+        text-align: right; } }
+  #topics-page .b-topics .e-description, #topics-page .b-topics .e-description + p {
+    margin: 0; }
+
+.b-divider.m-next div h1 {
   text-transform: uppercase;
-  font-weight: 400;
-  text-align: center;
-  padding: 50px 0;
-  color: white; }
-  .b-main-categories .e-item.m-clinics {
-    background-color: #EDFBF9; }
-  .b-main-categories .e-item.m-coaching {
-    background-color: #FFFDE8; }
-  .b-main-categories .e-item.m-masters {
-    background-color: #F6FCF2; }
-  .b-main-categories .e-item.m-workshop {
-    background-color: #FFF1F1; }
+  font-size: 17px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: left; }
 
-.b-upcoming-courses .e-item {
-  padding: 50px;
-  height: 350px; }
-  .b-upcoming-courses .e-item .b-button, .b-upcoming-courses .e-item .b-form input[type="submit"], .b-form .b-upcoming-courses .e-item input[type="submit"] {
-    color: white; }
-  .b-upcoming-courses .e-item:nth-of-type(odd) {
-    background-color: rgba(51, 51, 51, 0.05); }
-  .b-upcoming-courses .e-item.m-clinics .b-button, .b-upcoming-courses .e-item.m-clinics .b-form input[type="submit"], .b-form .b-upcoming-courses .e-item.m-clinics input[type="submit"] {
-    background-color: #EDFBF9; }
-  .b-upcoming-courses .e-item.m-coaching .b-button, .b-upcoming-courses .e-item.m-coaching .b-form input[type="submit"], .b-form .b-upcoming-courses .e-item.m-coaching input[type="submit"] {
-    background-color: #FFFDE8; }
-  .b-upcoming-courses .e-item.m-masters .b-button, .b-upcoming-courses .e-item.m-masters .b-form input[type="submit"], .b-form .b-upcoming-courses .e-item.m-masters input[type="submit"] {
-    background-color: #FFF1F1; }
-  .b-upcoming-courses .e-item.m-workshop .b-button, .b-upcoming-courses .e-item.m-workshop .b-form input[type="submit"], .b-form .b-upcoming-courses .e-item.m-workshop input[type="submit"] {
-    background-color: #F6FCF2; }
+.b-divider.m-next div h2 {
+  text-align: left;
+  text-transform: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  transition: all .4s ease; }
+  .b-divider.m-next div h2 .material-icons {
+    vertical-align: -5.5px;
+    color: rgba(255, 255, 255, 0.3); }
+
+.b-divider.m-next div a:hover {
+  text-decoration: none; }
+
+.b-divider.m-next div a:hover h2 {
+  color: white;
+  transition: all .4s ease; }

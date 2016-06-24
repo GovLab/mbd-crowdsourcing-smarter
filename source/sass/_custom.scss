@@ -3,6 +3,23 @@
 // and @import in styles.scss
 
 
+
+// GLOBAL STYLES
+  .e-mbd-button {
+    color: white;
+    width: 100%;
+    height: 49px;
+    font-weight: 700;
+  }
+
+  .b-divider :first-child h2  {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 24px;
+  }
+
 // padding adujustments
 .no-padding {
   padding: 0;

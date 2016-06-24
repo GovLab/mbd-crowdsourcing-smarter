@@ -1,0 +1,115 @@
+{% extends '_base.html' %}
+
+{% block main %}
+<div id='topics-page'>
+  <div class="b-top-section" style='background-image: url(./img/background-images/{{image}})'>
+    <div class="row expanded">
+      <div class='title-group'>
+        <h2 class="e-title">{{title}}</h2>
+        <h3 class="e-subtitle">{{subtitle}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <section class="b-page-section b-topics">
+    <div class="row">
+      <div class="large-3 columns">
+        <h3 class="e-description-title">Issue</h3>
+      </div>
+      <div class="large-8 columns end">
+        <p class="e-description">{{issue}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-3 columns">
+        <h3 class="e-description-title">Problem</h3>
+      </div>
+      <div class="large-8 columns end">
+        <p class="e-description">{{problem}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-3 columns">
+        <h3 class="e-description-title">Question</h3>
+      </div>
+      <div class="large-8 columns end">
+        <p class="e-description">{{question}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-3 columns">
+        <h3 class="e-description-title">Problem<br>Description</h3>
+      </div>
+      <div class="large-8 columns end">
+        <p class="e-description">{{problem_description | safe}}</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class='b-divider m-mbd-primary'>
+    <div class="row">
+      <div class="large-12 large-centered column">
+      <h1></h1>
+      <h2>Experts</h2>
+      </div>
+    </div>
+  </div>
+
+  <section class='b-page-section'>
+    <div class="row">
+      <div class="large-10 large-offset-1 columns">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+      </div>
+    </div>
+      <div class='row'>
+        <div class='small-5 small-centered column'>
+          <a class='b-button e-mbd-button m-mbd-secondary'>Request an Invite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class='b-divider m-mbd-primary'>
+    <div class="row">
+      <div class="large-12 large-centered column">
+      <h1></h1>
+      <h2>Online Conference</h2>
+      </div>
+    </div>
+  </div>
+
+  <section class='b-page-section'>
+    <div class="row">
+      <div class="large-10 large-offset-1 columns">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+      </div>
+    </div>
+      <div class='row'>
+        <div class='small-5 small-centered column'>
+          <a class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="b-divider m-mbd-primary m-next">
+    <div class="row"> 
+      <div class="large-4 large-offset-8 columns end">
+        <h1>Next Topic</h1>
+        <a href="{{link.survey}}" target="_blank">
+        <h2>Topic Title<i class="material-icons">chevron_right</i></h2>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+{% endblock %}
