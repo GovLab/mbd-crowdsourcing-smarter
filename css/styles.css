@@ -7401,6 +7401,9 @@ code.m-negative {
   color: white;
   transition: all .4s ease; }
 
+#conference-pageul {
+  color: red; }
+
 #conference-page .b-conference-header {
   position: relative;
   color: white;
