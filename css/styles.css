@@ -7245,6 +7245,13 @@ code.m-negative {
   font-weight: 500;
   font-size: 24px; }
 
+.b-subdivision {
+  font-size: 1.7rem;
+  line-height: 1;
+  text-transform: uppercase !important;
+  text-align: center;
+  font-weight: 200; }
+
 .no-padding {
   padding: 0;
   padding-bottom: 0;
@@ -7429,3 +7436,27 @@ code.m-negative {
       font-size: 1rem;
       text-transform: uppercase;
       font-weight: 500; }
+
+.b-links-list {
+  margin: 0; }
+  .b-links-list .e-link-item {
+    list-style-type: none; }
+    .b-links-list .e-link-item:nth-of-type(odd) {
+      background-color: rgba(51, 51, 51, 0.05); }
+    .b-links-list .e-link-item .e-link-title {
+      padding: 32px 0 12px;
+      text-transform: uppercase; }
+
+.b-participants ul {
+  padding: 0; }
+
+.b-participants li {
+  list-style-type: none;
+  margin-bottom: 15px;
+  color: rgba(51, 51, 51, 0.6); }
+  .b-participants li strong {
+    color: rgba(51, 51, 51, 0.9);
+    display: block; }
+
+.b-participants .fa-twitter {
+  color: #04CCB7; }
