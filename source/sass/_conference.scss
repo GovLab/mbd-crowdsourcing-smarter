@@ -36,4 +36,41 @@
       }
     }
   }
+
 }
+
+
+  .b-links-list {
+      margin: 0;
+
+      .e-link-item {
+          list-style-type: none;
+
+          &:nth-of-type(odd) { background-color: rgba($black, .05); }
+
+          .e-link-title {
+            padding: 32px 0 12px;
+            text-transform: uppercase;
+          }
+      }
+
+  }
+
+  .b-participants{
+    ul { padding: 0; }
+    li {
+      list-style-type: none;
+      margin-bottom: 15px;
+      color: rgba($black, .6);
+
+      strong {
+        color: rgba($black, .9);
+        display: block;
+      }
+    }
+    .fa-twitter {
+      color: $mbd-secondary;
+    }
+
+  }
+
