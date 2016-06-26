@@ -7243,7 +7243,7 @@ code.m-negative {
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 24px; }
+  font-size: 22px; }
 
 .b-subdivision {
   font-size: 1.5rem;
@@ -7408,9 +7408,6 @@ code.m-negative {
   color: white;
   transition: all .4s ease; }
 
-#conference-pageul {
-  color: red; }
-
 #conference-page .b-conference-header {
   position: relative;
   color: white;
@@ -7420,37 +7417,37 @@ code.m-negative {
   #conference-page .b-conference-header .title-group {
     padding: 50px; }
   #conference-page .b-conference-header .e-title {
-    font-size: 2.2em;
+    font-size: 48px;
     font-weight: 400; }
   #conference-page .b-conference-header .e-subtitle {
-    font-size: 1.5em;
+    font-size: 28px;
     font-weight: 400; }
   #conference-page .b-conference-header .e-conference-details {
     padding: 40px 0;
     background-color: rgba(51, 51, 51, 0.5); }
     #conference-page .b-conference-header .e-conference-details h2 {
-      font-size: 1.2rem;
+      font-size: 22px;
       font-weight: 500; }
     #conference-page .b-conference-header .e-conference-details h3 {
       margin: 0;
-      font-size: 1rem;
+      font-size: 20px;
       text-transform: uppercase;
-      font-weight: 500; }
+      font-weight: 600; }
 
-.b-links-list {
+#conference-page .b-links-list {
   margin: 0; }
-  .b-links-list .e-link-item {
+  #conference-page .b-links-list .e-link-item {
     list-style-type: none; }
-    .b-links-list .e-link-item:nth-of-type(odd) {
+    #conference-page .b-links-list .e-link-item:nth-of-type(odd) {
       background-color: rgba(51, 51, 51, 0.05); }
-    .b-links-list .e-link-item .e-link-title {
-      padding: 32px 0 12px;
+    #conference-page .b-links-list .e-link-item .e-link-title {
+      padding: 25px 0 8px;
       text-transform: uppercase; }
 
-.b-participants ul {
+#conference-page .b-participants ul {
   padding: 0; }
 
-.b-participants li {
+#conference-page .b-participants li {
   float: left;
   padding-left: 2%;
   overflow: auto;
@@ -7458,9 +7455,9 @@ code.m-negative {
   list-style-type: none;
   margin-bottom: 15px;
   color: rgba(51, 51, 51, 0.6); }
-  .b-participants li strong {
+  #conference-page .b-participants li strong {
     color: rgba(51, 51, 51, 0.9);
     display: block; }
 
-.b-participants .fa-twitter {
+#conference-page .b-participants .fa-twitter {
   color: #04CCB7; }
