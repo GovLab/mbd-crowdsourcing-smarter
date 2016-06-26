@@ -1,5 +1,4 @@
 #conference-page {
-  &ul {color:red;}
   .b-conference-header {
     @extend .b-top-section;
     position: relative;
@@ -11,11 +10,11 @@
       padding: 50px;
     }
     .e-title {
-      font-size: 2.2em;
+      font-size: 48px;
       font-weight: 400;
     }
     .e-subtitle {
-      font-size: 1.5em;
+      font-size: 28px;
       font-weight: 400;
     }
 
@@ -24,49 +23,41 @@
       background-color: rgba($black, .5);
 
       h2 { 
-        font-size: 1.2rem;
+        font-size: 22px;
         font-weight: 500;
       }
       h3 { 
         margin: 0; 
-        font-size: 1rem;
+        font-size: 20px;
         text-transform: uppercase;
-        font-weight: 500;
-        // opacity: .6;
+        font-weight: 600;
       }
     }
   }
 
-}
-
-
   .b-links-list {
-      margin: 0;
-
-      .e-link-item {
-          list-style-type: none;
-
-          &:nth-of-type(odd) { background-color: rgba($black, .05); }
-
-          .e-link-title {
-            padding: 32px 0 12px;
-            text-transform: uppercase;
-          }
+    margin: 0;
+    .e-link-item  {
+      list-style-type: none;
+      &:nth-of-type(odd) { 
+        background-color: rgba($black, .05); 
+        }
+    .e-link-title {
+      padding: 25px 0 8px;
+      text-transform: uppercase;
       }
-
+    }
   }
 
   .b-participants{
     ul { 
       padding: 0;
-
      }
     li {
       float: left;
       padding-left: 2%;
       overflow: auto;
       width: 49%;
-
       list-style-type: none;
       margin-bottom: 15px;
       color: rgba($black, .6);
@@ -81,4 +72,9 @@
     }
 
   }
+
+}
+
+
+
 
