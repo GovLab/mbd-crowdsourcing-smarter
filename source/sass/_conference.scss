@@ -57,8 +57,16 @@
   }
 
   .b-participants{
-    ul { padding: 0; }
+    ul { 
+      padding: 0;
+
+     }
     li {
+      float: left;
+      padding-left: 2%;
+      overflow: auto;
+      width: 49%;
+
       list-style-type: none;
       margin-bottom: 15px;
       color: rgba($black, .6);
