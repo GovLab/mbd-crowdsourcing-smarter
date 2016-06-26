@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+
+
+{% block main %}
+
+<div class="b-admin-page">
+
+
+  <div class="b-top-section">
+    <h3>Admin</h3>
+
+    <div id='login-row' class="row">
+      <div class="column small-6 small-centered">
+        <input type="email" id="login-email" required placeholder="Email Address"/>
+        <input type="password" id="login-password" required placeholder="Password"/>
+        <a id="login" class="b-button" type="submit" value="Sign in">Sign In</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column small-6 small-centered login-alert">
+        <h3 id="login-message"></h3>
+      </div>
+    </div>
+  </div>
+
+<div class="b-page-section" id='auth'>
+  <div class="row">
+  <div class="small-3 column"">
+  <button id="logout" value="Log Out">Logout</button>
+  <span id="current-user"></span>
+  </div>
+  <div class="small-9 column" id="admin-messages"></div>
+  </div>
+</div>
+
+  <div class="b-page-section admin-view">
+
+    <div class='row'>
+      <div class="small-3 column" id="data-menu">
+
+    </div>
+    <div class="small-9 column" id="data-panel"></div>
+
+
+
+
+</div>
+
+{% endblock %}

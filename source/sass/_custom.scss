@@ -34,8 +34,24 @@
   padding: 0;
   padding-bottom: 0;
   height: 100%;
+  vertical-align: -20px;
 }
 
+
+// HEADER MENU
+
+
+.b-top-nav .e-nav-group.m-right {
+  a {
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 4px;
+    margin-right: 26px;
+    vertical-align: -25px;
+  }
+}
 
 
 // SCROLL
