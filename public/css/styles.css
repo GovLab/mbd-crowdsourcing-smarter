@@ -7477,3 +7477,6 @@ code.m-negative {
 
 #logout {
   font-style: bold; }
+
+textarea {
+  height: 200px; }
