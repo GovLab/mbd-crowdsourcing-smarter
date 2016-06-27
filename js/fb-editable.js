@@ -176,14 +176,13 @@ var Conference = function (attr) {
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label><br>";
     form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label><br>";
     form+= "<label>time<input type='text' name='time' id='time' value='" + this.time  + "'/></label><br>";
-
-    form+= "<label>Goals Description<input type='text' name='goals_description' id='goals_description' value='" + this.goals_description  + "'/></label><br>";
+    form+= "<label>Goals Description<textarea id='goals_description'>" + this.goals_description  + "'</textarea></label><br>";
     form+= "<label>Goals List<input type='text' name='goals_list' id='goals_list' value='" + this.goals_list  + "'/></label><br>";
     form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label><br>";
     form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label><br>";
-    form+= "<label>Problem Description<input type='text' name='problem_description' id='problem_description' value='" + this.problem_description  + "'/></label><br>";
+    form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
-    form+= "<label>Pre-Conference Description<input type='text' name='pre_conference_description' id='pre_conference_description' value='" + this.pre_conference_description  + "'/></label><br>";
+    form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
     form+= "<label>Pre-Conference Links<input type='text' name='pre_conference_links' id='pre_conference_links' value='" + this.pre_conference_links  + "'/></label><br>";
     form+= "<label>Participants List<input type='text' name='participants_list' id='participants_list' value='" + this.participants_list  + "'/></label><br>";
     form+= "<label>Takeaways<input type='text' name='takeaways' id='takeaways' value='" + this.takeaways  + "'/></label><br>";
@@ -191,6 +190,7 @@ var Conference = function (attr) {
     form+= "<label>Shared Resources<input type='text' name='shared_resources' id='shared_resources' value='" + this.shared_resources  + "'/></label><br>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
     form+= "</form></div></div>";
+  debugger
     $(view).append(form);
   },
   this.updateDB = function() {
@@ -237,15 +237,16 @@ var Conference = function (attr) {
       action_items : $(form).find("#action_items").val(),
       shared_resources : $(form).find("#shared_resources").val()
     };
+  
     return obj;
   }
 
     $('body').on("click", '#editConfButton', function(e) {
     e.preventDefault();
-    var obj = grabConfObjectFromForm(this.parentElement);
+    var obj = grabConfObjectFromForm(this.parentElement.parentElement);
+    debugger
     var key = obj.key;
     var newConf = new Conference(obj);
-
     newConf.key = key;
     newConf.updateDB();
   });
