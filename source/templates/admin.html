@@ -1,14 +1,10 @@
 {% extends '_base.html' %}
-
-
 {% block main %}
 
 <div class="b-admin-page">
 
-
   <div class="b-top-section">
     <h3>Admin</h3>
-
     <div id='login-row' class="row">
       <div class="column small-6 small-centered">
         <input type="email" id="login-email" required placeholder="Email Address"/>
@@ -23,27 +19,44 @@
     </div>
   </div>
 
-<div class="b-page-section" id='auth'>
-  <div class="row">
-  <div class="small-3 column"">
-  <button id="logout" value="Log Out">Logout</button>
-  <span id="current-user"></span>
+  <div class="b-page-section" id='auth'>
+    <div class="row">
+    <div class="small-3 column"">
+    <button id="logout" value="Log Out">Logout</button>
+    <span id="current-user"></span>
+    </div>
+    <div class="small-9 column" id="admin-messages"></div>
+    </div>
   </div>
-  <div class="small-9 column" id="admin-messages"></div>
-  </div>
-</div>
 
   <div class="b-page-section admin-view">
-
     <div class='row'>
       <div class="small-3 column" id="data-menu">
-
     </div>
-    <div class="small-9 column" id="data-panel"></div>
-
-
-
+    <div class="small-9 column" id="data-panel">
+  </div>
 
 </div>
 
+
+
+{% endblock %}
+
+{% block custom_scripts %}
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBPyKSaw7T-q4BGfJQ2OHXyTcCnDUYJZOs",
+      authDomain: "mbd-crowdsourcing-smarter.firebaseapp.com",
+      databaseURL: "https://mbd-crowdsourcing-smarter.firebaseio.com",
+      storageBucket: "mbd-crowdsourcing-smarter.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="js/fb-editable.js"></script>
 {% endblock %}
