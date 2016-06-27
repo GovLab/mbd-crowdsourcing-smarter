@@ -244,13 +244,49 @@ var Conference = function (attr) {
     $('body').on("click", '#editConfButton', function(e) {
     e.preventDefault();
     var obj = grabConfObjectFromForm(this.parentElement.parentElement);
-    debugger
     var key = obj.key;
     var newConf = new Conference(obj);
     newConf.key = key;
     newConf.updateDB();
   });
 
+
+
+// PUBLIC VIEWS
+
+  function getConferences() {
+  conferencesRef.on("value",function(snap) {
+  var results = [];
+  snap.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      results.push({key: key, value: childData});
+      renderConference(childSnapshot);
+    });
+  });
+  }
+
+getConferences();
+
+  function renderConference(conferenceSnap){
+    var pageKey = "#" + conferenceSnap.key;
+    $(pageKey).find("#title").text(conferenceSnap.val().title);
+    $(pageKey).find("#subtitle").text(conferenceSnap.val().subtitle);
+    $(pageKey).find("#date").text(conferenceSnap.val().date);
+    $(pageKey).find("#time").text(conferenceSnap.val().time);
+    $(pageKey).find("#goals_description").text(conferenceSnap.val().goals_description);
+    $(pageKey).find("#goals_list").text(conferenceSnap.val().goals_list);
+    $(pageKey).find("#agenda").text(conferenceSnap.val().agenda);
+    $(pageKey).find("#agenda_link").attr("href", conferenceSnap.val().agenda_link);
+    $(pageKey).find("#problem_description").text(conferenceSnap.val().problem_description);
+    $(pageKey).find("#problem_description_link").attr("href", conferenceSnap.val().problem_description_link);
+    $(pageKey).find("#pre_conference_description").text(conferenceSnap.val().pre_conference_description);
+    $(pageKey).find("#pre_conference_links").text(conferenceSnap.val().pre_conference_links);
+    $(pageKey).find("#participants_list").text(conferenceSnap.val().participants_list);
+    $(pageKey).find("#takeaways").text(conferenceSnap.val().takeaways);
+    $(pageKey).find("#action_items").text(conferenceSnap.val().action_items);
+    $(pageKey).find("#shared_resources").text(conferenceSnap.val().shared_resources);
+  }
 
 
 });

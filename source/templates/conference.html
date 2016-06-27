@@ -10,11 +10,11 @@
         <div class='title-group'>
         {# #title #}
           {% block title %}
-          <h2 id="title" class="e-title">Trash & Standing Water</h2>
+          <h2 id="title" class="e-title">title</h2>
           {% endblock %}
           {# #subtitle #}
           {% block subtitle %}
-          <h3 id="subtitle" class="e-subtitle">What can be done to eliminate standing water in waste that breeds Aedes Aegypti mosquitoes</h3>
+          <h3 id="subtitle" class="e-subtitle">subtitle</h3>
           {% endblock %}
         </div>
       </div>
@@ -302,4 +302,23 @@
 
 </div>
 
+{% endblock %}
+
+{% block custom_scripts %}
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBPyKSaw7T-q4BGfJQ2OHXyTcCnDUYJZOs",
+      authDomain: "mbd-crowdsourcing-smarter.firebaseapp.com",
+      databaseURL: "https://mbd-crowdsourcing-smarter.firebaseio.com",
+      storageBucket: "mbd-crowdsourcing-smarter.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="js/fb-editable.js"></script>
 {% endblock %}
