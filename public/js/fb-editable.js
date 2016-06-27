@@ -106,17 +106,149 @@ $(document).ready(function() {
     });
   }
 
+  // Render New Edit Form
+  function renderNewEditForm(parent, child) {
+    var parentRef = dbRef.child(parent);
+    var childRef = parentRef.child(child);
+    if (childRef.parent.key == 'open-expert') {
+        childRef.once("value", function(snapshot) {
+        var oe = new OpenExpert(snapshot.val());
+        oe['key'] = snapshot.key();
+        oe.renderForm(oe.key, "#data-panel");
+      });
+    } else if (childRef.parent.key == 'conferences') {
+        childRef.once("value", function(snapshot){
+          var conf = new Conference(snapshot.val());
+          conf['key'] = snapshot.key;
+          console.log(conf);
+          conf.renderForm(conf.key, "#data-panel");
+        });
+    };
+  }
+
+  // RENDERS ITEM FORM WHEN CLICKED IN MENU
+  // MENU CONTROLS
+  $("body").on("click", ".list-menu-item", function(e) {
+    e.preventDefault();
+    $("#data-panel").empty();
+    $("#data-panel").show();
+    console.log('menuitem button');
+    $('#admin-list-item').remove();
+    var parentRoot = $(this).parent().attr('class');
+    var childID = $(this).attr('id');
+    renderNewEditForm(parentRoot,childID);
+  });
 
 
   // CREATE
-  function addNewConference(attr) {
-    conferencesRef.push({
-      data: data
-    });
+  function addNewConference(obj) {
+    conferencesRef.push(obj);
   }
 
 
+// MODELS
+// Conference
+var Conference = function (attr) {
+  this.collectionName = "conferences";
+  this.ref = conferencesRef;
+  this.key = attr.key || "";
+  this.title = attr.title;
+  this.subtitle = attr.subtitle;
+  this.date = attr.date;
+  this.time = attr.time;
+  this.goals_description = attr.goals_description;
+  this.goals_list = attr.goals_list;
+  this.agenda = attr.agenda;
+  this.agenda_link = attr.agenda_link;
+  this.problem_description = attr.problem_description;
+  this.problem_description_link = attr.problem_description_link;
+  this.pre_conference_description  = attr.pre_conference_description;
+  this.pre_conference_links = attr.pre_conference_links;
+  this.participants_list = attr.participants_list;
+  this.takeaways = attr.takeaways;
+  this.action_items = attr.action_items;
+  this.shared_resources = attr.shared_resources;
+  this.renderForm = function(key, view) {
+    var form = "";
+    form+= "<form id='"+ key +"' class='b-form'>";
+    form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
+    form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label><br>";
+    form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label><br>";
+    form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label><br>";
+    form+= "<label>time<input type='text' name='time' id='time' value='" + this.time  + "'/></label><br>";
 
+    form+= "<label>Goals Description<input type='text' name='goals_description' id='goals_description' value='" + this.goals_description  + "'/></label><br>";
+    form+= "<label>Goals List<input type='text' name='goals_list' id='goals_list' value='" + this.goals_list  + "'/></label><br>";
+    form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label><br>";
+    form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label><br>";
+    form+= "<label>Problem Description<input type='text' name='problem_description' id='problem_description' value='" + this.problem_description  + "'/></label><br>";
+    form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
+    form+= "<label>Pre-Conference Description<input type='text' name='pre_conference_description' id='pre_conference_description' value='" + this.pre_conference_description  + "'/></label><br>";
+    form+= "<label>Pre-Conference Links<input type='text' name='pre_conference_links' id='pre_conference_links' value='" + this.pre_conference_links  + "'/></label><br>";
+    form+= "<label>Participants List<input type='text' name='participants_list' id='participants_list' value='" + this.participants_list  + "'/></label><br>";
+    form+= "<label>Takeaways<input type='text' name='takeaways' id='takeaways' value='" + this.takeaways  + "'/></label><br>";
+    form+= "<label>Action Items<input type='text' name='action_items' id='action_items' value='" + this.action_items  + "'/></label><br>";
+    form+= "<label>Shared Resources<input type='text' name='shared_resources' id='shared_resources' value='" + this.shared_resources  + "'/></label><br>";
+    form+= "<input id='editConfButton' value='Update' type='submit'/>";
+    form+= "</form></div></div>";
+    $(view).append(form);
+  },
+  this.updateDB = function() {
+    var ref =  firebase.database().ref('conferences/' + this.key);
+    ref.update({
+      key : attr.key,
+      title : attr.title,
+      subtitle : attr.subtitle,
+      date : attr.date,
+      time : attr.time,
+      goals_description : attr.goals_description,
+      goals_list : attr.goals_list,
+      agenda : attr.agenda,
+      agenda_link : attr.agenda_link,
+      problem_description : attr.problem_description,
+      problem_description_link : attr.problem_description_link,
+      pre_conference_description  : attr.pre_conference_description,
+      pre_conference_links : attr.pre_conference_links,
+      participants_list : attr.participants_list,
+      takeaways : attr.takeaways,
+      action_items : attr.action_items,
+      shared_resources : attr.shared_resources,
+    }, onComplete);
+  };
+};
+
+  function grabConfObjectFromForm(form) {
+    var obj = {
+      key : $(form).attr("id"),
+      title : $(form).find("#title").val(),
+      subtitle : $(form).find("#subtitle").val(),
+      date : $(form).find("#date").val(),
+      time : $(form).find("#time").val(),
+      goals_description : $(form).find("#goals_description").val(),
+      goals_list : $(form).find("#goals_list").val(),
+      agenda : $(form).find("#agenda").val(),
+      agenda_link : $(form).find("#agenda_link").val(),
+      problem_description : $(form).find("#problem_description").val(),
+      problem_description_link : $(form).find("#problem_description_link").val(),
+      pre_conference_description  : $(form).find("#pre_conference_description").val(),
+      pre_conference_links : $(form).find("#pre_conference_links").val(),
+      participants_list : $(form).find("#participants_list").val(),
+      takeaways : $(form).find("#takeaways").val(),
+      action_items : $(form).find("#action_items").val(),
+      shared_resources : $(form).find("#shared_resources").val()
+    };
+    return obj;
+  }
+
+    $('body').on("click", '#editConfButton', function(e) {
+    e.preventDefault();
+    var obj = grabConfObjectFromForm(this.parentElement);
+    var key = obj.key;
+    var newConf = new Conference(obj);
+
+    newConf.key = key;
+    newConf.updateDB();
+  });
 
 
 

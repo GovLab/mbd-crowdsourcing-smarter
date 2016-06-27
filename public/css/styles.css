@@ -7471,3 +7471,9 @@ code.m-negative {
 
 #conference-page .b-participants .fa-twitter {
   color: #04CCB7; }
+
+#data-menu {
+  border-right: solid rgba(0, 0, 0, 0.15) 2px; }
+
+#logout {
+  font-style: bold; }
