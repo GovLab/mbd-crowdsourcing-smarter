@@ -494,27 +494,17 @@ var Participant = function(attr) {
 
 // Participants SEED
 
-// var people = [{title:"Stefaan Verhulst",  twitter: "https://twitter.com/thegovlab", affiliation: "The GovLab, NYU Tandon School of Engineering (Co-chair)"},
-// {title:"Francois van Schalkwyk", twitter: "https://twitter.com/francois_fvs2", affiliation: "World Wide Web Foundation / University of Stellenbosch (Co-chair)"},        
-// {title:"Emmy Chirchir",  twitter: "https://twitter.com/ChirchirEmmy", affiliation: "Munster University"},        
-// {title:"Katie Clancy",  twitter: "https://twitter.com/landofkatie", affiliation: "International Development Research Centre / Open Data for Development "},        
-// {title:"Gisele Craveiro", twitter: "", affiliation: "University of Sao Paulo"},        
-// {title:"Tim Davies",  twitter: "https://twitter.com/timdavies", affiliation: "University of Southampton"},        
-// {title:"Kyujin Jung",  twitter: "", affiliation: "Tennessee State University"},
-// {title:"Gustavo Magalhaes",  twitter: "https://twitter.com/freddygusto", affiliation: "University of Austin Texas"},        
-// {title:"Michelle McLeod",  twitter: "https://twitter.com/DrMTMcLeod", affiliation: "University of the West Indies"},        
-// {title:"Stefania Milan",  twitter: "https://twitter.com/annliffey", affiliation: "University of Amsterdam"},        
-// {title:"Fernando Perini",  twitter: "https://twitter.com/fperini", affiliation: "International Development Research Centre"},        
+// var people = [{title:"Stefaan Verhulst",  twitter: "https://twitter.com/thegovlab", affiliation: "The GovLab, NYU Tandon School of Engineering (Co-chair)"},      
 // {title:"Andrew Young",  twitter: "https://twitter.com/_AndrewYoung", affiliation: "The GovLab, NYU Tandon School of Engineering"}]
 
 
-// var participantsRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/participants_list");
+// var participantsRef = firebase.database().ref("conferences/-KLHU5llqXmAmPZBzFfh/participants_list");
 // people.forEach(function(person) {
-//   participantsRef.push(new Participant({
+//   participantsRef.push({
 //     title: person.title,
 //     twitter: person.twitter,
 //     affiliation: person.affiliation
-//   }))
+//   })
 // })
 
 // console.log(people.length);
