@@ -106,7 +106,6 @@ $(document).ready(function() {
     });
   }
 
-//   populateEditMenu("#data-menu");
 
   // Render New Edit Form
   function renderNewEditForm(parent, child) {
@@ -140,12 +139,6 @@ $(document).ready(function() {
     var childID = $(this).attr('id');
     renderNewEditForm(parentRoot,childID);
   });
-
-
-//   // CREATE
-//   function addNewConference(obj) {
-//     conferencesRef.push(obj);
-//   }
 
 
 // // MODELS
@@ -185,7 +178,7 @@ var Conference = function (attr) {
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    form+= "<label>Participants List<textarea id='participants_list'>" + this.participants_list  + "</textarea></label><br>";
+    // form+= "<label>Participants List<textarea id='participants_list'>" + this.participants_list  + "</textarea></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
@@ -198,6 +191,11 @@ var Conference = function (attr) {
     form += "<div id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
+
+  // PARTICIPANTS GROUP
+    form += "<div id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
+    form += renderFormLinks(this.participants_list);
+    form += "<input id='addParticipantsButton' value='Add a Participant' type='submit'/></div>";
 
     $(view).append(form);
   },
@@ -216,11 +214,9 @@ var Conference = function (attr) {
       problem_description : attr.problem_description,
       problem_description_link : attr.problem_description_link,
       pre_conference_description  : attr.pre_conference_description,
-      // pre_conference_links : attr.pre_conference_links,
-      participants_list : attr.participants_list,
+      // participants_list : attr.participants_list,
       takeaways : attr.takeaways,
       action_items : attr.action_items,
-      // shared_resources : attr.shared_resources,
     }, onComplete);
   };
 };
@@ -239,11 +235,9 @@ var Conference = function (attr) {
       problem_description : $(form).find("#problem_description").val(),
       problem_description_link : $(form).find("#problem_description_link").val(),
       pre_conference_description  : $(form).find("#pre_conference_description").val(),
-      // pre_conference_links : $(form).find("#pre_conference_links").val(),
-      participants_list : $(form).find("#participants_list").val(),
+      // participants_list : $(form).find("#participants_list").val(),
       takeaways : $(form).find("#takeaways").val(),
       action_items : $(form).find("#action_items").val(),
-      // shared_resources : $(form).find("#shared_resources").val()
     };
    
     return obj;
@@ -290,7 +284,7 @@ var Conference = function (attr) {
     $(pageKey).find("#problem_description_link").attr("href", conferenceSnap.val().problem_description_link);
     $(pageKey).find("#pre_conference_description").text(conferenceSnap.val().pre_conference_description);
     $(pageKey).find("#pre_conference_links").html(renderLinks(conferenceSnap.val().pre_conference_links));
-    $(pageKey).find("#participants_list").html(conferenceSnap.val().participants_list);
+    $(pageKey).find("#participants_list").html(renderParticipants(conferenceSnap.val().participants_list));
     $(pageKey).find("#takeaways").html(textAreaToList(conferenceSnap.val().takeaways));
     $(pageKey).find("#action_items").html(textAreaToList(conferenceSnap.val().action_items));
     $(pageKey).find("#shared_resources").html(renderLinks(conferenceSnap.val().shared_resources));
@@ -336,11 +330,9 @@ var Conference = function (attr) {
   }
 
 
-
-    $('body').on("click", '#editLinkButton', function(e) {
+  $('body').on("click", '#editLinkButton', function(e) {
     e.preventDefault();
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-    debugger
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
       url: $(this).parent().find("#link_url").val()
@@ -357,43 +349,22 @@ var Conference = function (attr) {
 
   });
 
-
     $('body').on("click", '#addLinkButton', function(e) {
     e.preventDefault();
     var parentPath = this.parentElement.id;
-    // debugger
     $(this.parentElement).append(renderNewLinkForm());
-    // debugger
-    // var link = new Link({
-    //   title: $(this).parent().find("#link_title").val(), 
-    //   url: $(this).parent().find("#link_url").val()
-    //   });
-    // link.key = this.parentElement.id;
-    // link.push(parentPath);
   });
 
     $('body').on("click", '#submitLinkButton', function(e) {
     e.preventDefault();
-    debugger
     var parentPath = this.parentElement.parentElement.id;
     var linkTitle = $(this).parent().find("#link_title").val();
     var linkURL = $(this).parent().find("#link_url").val();
     var linkRef = firebase.database().ref(parentPath);
     linkRef.push({title: linkTitle, url: linkURL}, onComplete)
-
-
-    // debugger
-
-    // debugger
-    // var link = new Link({
-    //   title: $(this).parent().find("#link_title").val(), 
-    //   url: $(this).parent().find("#link_url").val()
-    //   });
-    // link.key = this.parentElement.id;
-    // link.push(parentPath);
   });
 
-  function renderNewLinkForm(location){
+  function renderNewLinkForm(){
     var form = "<div id='addLink'>";
     form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''/></label>";
     form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''/></label>"
@@ -401,20 +372,12 @@ var Conference = function (attr) {
     return form;
   }
 
-
   function renderLinks(obj) {
     var linksHtml = "";
     for (variable in obj) {
       linksHtml += new Link(obj[variable]).renderHtml();
     }
     return linksHtml;
-  }
-
-
-  function addLink(location, attr) {
-    var location = "conferences/-KLHU5llqXmAmPZBzFfh/shared_resources"
-    var linkRef = firebase.database().ref(location)
-    linkRef.push({title:attr.title, url: attr.url})
   }
 
   function renderFormLinks(links){
@@ -428,13 +391,138 @@ var Conference = function (attr) {
   }
 
 
+// PARTICIPANTS 
+
+var Participant = function(attr) {
+  this.key = attr.key || "";
+  this.title = attr.title,
+  this.affiliation = attr.affiliation, 
+  this.twitter = attr.twitter || ""
+  this.renderHtml = function() {
+    return "<li><strong>" + this.title +" <a href=\'"+ this.twitter +" target=\'_blank\'><span class=\'fa fa-twitter\' aria-hidden=\'true\'></span></a></strong> "+ this.affiliation +"</li>";
+  }
+  this.renderForm = function() {
+    var form = "<div class='b-form-' id='"+this.key+"'>";
+    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'/></label>";
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'/></label>"
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>"
+    form+= "<input id='editParticipantButton' value='Update' type='submit'/><input id='deleteParticipantButton' value='Delete' type='submit'/></div>";
+    return form;
+  }
+  this.updateDB = function(refPath) {
+    var participantRef = firebase.database().ref(refPath)
+    participaneRef.update({
+      title : attr.title,
+      affiliation : attr.affiliation,
+      twitter : attr.twitter
+    }, onComplete)
+  }
+}
+
+  function renderParticipants(obj) {
+    var participantsHtml = "";
+    for (variable in obj) {
+      participantsHtml += new Participant(obj[variable]).renderHtml();
+    }
+    return participantsHtml;
+  }
+
+  // $('body').on("click", '#editLinkButton', function(e) {
+  //   e.preventDefault();
+  //   var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+  //   var link = new Link({
+  //     title: $(this).parent().find("#link_title").val(), 
+  //     url: $(this).parent().find("#link_url").val()
+  //     });
+  //   link.key = this.parentElement.id;
+  //   link.updateDB(parentPath);
+  // });
+
+    $('body').on("click", '#deleteParticipantButton', function(e) {
+    e.preventDefault();
+    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+    debugger
+    var participantRef = firebase.database().ref(parentPath);
+    participantRef.remove().then(onComplete);
+
+  });
+
+  //   $('body').on("click", '#addLinkButton', function(e) {
+  //   e.preventDefault();
+  //   var parentPath = this.parentElement.id;
+  //   $(this.parentElement).append(renderNewLinkForm());
+  // });
+
+  //   $('body').on("click", '#submitLinkButton', function(e) {
+  //   e.preventDefault();
+  //   var parentPath = this.parentElement.parentElement.id;
+  //   var linkTitle = $(this).parent().find("#link_title").val();
+  //   var linkURL = $(this).parent().find("#link_url").val();
+  //   var linkRef = firebase.database().ref(parentPath);
+  //   linkRef.push({title: linkTitle, url: linkURL}, onComplete)
+  // });
+
+  // function renderNewLinkForm(){
+  //   var form = "<div id='addLink'>";
+  //   form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''/></label>";
+  //   form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''/></label>"
+  //   form += "<input id='submitLinkButton' value='Submit' type='submit'/></div>";
+  //   return form;
+  // }
+
+  // function renderLinks(obj) {
+  //   var linksHtml = "";
+  //   for (variable in obj) {
+  //     linksHtml += new Link(obj[variable]).renderHtml();
+  //   }
+  //   return linksHtml;
+  // }
+
+  // function renderFormLinks(links){
+  //   var linksGroup = "";
+  //   for (link in links) {
+  //     var key = link;
+  //     var child = links[link];
+  //     linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
+  //   }
+  //   return linksGroup;
+  // }
+
+// LINKS SEED
+
   // var linkRef = firebase.database().ref("conferences/-KLHU5llqXmAmPZBzFfh/shared_resources");
   // linkRef.push({title:"Example Website 3", url: "www.example.com"})
 
-    // var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/pre_conference_links");
+  //   var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/shared_resources");
   // linkRef.push({title:"Example Website 2", url: "www.example.com"})
 
 
+// Participants SEED
+
+// var people = [{title:"Stefaan Verhulst",  twitter: "https://twitter.com/thegovlab", affiliation: "The GovLab, NYU Tandon School of Engineering (Co-chair)"},
+// {title:"Francois van Schalkwyk", twitter: "https://twitter.com/francois_fvs2", affiliation: "World Wide Web Foundation / University of Stellenbosch (Co-chair)"},        
+// {title:"Emmy Chirchir",  twitter: "https://twitter.com/ChirchirEmmy", affiliation: "Munster University"},        
+// {title:"Katie Clancy",  twitter: "https://twitter.com/landofkatie", affiliation: "International Development Research Centre / Open Data for Development "},        
+// {title:"Gisele Craveiro", twitter: "", affiliation: "University of Sao Paulo"},        
+// {title:"Tim Davies",  twitter: "https://twitter.com/timdavies", affiliation: "University of Southampton"},        
+// {title:"Kyujin Jung",  twitter: "", affiliation: "Tennessee State University"},
+// {title:"Gustavo Magalhaes",  twitter: "https://twitter.com/freddygusto", affiliation: "University of Austin Texas"},        
+// {title:"Michelle McLeod",  twitter: "https://twitter.com/DrMTMcLeod", affiliation: "University of the West Indies"},        
+// {title:"Stefania Milan",  twitter: "https://twitter.com/annliffey", affiliation: "University of Amsterdam"},        
+// {title:"Fernando Perini",  twitter: "https://twitter.com/fperini", affiliation: "International Development Research Centre"},        
+// {title:"Andrew Young",  twitter: "https://twitter.com/_AndrewYoung", affiliation: "The GovLab, NYU Tandon School of Engineering"}]
+
+
+// var participantsRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/participants_list");
+// people.forEach(function(person) {
+//   participantsRef.push(new Participant({
+//     title: person.title,
+//     twitter: person.twitter,
+//     affiliation: person.affiliation
+//   }))
+// })
+
+// console.log(people.length);
 });
 
 
