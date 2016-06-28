@@ -107,8 +107,8 @@ $(document).ready(function() {
   }
 
   // TOGGLE MENU
-  $('body').on('click', '.admin-toggle', function() {
-    $(this).children().slice(1).toggle();
+  $('body').on('click', '.admin-toggle>h3', function() {
+    $(this).parent().children().slice(1).toggle();
   })
 
   // Render New Edit Form
