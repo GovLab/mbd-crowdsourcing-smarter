@@ -194,7 +194,7 @@ var Conference = function (attr) {
 
   // PARTICIPANTS GROUP
     form += "<div id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
-    form += renderFormLinks(this.participants_list);
+    form += renderFormParticipants(this.participants_list);
     form += "<input id='addParticipantsButton' value='Add a Participant' type='submit'/></div>";
 
     $(view).append(form);
@@ -400,7 +400,7 @@ var Participant = function(attr) {
   this.twitter = attr.twitter || ""
   this.renderHtml = function() {
     return "<li><strong>" + this.title +" <a href=\'"+ this.twitter +" target=\'_blank\'><span class=\'fa fa-twitter\' aria-hidden=\'true\'></span></a></strong> "+ this.affiliation +"</li>";
-  }
+  },
   this.renderForm = function() {
     var form = "<div class='b-form-' id='"+this.key+"'>";
     form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'/></label>";
@@ -408,10 +408,10 @@ var Participant = function(attr) {
     form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>"
     form+= "<input id='editParticipantButton' value='Update' type='submit'/><input id='deleteParticipantButton' value='Delete' type='submit'/></div>";
     return form;
-  }
+  },
   this.updateDB = function(refPath) {
     var participantRef = firebase.database().ref(refPath)
-    participaneRef.update({
+    participantRef.update({
       title : attr.title,
       affiliation : attr.affiliation,
       twitter : attr.twitter
@@ -427,16 +427,17 @@ var Participant = function(attr) {
     return participantsHtml;
   }
 
-  // $('body').on("click", '#editLinkButton', function(e) {
-  //   e.preventDefault();
-  //   var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-  //   var link = new Link({
-  //     title: $(this).parent().find("#link_title").val(), 
-  //     url: $(this).parent().find("#link_url").val()
-  //     });
-  //   link.key = this.parentElement.id;
-  //   link.updateDB(parentPath);
-  // });
+  $('body').on("click", '#editParticipantButton', function(e) {
+    e.preventDefault();
+    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+    var participant = new Participant({
+      title: $(this).parent().find("#participant_title").val(), 
+      twitter: $(this).parent().find("#participant_twitter").val(), 
+      affiliation: $(this).parent().find("#participant_affiliation").val()
+      });
+    participant.key = this.parentElement.id;
+    participant.updateDB(parentPath);
+  });
 
     $('body').on("click", '#deleteParticipantButton', function(e) {
     e.preventDefault();
@@ -478,15 +479,16 @@ var Participant = function(attr) {
   //   return linksHtml;
   // }
 
-  // function renderFormLinks(links){
-  //   var linksGroup = "";
-  //   for (link in links) {
-  //     var key = link;
-  //     var child = links[link];
-  //     linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
-  //   }
-  //   return linksGroup;
-  // }
+  function renderFormParticipants(participants){
+    var participantsGroup = "";
+    for (participant in participants) {
+    // debugger
+      var key = participant;
+      var child = participants[participant];
+      participantsGroup += new Participant({key:participant, title: child.title, twitter: child.twitter, affiliation: child.affiliation}).renderForm();
+    }
+    return participantsGroup;
+  }
 
 // LINKS SEED
 
