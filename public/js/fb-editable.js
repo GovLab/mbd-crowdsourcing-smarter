@@ -322,7 +322,7 @@ var Conference = function (attr) {
       var form = "<div class='b-form-links' id='"+this.key+"'>";
       form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'/></label>";
       form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'/></label>"
-      form+= "<input id='editLinkButton' value='Update' type='submit'/></div>";
+      form+= "<input id='editLinkButton' value='Update' type='submit'/><input id='deleteLinkButton' value='Delete' type='submit'/></div>";
       return form;
     }
     this.updateDB = function(refPath) {
@@ -348,6 +348,15 @@ var Conference = function (attr) {
     link.key = this.parentElement.id;
     link.updateDB(parentPath);
   });
+
+    $('body').on("click", '#deleteLinkButton', function(e) {
+    e.preventDefault();
+    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+    var linkRef = firebase.database().ref(parentPath);
+    linkRef.remove().then(onComplete);
+
+  });
+
 
     $('body').on("click", '#addLinkButton', function(e) {
     e.preventDefault();
