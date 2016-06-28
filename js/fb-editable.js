@@ -282,11 +282,11 @@ var Conference = function (attr) {
     $(pageKey).find("#problem_description").text(conferenceSnap.val().problem_description);
     $(pageKey).find("#problem_description_link").attr("href", conferenceSnap.val().problem_description_link);
     $(pageKey).find("#pre_conference_description").text(conferenceSnap.val().pre_conference_description);
-    $(pageKey).find("#pre_conference_links").text(conferenceSnap.val().pre_conference_links);
+    $(pageKey).find("#pre_conference_links").html(renderLinks(conferenceSnap.val().pre_conference_links));
     $(pageKey).find("#participants_list").html(conferenceSnap.val().participants_list);
     $(pageKey).find("#takeaways").html(textAreaToList(conferenceSnap.val().takeaways));
     $(pageKey).find("#action_items").html(textAreaToList(conferenceSnap.val().action_items));
-    $(pageKey).find("#shared_resources").html(textAreaToList(conferenceSnap.val().shared_resources));
+    $(pageKey).find("#shared_resources").html(renderLinks(conferenceSnap.val().shared_resources));
   }
 
 
@@ -299,6 +299,36 @@ var Conference = function (attr) {
     return listHtml;
   }
 
+  function addLink(location, attr) {
+    title = attr.title,
+    url = attr.url
+  }
+
+  var Link = function(attr) {
+    this.title = attr.title,
+    this.url = attr.url, 
+    this.renderHtml = function() {
+      return "<li class='e-link-item'><div class='row'><div class='large-6 large-offset-1 column'><a href= '"+this.url+"'><p class='e-link-title'>"+this.title+"</p></a></div></div></li>";
+    }
+  }
+
+
+
+
+   function renderLinks(obj) {
+    var linksHtml = "";
+    for (variable in obj) {
+      linksHtml += new Link(obj[variable]).renderHtml();
+    }
+    return linksHtml;
+   }
+
+
+  // var linkRef = firebase.database().ref("conferences/-KLHU5llqXmAmPZBzFfh/shared_resources");
+  // linkRef.push({title:"Example Website 3", url: "www.example.com"})
+
+  //   var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/pre_conference_links");
+  // linkRef.push({title:"Example Website 3", url: "www.example.com"})
 
 
 });
