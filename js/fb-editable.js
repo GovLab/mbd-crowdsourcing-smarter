@@ -185,7 +185,10 @@ var Conference = function (attr) {
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    // form+= "<label>Pre-Conference Links<input type='text' name='pre_conference_links' id='pre_conference_links' value='" + this.pre_conference_links  + "'/></label><br>";
+    form += "<div id='conferences/"+ this.key +"/pre_conference_links'> Pre-Conference Links"
+    debugger
+    form += renderFormLinks(this.pre_conference_links);
+    form += "</div";
     form+= "<label>Participants List<input type='text' name='participants_list' id='participants_list' value='" + this.participants_list  + "'/></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
@@ -236,11 +239,11 @@ var Conference = function (attr) {
       problem_description : $(form).find("#problem_description").val(),
       problem_description_link : $(form).find("#problem_description_link").val(),
       pre_conference_description  : $(form).find("#pre_conference_description").val(),
-      pre_conference_links : $(form).find("#pre_conference_links").val(),
+      // pre_conference_links : $(form).find("#pre_conference_links").val(),
       participants_list : $(form).find("#participants_list").val(),
       takeaways : $(form).find("#takeaways").val(),
       action_items : $(form).find("#action_items").val(),
-      shared_resources : $(form).find("#shared_resources").val()
+      // shared_resources : $(form).find("#shared_resources").val()
     };
    
     return obj;
@@ -323,6 +326,7 @@ var Conference = function (attr) {
       return form;
     }
     this.updateDB = function(ref) {
+      debugger
       ref.update({
         title : attr.title,
         url : attr.url
@@ -336,6 +340,7 @@ var Conference = function (attr) {
 
     $('body').on("click", '#editLinkButton', function(e) {
     e.preventDefault();
+    debugger
     var ref = firebase.database().ref(this.parentElement.parentElement.id + "/" +this.parentElement.id)
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
