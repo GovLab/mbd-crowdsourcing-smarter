@@ -15,3 +15,8 @@ textarea {
   width: 50%;
   background-color: $mbd-1;
 }
+.admin-toggle {
+  :first-child:hover {
+    color:$mbd-primary;
+  }
+}

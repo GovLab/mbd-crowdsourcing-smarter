@@ -7484,3 +7484,6 @@ textarea {
 .b-form-links {
   width: 50%;
   background-color: #EDFBF9; }
+
+.admin-toggle :first-child:hover {
+  color: #345A6C; }
