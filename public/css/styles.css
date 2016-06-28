@@ -7479,4 +7479,8 @@ code.m-negative {
   font-style: bold; }
 
 textarea {
-  height: 200px; }
+  height: 150px; }
+
+.b-form-links {
+  width: 50%;
+  border: solid black 1px; }

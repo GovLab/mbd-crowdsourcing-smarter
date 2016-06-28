@@ -182,16 +182,20 @@ var Conference = function (attr) {
     form+= "<label>Goals List<textarea id='goals_list'>" + this.goals_list  + "</textarea></label><br>";
     form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label><br>";
     form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label><br>";
-    form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea><br>";
+    form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    form+= "<label>Pre-Conference Links<input type='text' name='pre_conference_links' id='pre_conference_links' value='" + this.pre_conference_links  + "'/></label><br>";
+    // form+= "<label>Pre-Conference Links<input type='text' name='pre_conference_links' id='pre_conference_links' value='" + this.pre_conference_links  + "'/></label><br>";
     form+= "<label>Participants List<input type='text' name='participants_list' id='participants_list' value='" + this.participants_list  + "'/></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
-    form+= "<label>Shared Resources<textarea id='shared_resources'>" + this.shared_resources  + "</textarea></label><br>";
+    form += "<div id='conferences/"+ this.key +"/shared_resources'> Shared Resources Links"
+    form += renderFormLinks(this.shared_resources);
+    form += "</div";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
     form+= "</form></div></div>";
+
+
     $(view).append(form);
   },
   this.updateDB = function() {
@@ -209,11 +213,11 @@ var Conference = function (attr) {
       problem_description : attr.problem_description,
       problem_description_link : attr.problem_description_link,
       pre_conference_description  : attr.pre_conference_description,
-      pre_conference_links : attr.pre_conference_links,
+      // pre_conference_links : attr.pre_conference_links,
       participants_list : attr.participants_list,
       takeaways : attr.takeaways,
       action_items : attr.action_items,
-      shared_resources : attr.shared_resources,
+      // shared_resources : attr.shared_resources,
     }, onComplete);
   };
 };
@@ -305,30 +309,75 @@ var Conference = function (attr) {
   }
 
   var Link = function(attr) {
+    this.key = attr.key || "";
     this.title = attr.title,
     this.url = attr.url, 
     this.renderHtml = function() {
       return "<li class='e-link-item'><div class='row'><div class='large-6 large-offset-1 column'><a href= '"+this.url+"'><p class='e-link-title'>"+this.title+"</p></a></div></div></li>";
+    }
+    this.renderForm = function() {
+      var form = "<div class='b-form-links' id='"+this.key+"'>";
+      form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'/></label>";
+      form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'/></label>"
+      form+= "<input id='editLinkButton' value='Update' type='submit'/></div>";
+      return form;
+    }
+    this.updateDB = function(ref) {
+      ref.update({
+        title : attr.title,
+        url : attr.url
+      }, onComplete)
     }
   }
 
 
 
 
-   function renderLinks(obj) {
+
+    $('body').on("click", '#editLinkButton', function(e) {
+    e.preventDefault();
+    var ref = firebase.database().ref(this.parentElement.parentElement.id + "/" +this.parentElement.id)
+    var link = new Link({
+      title: $(this).parent().find("#link_title").val(), 
+      url: $(this).parent().find("#link_url").val()
+      });
+    link.key = this.parentElement.id;
+    link.updateDB(ref);
+  });
+
+
+  function renderLinks(obj) {
     var linksHtml = "";
     for (variable in obj) {
       linksHtml += new Link(obj[variable]).renderHtml();
     }
     return linksHtml;
-   }
+  }
+
+
+  function addLink(location, attr) {
+    var location = "conferences/-KLHU5llqXmAmPZBzFfh/shared_resources"
+    var linkRef = firebase.database().ref(location)
+    linkRef.push({title:attr.title, url: attr.url})
+  }
+
+  function renderFormLinks(links){
+    var linksGroup = "";
+    for (link in links) {
+      var key = link;
+      var child = links[link];
+      linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
+    // debugger
+    }
+    return linksGroup;
+  }
 
 
   // var linkRef = firebase.database().ref("conferences/-KLHU5llqXmAmPZBzFfh/shared_resources");
   // linkRef.push({title:"Example Website 3", url: "www.example.com"})
 
-  //   var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/pre_conference_links");
-  // linkRef.push({title:"Example Website 3", url: "www.example.com"})
+  //   var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/shared_resources");
+  // linkRef.push({title:"Example Website 2", url: "www.example.com"})
 
 
 });
