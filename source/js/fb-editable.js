@@ -276,16 +276,14 @@ var Conference = function (attr) {
     $(pageKey).find("#date").text(conferenceSnap.val().date);
     $(pageKey).find("#time").text(conferenceSnap.val().time);
     $(pageKey).find("#goals_description").text(conferenceSnap.val().goals_description);
-
     $(pageKey).find("#goals_list").html(textAreaToList(conferenceSnap.val().goals_list));
-
     $(pageKey).find("#agenda").text(conferenceSnap.val().agenda);
     $(pageKey).find("#agenda_link").attr("href", conferenceSnap.val().agenda_link);
     $(pageKey).find("#problem_description").text(conferenceSnap.val().problem_description);
     $(pageKey).find("#problem_description_link").attr("href", conferenceSnap.val().problem_description_link);
     $(pageKey).find("#pre_conference_description").text(conferenceSnap.val().pre_conference_description);
     $(pageKey).find("#pre_conference_links").text(conferenceSnap.val().pre_conference_links);
-    $(pageKey).find("#participants_list").text(conferenceSnap.val().participants_list);
+    $(pageKey).find("#participants_list").html(conferenceSnap.val().participants_list);
     $(pageKey).find("#takeaways").html(textAreaToList(conferenceSnap.val().takeaways));
     $(pageKey).find("#action_items").html(textAreaToList(conferenceSnap.val().action_items));
     $(pageKey).find("#shared_resources").html(textAreaToList(conferenceSnap.val().shared_resources));
@@ -293,13 +291,14 @@ var Conference = function (attr) {
 
 
   function textAreaToList(obj) {
-    var listHtml = [];
+    var listHtml = "";
     var arr = obj.split(/\n/g);
     arr.forEach(function(string) {
-      listHtml.push("<li>" + string + "</li>");
+      listHtml += "<li>" + string + "</li>";
     });
     return listHtml;
   }
+
 
 
 });
