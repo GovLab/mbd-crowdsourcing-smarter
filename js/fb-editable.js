@@ -106,6 +106,10 @@ $(document).ready(function() {
     });
   }
 
+  // TOGGLE MENU
+  $('body').on('click', '.admin-toggle', function() {
+    $(this).children().slice(1).toggle();
+  })
 
   // Render New Edit Form
   function renderNewEditForm(parent, child) {
@@ -165,7 +169,7 @@ var Conference = function (attr) {
   this.shared_resources = attr.shared_resources;
   this.renderForm = function(key, view) {
     var form = "";
-    form+= "<form id='"+ key +"' class='b-form'>";
+    form+= "<div class='admin-toggle main-text-fields'> <h3>Main Text Fields</h3> <form id='"+ key +"' class='b-form'>";
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
     form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label><br>";
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label><br>";
@@ -178,22 +182,21 @@ var Conference = function (attr) {
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    // form+= "<label>Participants List<textarea id='participants_list'>" + this.participants_list  + "</textarea></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
-    form+= "</form></div></div>";
+    form+= "</form></div></div></div>";
 
 // LINKS GROUP
-    form += "<div id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
+    form += "<div class='admin-toggle shared-resources' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
-    form += "<div id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
+    form += "<div class='admin-toggle pre-conference-links'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
 
   // PARTICIPANTS GROUP
-    form += "<div id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
+    form += "<div class='admin-toggle participants' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
     form += renderFormParticipants(this.participants_list);
     form += "<input id='addParticipantButton' value='Add a Participant' type='submit'/></div>";
 
