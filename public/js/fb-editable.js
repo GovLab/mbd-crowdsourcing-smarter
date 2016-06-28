@@ -185,7 +185,7 @@ var Conference = function (attr) {
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    form+= "<label>Participants List<textarea id='participants_list' value='" + this.participants_list  + "</textarea></label><br>";
+    form+= "<label>Participants List<textarea id='participants_list'>" + this.participants_list  + "</textarea></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
@@ -251,7 +251,7 @@ var Conference = function (attr) {
 
     $('body').on("click", '#editConfButton', function(e) {
     e.preventDefault();
-    var obj = grabConfObjectFromForm(this.parentElement.parentElement);
+    var obj = grabConfObjectFromForm(this.parentElement);
     var key = obj.key;
     var newConf = new Conference(obj);
     newConf.key = key;
