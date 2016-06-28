@@ -185,19 +185,18 @@ var Conference = function (attr) {
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label><br>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label><br>";
-    form += "<div id='conferences/"+ this.key +"/pre_conference_links'> Pre-Conference Links"
-    debugger
-    form += renderFormLinks(this.pre_conference_links);
-    form += "</div";
-    form+= "<label>Participants List<input type='text' name='participants_list' id='participants_list' value='" + this.participants_list  + "'/></label><br>";
+    form+= "<label>Participants List<textarea id='participants_list' value='" + this.participants_list  + "</textarea></label><br>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
-    form += "<div id='conferences/"+ this.key +"/shared_resources'> Shared Resources Links"
-    form += renderFormLinks(this.shared_resources);
-    form += "</div";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
     form+= "</form></div></div>";
 
+    form += "<div id='conferences/"+ this.key +"/shared_resources'> Shared Resources Links"
+    form += renderFormLinks(this.shared_resources);
+    form += "</div>";
+    form += "<div id='conferences/"+ this.key +"/pre_conference_links'> Pre-Conference Links"
+    form += renderFormLinks(this.pre_conference_links);
+    form += "</div";
 
     $(view).append(form);
   },
@@ -325,9 +324,10 @@ var Conference = function (attr) {
       form+= "<input id='editLinkButton' value='Update' type='submit'/></div>";
       return form;
     }
-    this.updateDB = function(ref) {
+    this.updateDB = function(refPath) {
+      var linkRef = firebase.database().ref(refPath)
       debugger
-      ref.update({
+      linkRef.update({
         title : attr.title,
         url : attr.url
       }, onComplete)
@@ -336,19 +336,32 @@ var Conference = function (attr) {
 
 
 
-
-
     $('body').on("click", '#editLinkButton', function(e) {
     e.preventDefault();
+    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     debugger
-    var ref = firebase.database().ref(this.parentElement.parentElement.id + "/" +this.parentElement.id)
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
       url: $(this).parent().find("#link_url").val()
       });
     link.key = this.parentElement.id;
-    link.updateDB(ref);
+    link.updateDB(parentPath);
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   function renderLinks(obj) {
@@ -381,7 +394,7 @@ var Conference = function (attr) {
   // var linkRef = firebase.database().ref("conferences/-KLHU5llqXmAmPZBzFfh/shared_resources");
   // linkRef.push({title:"Example Website 3", url: "www.example.com"})
 
-  //   var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/shared_resources");
+    // var linkRef = firebase.database().ref("conferences/-KLIR40URSpfiPFhI-4x/pre_conference_links");
   // linkRef.push({title:"Example Website 2", url: "www.example.com"})
 
 
