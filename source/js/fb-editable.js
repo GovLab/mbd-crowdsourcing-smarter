@@ -191,12 +191,13 @@ var Conference = function (attr) {
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
     form+= "</form></div></div>";
 
-    form += "<div id='conferences/"+ this.key +"/shared_resources'> Shared Resources Links"
+// LINKS GROUP
+    form += "<div id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
-    form += "</div>";
-    form += "<div id='conferences/"+ this.key +"/pre_conference_links'> Pre-Conference Links"
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
+    form += "<div id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
-    form += "</div";
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
 
     $(view).append(form);
   },
@@ -348,20 +349,48 @@ var Conference = function (attr) {
     link.updateDB(parentPath);
   });
 
+    $('body').on("click", '#addLinkButton', function(e) {
+    e.preventDefault();
+    var parentPath = this.parentElement.id;
+    // debugger
+    $(this.parentElement).append(renderNewLinkForm());
+    // debugger
+    // var link = new Link({
+    //   title: $(this).parent().find("#link_title").val(), 
+    //   url: $(this).parent().find("#link_url").val()
+    //   });
+    // link.key = this.parentElement.id;
+    // link.push(parentPath);
+  });
+
+    $('body').on("click", '#submitLinkButton', function(e) {
+    e.preventDefault();
+    debugger
+    var parentPath = this.parentElement.parentElement.id;
+    var linkTitle = $(this).parent().find("#link_title").val();
+    var linkURL = $(this).parent().find("#link_url").val();
+    var linkRef = firebase.database().ref(parentPath);
+    linkRef.push({title: linkTitle, url: linkURL}, onComplete)
 
 
+    // debugger
 
+    // debugger
+    // var link = new Link({
+    //   title: $(this).parent().find("#link_title").val(), 
+    //   url: $(this).parent().find("#link_url").val()
+    //   });
+    // link.key = this.parentElement.id;
+    // link.push(parentPath);
+  });
 
-
-
-
-
-
-
-
-
-
-
+  function renderNewLinkForm(location){
+    var form = "<div id='addLink'>";
+    form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''/></label>";
+    form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''/></label>"
+    form += "<input id='submitLinkButton' value='Submit' type='submit'/></div>";
+    return form;
+  }
 
 
   function renderLinks(obj) {
@@ -385,7 +414,6 @@ var Conference = function (attr) {
       var key = link;
       var child = links[link];
       linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
-    // debugger
     }
     return linksGroup;
   }
