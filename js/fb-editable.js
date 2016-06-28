@@ -195,7 +195,7 @@ var Conference = function (attr) {
   // PARTICIPANTS GROUP
     form += "<div id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
     form += renderFormParticipants(this.participants_list);
-    form += "<input id='addParticipantsButton' value='Add a Participant' type='submit'/></div>";
+    form += "<input id='addParticipantButton' value='Add a Participant' type='submit'/></div>";
 
     $(view).append(form);
   },
@@ -321,7 +321,6 @@ var Conference = function (attr) {
     }
     this.updateDB = function(refPath) {
       var linkRef = firebase.database().ref(refPath)
-      debugger
       linkRef.update({
         title : attr.title,
         url : attr.url
@@ -419,13 +418,6 @@ var Participant = function(attr) {
   }
 }
 
-  function renderParticipants(obj) {
-    var participantsHtml = "";
-    for (variable in obj) {
-      participantsHtml += new Participant(obj[variable]).renderHtml();
-    }
-    return participantsHtml;
-  }
 
   $('body').on("click", '#editParticipantButton', function(e) {
     e.preventDefault();
@@ -442,47 +434,48 @@ var Participant = function(attr) {
     $('body').on("click", '#deleteParticipantButton', function(e) {
     e.preventDefault();
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-    debugger
     var participantRef = firebase.database().ref(parentPath);
     participantRef.remove().then(onComplete);
 
   });
 
-  //   $('body').on("click", '#addLinkButton', function(e) {
-  //   e.preventDefault();
-  //   var parentPath = this.parentElement.id;
-  //   $(this.parentElement).append(renderNewLinkForm());
-  // });
+    $('body').on("click", '#addParticipantButton', function(e) {
+    e.preventDefault();
+    var parentPath = this.parentElement.id;
+    $(this.parentElement).append(renderNewParticipantForm());
+  });
 
-  //   $('body').on("click", '#submitLinkButton', function(e) {
-  //   e.preventDefault();
-  //   var parentPath = this.parentElement.parentElement.id;
-  //   var linkTitle = $(this).parent().find("#link_title").val();
-  //   var linkURL = $(this).parent().find("#link_url").val();
-  //   var linkRef = firebase.database().ref(parentPath);
-  //   linkRef.push({title: linkTitle, url: linkURL}, onComplete)
-  // });
+    $('body').on("click", '#submitParticipantButton', function(e) {
+      console.log();
+    e.preventDefault();
+    var parentPath = this.parentElement.parentElement.id,
+        participantTitle = $(this).parent().find("#participant_title").val(),
+        participantTwitter = $(this).parent().find("#participant_twitter").val(),
+        participantAffiliation = $(this).parent().find("#participant_affiliation").val(),
+        participantRef = firebase.database().ref(parentPath);
+    participantRef.push({title: participantTitle, twitter: participantTwitter, affiliation: participantAffiliation}, onComplete)
+  });
 
-  // function renderNewLinkForm(){
-  //   var form = "<div id='addLink'>";
-  //   form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''/></label>";
-  //   form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''/></label>"
-  //   form += "<input id='submitLinkButton' value='Submit' type='submit'/></div>";
-  //   return form;
-  // }
+  function renderNewParticipantForm(){
+    var form = "<div id='addParticipant'>";
+    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' placeholder='Participant Title' value=''/></label>";
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' placeholder='Participant Affiliation' value=''/></label>"
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' placeholder='Participant Twitter' value=''/></label>"
+    form += "<input id='submitParticipantButton' value='Submit' type='submit'/></div>";
+    return form;
+  }
 
-  // function renderLinks(obj) {
-  //   var linksHtml = "";
-  //   for (variable in obj) {
-  //     linksHtml += new Link(obj[variable]).renderHtml();
-  //   }
-  //   return linksHtml;
-  // }
+  function renderParticipants(obj) {
+    var participantsHtml = "";
+    for (variable in obj) {
+      participantsHtml += new Participant(obj[variable]).renderHtml();
+    }
+    return participantsHtml;
+  }
 
   function renderFormParticipants(participants){
     var participantsGroup = "";
     for (participant in participants) {
-    // debugger
       var key = participant;
       var child = participants[participant];
       participantsGroup += new Participant({key:participant, title: child.title, twitter: child.twitter, affiliation: child.affiliation}).renderForm();
