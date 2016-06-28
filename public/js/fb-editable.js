@@ -91,7 +91,7 @@ $(document).ready(function() {
 
   // Populate Edit Menu
   function populateEditMenu(view) {
-    dbRef.once("value",function(snapshot){
+    dbRef.on("value",function(snapshot){
       snapshot.forEach(function(snap) {
         $(view).append("<div class='"+ snap.key +"'><h3>" + snap.key + "</h3></div>");
       });
@@ -105,6 +105,8 @@ $(document).ready(function() {
       });
     });
   }
+
+//   populateEditMenu("#data-menu");
 
   // Render New Edit Form
   function renderNewEditForm(parent, child) {
@@ -126,8 +128,8 @@ $(document).ready(function() {
     };
   }
 
-  // RENDERS ITEM FORM WHEN CLICKED IN MENU
-  // MENU CONTROLS
+//   // RENDERS ITEM FORM WHEN CLICKED IN MENU
+//   // MENU CONTROLS
   $("body").on("click", ".list-menu-item", function(e) {
     e.preventDefault();
     $("#data-panel").empty();
@@ -140,14 +142,14 @@ $(document).ready(function() {
   });
 
 
-  // CREATE
-  function addNewConference(obj) {
-    conferencesRef.push(obj);
-  }
+//   // CREATE
+//   function addNewConference(obj) {
+//     conferencesRef.push(obj);
+//   }
 
 
-// MODELS
-// Conference
+// // MODELS
+// // Conference
 var Conference = function (attr) {
   this.collectionName = "conferences";
   this.ref = conferencesRef;
@@ -251,7 +253,7 @@ var Conference = function (attr) {
 
 
 
-// PUBLIC VIEWS
+// // PUBLIC VIEWS
 
   function getConferences() {
     conferencesRef.once("value",function(snap) {
@@ -293,7 +295,6 @@ var Conference = function (attr) {
   function textAreaToList(obj) {
     var listHtml = [];
     var arr = obj.split(/\n/g);
-// debugger
     arr.forEach(function(string) {
       listHtml.push("<li>" + string + "</li>");
     });
