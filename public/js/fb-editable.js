@@ -297,7 +297,6 @@ var Conference = function (attr) {
     arr.forEach(function(string) {
       listHtml.push("<li>" + string + "</li>");
     });
-   debugger
     return listHtml;
   }
 
