@@ -400,7 +400,11 @@ var Participant = function(attr) {
   this.affiliation = attr.affiliation, 
   this.twitter = attr.twitter || ""
   this.renderHtml = function() {
-    return "<li><strong>" + this.title +" <a href='"+ this.twitter +"' target='_blank'><span class='fa fa-twitter' aria-hidden='true'></span></a></strong> "+ this.affiliation +"</li>";
+    var html = "";
+    html += "<li><strong>" + this.title
+    this.twitter ? html+= " <a href='"+ this.twitter +"' target='_blank'><span class='fa fa-twitter' aria-hidden='true'></span>" : html+= ""
+    html += "</a></strong> "+ this.affiliation +"</li>";
+    return html;
   },
   this.renderForm = function() {
     var form = "<div class='b-form-' id='"+this.key+"'>";
