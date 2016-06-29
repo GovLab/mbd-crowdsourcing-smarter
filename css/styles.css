@@ -7472,18 +7472,22 @@ code.m-negative {
 #conference-page .b-participants .fa-twitter {
   color: #04CCB7; }
 
-#data-menu {
+.b-admin-page #data-menu {
   border-right: solid rgba(0, 0, 0, 0.15) 2px; }
 
-#logout {
-  font-style: bold; }
+.b-admin-page #logout {
+  font-style: bold;
+  text-transform: uppercase; }
 
-textarea {
+.b-admin-page textarea {
   height: 150px; }
 
-.b-form-links {
-  width: 50%;
-  background-color: #EDFBF9; }
-
-.admin-toggle :first-child:hover {
+.b-admin-page .admin-toggle :first-child:hover {
   color: #345A6C; }
+
+.b-admin-page .list-menu-item {
+  max-width: 200px;
+  display: block; }
+
+.b-admin-page .material-icons {
+  color: rgba(0, 0, 0, 0.6); }

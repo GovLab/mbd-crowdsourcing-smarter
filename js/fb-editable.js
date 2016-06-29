@@ -99,7 +99,7 @@ $(document).ready(function() {
         snap.forEach(function(s) {
           var selector = snap.key;
           if (selector == s.ref.parent.key) {
-            $("div[class*='"+selector+"']").append("<a id='"+s.key+"' class='list-menu-item b-button '"+ s.ref.parent.key +">"+ s.val().title +"</a>");
+            $("div[class*='"+selector+"']").append("<a id='"+s.key+"' class='list-menu-item b-button'"+ s.ref.parent.key +">"+ s.val().title +"</a>");
           }
         });
       });
@@ -185,18 +185,18 @@ var Conference = function (attr) {
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label><br>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label><br>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
-    form+= "</form></div></div></div>";
+    form+= "</form></div></div></div><hr>";
 
 // LINKS GROUP
-    form += "<div class='admin-toggle shared-resources' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
+    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
-    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
-    form += "<div class='admin-toggle pre-conference-links'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
+    form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
-    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div>";
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
 
   // PARTICIPANTS GROUP
-    form += "<div class='admin-toggle participants' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
+    form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
     form += renderFormParticipants(this.participants_list);
     form += "<input id='addParticipantButton' value='Add a Participant' type='submit'/></div>";
 
@@ -319,7 +319,7 @@ var Conference = function (attr) {
       var form = "<div class='b-form-links' id='"+this.key+"'>";
       form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'/></label>";
       form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'/></label>"
-      form+= "<input id='editLinkButton' value='Update' type='submit'/><input id='deleteLinkButton' value='Delete' type='submit'/></div>";
+      form+= "<a id='editLinkButton'><i class='material-icons'>mode_edit</i></a><a id='deleteLinkButton'><i class='material-icons'>delete</i></a></div>";
       return form;
     }
     this.updateDB = function(refPath) {
@@ -408,7 +408,7 @@ var Participant = function(attr) {
     form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'/></label>";
     form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'/></label>"
     form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>"
-    form+= "<input id='editParticipantButton' value='Update' type='submit'/><input id='deleteParticipantButton' value='Delete' type='submit'/></div>";
+    form+= "<a id='editParticipantButton'><i class='material-icons'>mode_edit</i></a><a id='deleteParticipantButton'><i class='material-icons'>delete</i></a></div><hr>";
     return form;
   },
   this.updateDB = function(refPath) {
