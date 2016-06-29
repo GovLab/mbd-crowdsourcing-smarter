@@ -17,8 +17,8 @@ $(document).ready(function() {
 
   // Sign In
   $("#login").on("click", function() {
-    var email = $('#login-email').val();
-    var password = $('#login-password').val();
+    var email = $('#login-email').val(),
+        password = $('#login-password').val();
     signIn(email, password);
   });
 
@@ -93,8 +93,6 @@ $(document).ready(function() {
     dbRef.once("value",function(snapshot){
       snapshot.forEach(function(snap) {
         $(view).append("<div class='"+ snap.key +"'><h3>" + snap.key + "</h3></div>");
-      });
-      snapshot.forEach(function(snap) {
         snap.forEach(function(s) {
           var selector = snap.key;
           if (selector == s.ref.parent.key) {
