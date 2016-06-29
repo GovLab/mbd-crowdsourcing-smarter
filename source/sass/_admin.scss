@@ -1,22 +1,38 @@
+.b-admin-page {
 
-#data-menu {
-  border-right: solid $gray-15 2px;
-}
-
-#logout {
-  font-style: bold;
-}
-
-textarea {
-  height: 150px;
-}
-
-.b-form-links {
-  width: 50%;
-  background-color: $mbd-1;
-}
-.admin-toggle {
-  :first-child:hover {
-    color:$mbd-primary;
+  #data-menu {
+    border-right: solid $gray-15 2px;
+    // background-color: $mbd-primary;
   }
+
+  #logout {
+    font-style: bold;
+    text-transform: uppercase;
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .b-form-links {
+    // width: 50%;
+    // background-color: $mbd-1;
+  }
+
+  .admin-toggle {
+    :first-child:hover {
+      color:$mbd-primary;
+    }
+  }
+
+
+  .list-menu-item {
+    max-width: 200px;
+    display: block;
+  }
+
+  .material-icons {
+    color: $gray-60;
+  }
+
 }
