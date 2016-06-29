@@ -16,8 +16,7 @@ $(document).ready(function() {
   });
 
   // Sign In
-  $("#login").on("click", function(e) {
-    e.preventDefault();
+  $("#login").on("click", function() {
     var email = $('#login-email').val();
     var password = $('#login-password').val();
     signIn(email, password);
@@ -30,8 +29,7 @@ $(document).ready(function() {
   }
 
   // Sign Out
-  $("#logout").on("click", function(e){
-    e.preventDefault();
+  $("#logout").on("click", function(){
     signOut();
     renderPublicView();
     location.reload();
@@ -133,11 +131,9 @@ $(document).ready(function() {
 
 //   // RENDERS ITEM FORM WHEN CLICKED IN MENU
 //   // MENU CONTROLS
-  $("body").on("click", ".list-menu-item", function(e) {
-    e.preventDefault();
+  $("body").on("click", ".list-menu-item", function() {
     $("#data-panel").empty();
     $("#data-panel").show();
-    console.log('menuitem button');
     $('#admin-list-item').remove();
     var parentRoot = $(this).parent().attr('class');
     var childID = $(this).attr('id');
@@ -245,8 +241,7 @@ var Conference = function (attr) {
     return obj;
   }
 
-    $('body').on("click", '#editConfButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#editConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     var key = obj.key;
     var newConf = new Conference(obj);
@@ -331,8 +326,7 @@ var Conference = function (attr) {
   }
 
 
-  $('body').on("click", '#editLinkButton', function(e) {
-    e.preventDefault();
+  $('body').on("click", '#editLinkButton', function() {
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
@@ -342,22 +336,19 @@ var Conference = function (attr) {
     link.updateDB(parentPath);
   });
 
-    $('body').on("click", '#deleteLinkButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#deleteLinkButton', function() {
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     var linkRef = firebase.database().ref(parentPath);
     linkRef.remove().then(onComplete);
 
   });
 
-    $('body').on("click", '#addLinkButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#addLinkButton', function() {
     var parentPath = this.parentElement.id;
     $(this.parentElement).append(renderNewLinkForm());
   });
 
-    $('body').on("click", '#submitLinkButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#submitLinkButton', function() {
     var parentPath = this.parentElement.parentElement.id;
     var linkTitle = $(this).parent().find("#link_title").val();
     var linkURL = $(this).parent().find("#link_url").val();
