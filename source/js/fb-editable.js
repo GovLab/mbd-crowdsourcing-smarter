@@ -242,7 +242,7 @@ var Conference = function (attr) {
       takeaways : $(form).find("#takeaways").val(),
       action_items : $(form).find("#action_items").val(),
     };
-   
+   debugger
     return obj;
   }
 

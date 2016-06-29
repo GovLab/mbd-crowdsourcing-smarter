@@ -10,11 +10,11 @@
         <div class='title-group'>
         {# #title #}
           {% block title %}
-          <h2 id="title" class="e-title">title</h2>
+          <h2 id="title" class="e-title"></h2>
           {% endblock %}
           {# #subtitle #}
           {% block subtitle %}
-          <h3 id="subtitle" class="e-subtitle">subtitle</h3>
+          <h3 id="subtitle" class="e-subtitle"></h3>
           {% endblock %}
         </div>
       </div>
@@ -62,11 +62,11 @@
         {% endblock %}
         <ul id="goals_list">
         {% block goals_list %}
-{#           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<!-- {#           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> #}
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> #} -->
         {% endblock %}
         </ul>
       </div>
@@ -86,7 +86,7 @@
       <div class="large-10 large-offset-1 columns">
       {# #agenda #}
       {% block agenda%}
-        <p id="agenda">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+        <p id="agenda"></p>
       {% endblock %}
       </div>
     </div>
@@ -113,7 +113,7 @@
       <div class="large-10 large-offset-1 columns">
       {# #problem_description #}
       {% block problem_description %}
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+        <p id="problem_description"></p>
       {% endblock %}
       </div>
     </div>
@@ -140,7 +140,7 @@
       <div class="large-10 large-offset-1 columns">
       {# #pre_conference_description #}
       {% block pre_conference_description %}
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+        <p id='pre_conference_description'></p>
       {% endblock %}
       </div>
     </div>
@@ -149,7 +149,7 @@
   <div class="b-preconference-links">
     <ul id="pre_conference_links" class="b-links-list">
     {% block pre_conference_links %}
-      <li class="e-link-item">
+      <<!-- li class="e-link-item">
         <div class="row">
           <div class="large-6 large-offset-1 column">
           <a href= "#">
@@ -175,7 +175,7 @@
           </a>
           </div>
         </div>
-      </li>
+      </li> -->
       {% endblock %}
     </ul>
   </div>
@@ -192,7 +192,7 @@
     <div class="row">
       <ul id="participants_list" class="large-10 column large-offset-1">
       {%block participants_list %}
-        <li><strong>Stefaan Verhulst <a href="https://twitter.com/thegovlab" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>
+        <!-- <li><strong>Stefaan Verhulst <a href="https://twitter.com/thegovlab" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>
           The GovLab, NYU Tandon School of Engineering (Co-chair)</li>
         <li><strong>Francois van Schalkwyk <a href="https://twitter.com/francois_fvs2" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>World Wide Web Foundation / University of Stellenbosch (Co-chair)</li>
         <li><strong>Emmy Chirchir <a href="https://twitter.com/ChirchirEmmy" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>Munster University</li>
@@ -204,7 +204,7 @@
         <li><strong>Michelle McLeod <a href="https://twitter.com/DrMTMcLeod" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of the West Indies</li>
         <li><strong>Stefania Milan <a href="https://twitter.com/annliffey" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of Amsterdam</li>
         <li><strong>Fernando Perini <a href="https://twitter.com/fperini" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>International Development Research Centre</li>
-        <li><strong>Andrew Young <a href="https://twitter.com/_AndrewYoung" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>The GovLab, NYU Tandon School of Engineering</li>
+        <li><strong>Andrew Young <a href="https://twitter.com/_AndrewYoung" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>The GovLab, NYU Tandon School of Engineering</li> -->
         {% endblock %}
       </ul>
     </div>
@@ -226,11 +226,11 @@
       <div class="large-10 large-offset-1 columns">
         <ul id="takeaways">
         {% block takeaways %}
+<!--           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> -->
         {% endblock%}
         </ul>
       </div>
@@ -242,9 +242,9 @@
       <div class="large-10 large-offset-1 columns">
         <ul id="action_items">
         {% block action_items %}
+<!--           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> -->
         {% endblock %}
         </ul>
       </div>
