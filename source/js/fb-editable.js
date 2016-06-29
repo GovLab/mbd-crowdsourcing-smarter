@@ -337,9 +337,11 @@ var Conference = function (attr) {
   });
 
     $('body').on("click", '#deleteLinkButton', function() {
-    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-    var linkRef = firebase.database().ref(parentPath);
-    linkRef.remove().then(onComplete);
+      if (confirm("Are you sure you want to delete this?"))  {
+        var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+        var linkRef = firebase.database().ref(parentPath);
+        linkRef.remove().then(onComplete);
+      }
 
   });
 
@@ -428,10 +430,11 @@ var Participant = function(attr) {
   });
 
     $('body').on("click", '#deleteParticipantButton', function() {
-    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-    var participantRef = firebase.database().ref(parentPath);
-    participantRef.remove().then(onComplete);
-
+      if (confirm("Are you sure you want to delete this?")) {
+        var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+        var participantRef = firebase.database().ref(parentPath);
+        participantRef.remove().then(onComplete);
+      }
   });
 
     $('body').on("click", '#addParticipantButton', function() {
