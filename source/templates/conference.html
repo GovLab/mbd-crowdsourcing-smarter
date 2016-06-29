@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
 
+{% block header %} class="b-top-nav m-transparent" {% endblock %}>
+
 {% block main %}
 
 <div id="conference-page">
@@ -7,6 +9,7 @@
   <div class="b-conference-header" style="background-image: url(./img/background-images/main.jpeg)"> 
     <div class="row">
       <div class="row expanded">
+      <div class="e-shade"></div>
         <div class='title-group'>
         {# #title #}
           {% block title %}

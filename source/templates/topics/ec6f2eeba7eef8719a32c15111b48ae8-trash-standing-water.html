@@ -1,9 +1,10 @@
 {% extends '_base.html' %}
-
+{% block header %} class="b-top-nav m-transparent" {% endblock %}>
 {% block main %}
 <div id='topics-page'>
   <div class="b-top-section" style='background-image: url(./img/background-images/{{image}})'>
     <div class="row expanded">
+    <div class="e-shade"></div>
       <div class='title-group'>
         <h2 class="e-title">{{title}}</h2>
         <h3 class="e-subtitle">{{subtitle}}</h3>

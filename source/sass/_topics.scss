@@ -1,18 +1,25 @@
 #topics-page {
   .b-top-section {
-    .title-group {padding-top:58px;}
-    height: 48vh;
+    .title-group {
+      @include breakpoint($desktop){
+        padding-top:20vh;
+      }
+      @include breakpoint($mobile-only){
+        padding-top:10vh;
+      }
+    }
+    height: 60vh;
     position: relative;
     color: white;
     background: no-repeat center; 
     background-size: cover;
     .e-title {
-      font-size: 2.2em;
+      font-size: 3em;
       font-weight: 400;
     }
     .e-subtitle {
       font-size: 1.5em;
-      font-weight: 400;
+      font-weight: 600;
     }
   }
   .b-topics {

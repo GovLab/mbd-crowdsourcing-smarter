@@ -7283,6 +7283,22 @@ code.m-negative {
   .b-main-menu::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(0, 0, 0, 0.15); }
 
+.b-top-nav.m-transparent {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1; }
+
+.b-top-section .e-shade, #homepage .b-highlights .e-shade, #conference-page .b-conference-header .e-shade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
 .b-footer .e-content h4 {
   text-align: center; }
 
@@ -7361,19 +7377,22 @@ code.m-negative {
   font-weight: 200; }
 
 #topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights, #topics-page #conference-page .b-conference-header, #conference-page #topics-page .b-conference-header {
-  height: 48vh;
+  height: 60vh;
   position: relative;
   color: white;
   background: no-repeat center;
   background-size: cover; }
   #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group, #topics-page #conference-page .b-conference-header .title-group, #conference-page #topics-page .b-conference-header .title-group {
-    padding-top: 58px; }
+    padding-top: 10vh; }
+    @media screen and (min-width: 64.0625em) {
+      #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group, #topics-page #conference-page .b-conference-header .title-group, #conference-page #topics-page .b-conference-header .title-group {
+        padding-top: 20vh; } }
   #topics-page .b-top-section .e-title, #topics-page #homepage .b-highlights .e-title, #homepage #topics-page .b-highlights .e-title, #topics-page #conference-page .b-conference-header .e-title, #conference-page #topics-page .b-conference-header .e-title {
-    font-size: 2.2em;
+    font-size: 3em;
     font-weight: 400; }
   #topics-page .b-top-section .e-subtitle, #topics-page #homepage .b-highlights .e-subtitle, #homepage #topics-page .b-highlights .e-subtitle, #topics-page #conference-page .b-conference-header .e-subtitle, #conference-page #topics-page .b-conference-header .e-subtitle {
     font-size: 1.5em;
-    font-weight: 400; }
+    font-weight: 600; }
 
 #topics-page .b-topics {
   margin: 40px 0px;
@@ -7427,11 +7446,11 @@ code.m-negative {
   #conference-page .b-conference-header .title-group {
     padding: 50px; }
   #conference-page .b-conference-header .e-title {
-    font-size: 40px;
-    font-weight: 300; }
+    font-size: 3em;
+    font-weight: 400; }
   #conference-page .b-conference-header .e-subtitle {
-    font-size: 26px;
-    font-weight: 300; }
+    font-size: 1.5em;
+    font-weight: 400; }
   #conference-page .b-conference-header .e-conference-details {
     padding: 30px 0;
     background-color: rgba(51, 51, 51, 0.5); }
