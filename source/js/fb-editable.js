@@ -260,7 +260,7 @@ var Conference = function (attr) {
 // // PUBLIC VIEWS
 
   function getConferences() {
-    conferencesRef.once("value",function(snap) {
+    conferencesRef.on("value",function(snap) {
       var results = [];
       snap.forEach(function(childSnapshot) {
         var key = childSnapshot.key;
