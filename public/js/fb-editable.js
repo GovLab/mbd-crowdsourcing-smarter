@@ -242,7 +242,6 @@ var Conference = function (attr) {
       takeaways : $(form).find("#takeaways").val(),
       action_items : $(form).find("#action_items").val(),
     };
-   debugger
     return obj;
   }
 
@@ -401,7 +400,7 @@ var Participant = function(attr) {
   this.affiliation = attr.affiliation, 
   this.twitter = attr.twitter || ""
   this.renderHtml = function() {
-    return "<li><strong>" + this.title +" <a href=\'"+ this.twitter +" target=\'_blank\'><span class=\'fa fa-twitter\' aria-hidden=\'true\'></span></a></strong> "+ this.affiliation +"</li>";
+    return "<li><strong>" + this.title +" <a href='"+ this.twitter +"' target='_blank'><span class='fa fa-twitter' aria-hidden='true'></span></a></strong> "+ this.affiliation +"</li>";
   },
   this.renderForm = function() {
     var form = "<div class='b-form-' id='"+this.key+"'>";
@@ -422,8 +421,7 @@ var Participant = function(attr) {
 }
 
 
-  $('body').on("click", '#editParticipantButton', function(e) {
-    e.preventDefault();
+  $('body').on("click", '#editParticipantButton', function() {
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     var participant = new Participant({
       title: $(this).parent().find("#participant_title").val(), 
@@ -434,23 +432,19 @@ var Participant = function(attr) {
     participant.updateDB(parentPath);
   });
 
-    $('body').on("click", '#deleteParticipantButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#deleteParticipantButton', function() {
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     var participantRef = firebase.database().ref(parentPath);
     participantRef.remove().then(onComplete);
 
   });
 
-    $('body').on("click", '#addParticipantButton', function(e) {
-    e.preventDefault();
+    $('body').on("click", '#addParticipantButton', function() {
     var parentPath = this.parentElement.id;
     $(this.parentElement).append(renderNewParticipantForm());
   });
 
-    $('body').on("click", '#submitParticipantButton', function(e) {
-      console.log();
-    e.preventDefault();
+    $('body').on("click", '#submitParticipantButton', function() {
     var parentPath = this.parentElement.parentElement.id,
         participantTitle = $(this).parent().find("#participant_title").val(),
         participantTwitter = $(this).parent().find("#participant_twitter").val(),
