@@ -172,7 +172,7 @@ var Conference = function (attr) {
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label><br>";
     form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label><br>";
     form+= "<label>Time<input type='text' name='time' id='time' value='" + this.time  + "'/></label><br>";
-    form+= "<label>Goals Description<textarea id='goals_description'>" + this.goals_description  + "'</textarea></label><br>";
+    form+= "<label>Goals Description<textarea id='goals_description'>" + this.goals_description  + "</textarea></label><br>";
     form+= "<label>Goals List<textarea id='goals_list'>" + this.goals_list  + "</textarea></label><br>";
     form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label><br>";
     form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label><br>";
