@@ -75,13 +75,14 @@ $(document).ready(function() {
   // Error Handling
   var onComplete = function(error) {
     if (error) {
+      messageHandler("There was an error");
       console.log('Synchronization failed');
       console.log(error);
       handleAdminErrors(error.valueOf(), "#login-message");
       alert(error.valueOf());
     } else {
-      console.log('Synchronization succeeded');
-      messageHandler("Synchronization succeeded");
+      // console.log('Synchronization succeeded');
+      messageHandler("The database has been updated");
       $("#data-menu").empty();      
       populateEditMenu("#data-menu");
     }
@@ -89,7 +90,7 @@ $(document).ready(function() {
 
   // Populate Edit Menu
   function populateEditMenu(view) {
-    dbRef.on("value",function(snapshot){
+    dbRef.once("value",function(snapshot){
       snapshot.forEach(function(snap) {
         $(view).append("<div class='"+ snap.key +"'><h3>" + snap.key + "</h3></div>");
       });
@@ -184,11 +185,11 @@ var Conference = function (attr) {
     form+= "</form></div></div></div><hr>";
 
 // LINKS GROUP
-    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
-    form += renderFormLinks(this.shared_resources);
-    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
     form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
+    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
+    form += renderFormLinks(this.shared_resources);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
 
   // PARTICIPANTS GROUP
@@ -351,10 +352,10 @@ var Conference = function (attr) {
   });
 
     $('body').on("click", '#submitLinkButton', function() {
-    var parentPath = this.parentElement.parentElement.id;
-    var linkTitle = $(this).parent().find("#link_title").val();
-    var linkURL = $(this).parent().find("#link_url").val();
-    var linkRef = firebase.database().ref(parentPath);
+    var parentPath = this.parentElement.parentElement.id,
+        linkTitle = $(this).parent().find("#link_title").val(),
+        linkURL = $(this).parent().find("#link_url").val(),
+        linkRef = firebase.database().ref(parentPath);
     linkRef.push({title: linkTitle, url: linkURL}, onComplete)
   });
 
@@ -471,8 +472,8 @@ var Participant = function(attr) {
   function renderFormParticipants(participants){
     var participantsGroup = "";
     for (participant in participants) {
-      var key = participant;
-      var child = participants[participant];
+      var key = participant,
+          child = participants[participant];
       participantsGroup += new Participant({key:participant, title: child.title, twitter: child.twitter, affiliation: child.affiliation}).renderForm();
     }
     return participantsGroup;
