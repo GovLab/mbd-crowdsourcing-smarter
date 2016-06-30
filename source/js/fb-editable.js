@@ -313,22 +313,22 @@ var Conference = function (attr) {
     this.filename = attr.filename || "";
     this.renderHtml = function() {
       return "<li class='e-link-item'><div class='row'><div class='large-6 large-offset-1 column'><a href= '"+this.url+"'><p class='e-link-title'>"+this.title+"</p></a></div></div></li>";
-    }
+    },
     this.renderForm = function() {
       var form = "<div class='b-form-links' id='"+this.key+"'>";
       form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'/></label>";
       form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'/></label>"
       form+= "<a id='editLinkButton'><i class='material-icons'>mode_edit</i></a><a id='deleteLinkButton'><i class='material-icons'>delete</i></a></div>";
       return form;
-    }
+    },
     this.updateDB = function(refPath) {
       var linkRef = firebase.database().ref(refPath)
       linkRef.update({
         title : attr.title,
         url : attr.url
-      }, onComplete)
+      }, onComplete);
     }
-  }
+  };
 
 
   $('body').on("click", '#editLinkButton', function() {
@@ -346,30 +346,15 @@ var Conference = function (attr) {
         var parentPath = this.parentElement.parentElement.id;
         var childID = this.parentElement.id;
         var linkRef = firebase.database().ref(parentPath + "/" +this.parentElement.id);
-        deleteFile(parentPath, childID);
+        linkRef.on("value", function(snapshot) {
+          debugger
+            if (snapshot.child("filename").exists()) {
+              deleteFile(parentPath, childID);
+            }      
+          });
         linkRef.remove().then(onComplete);
       }
   });
-
-
-  function deleteFile(parentPath,childID) {
-    var fileName = "";
-    var fileDbRef = firebase.database().ref(parentPath + "/" + childID)
-      fileDbRef.on("value", function(snapshot) {
-        if (snapshot.child("filename").exists()) {
-          fileName = snapshot.val().filename;
-        }      
-      });
-    var fileRef = storageRef.child( parentPath + "/" + fileName);
-    if (confirm("Are you sure you want to delete this?")) {
-      fileRef.delete().then(function() {
-      }).catch(function(error) {
-        console.log(error);
-      });
-    }
-  }
-
-
 
 
     $('body').on("click", '#addLinkButton', function() {
@@ -419,31 +404,31 @@ var Participant = function(attr) {
   this.key = attr.key || "";
   this.title = attr.title,
   this.affiliation = attr.affiliation, 
-  this.twitter = attr.twitter || ""
+  this.twitter = attr.twitter || "",
   this.renderHtml = function() {
     var html = "";
-    html += "<li><strong>" + this.title
-    this.twitter ? html+= " <a href='"+ this.twitter +"' target='_blank'><span class='fa fa-twitter' aria-hidden='true'></span>" : html+= ""
+    html += "<li><strong>" + this.title;
+    this.twitter ? html+= " <a href='"+ this.twitter +"' target='_blank'><span class='fa fa-twitter' aria-hidden='true'></span>" : html+= "";
     html += "</a></strong> "+ this.affiliation +"</li>";
     return html;
   },
   this.renderForm = function() {
     var form = "<div class='b-form-' id='"+this.key+"'>";
     form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'/></label>";
-    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'/></label>"
-    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>"
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'/></label>";
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>";
     form+= "<a id='editParticipantButton'><i class='material-icons'>mode_edit</i></a><a id='deleteParticipantButton'><i class='material-icons'>delete</i></a></div><hr>";
     return form;
   },
   this.updateDB = function(refPath) {
-    var participantRef = firebase.database().ref(refPath)
+    var participantRef = firebase.database().ref(refPath);
     participantRef.update({
       title : attr.title,
       affiliation : attr.affiliation,
       twitter : attr.twitter
-    }, onComplete)
+    }, onComplete);
   }
-}
+};
 
 
   $('body').on("click", '#editParticipantButton', function() {
@@ -476,21 +461,21 @@ var Participant = function(attr) {
         participantTwitter = $(this).parent().find("#participant_twitter").val(),
         participantAffiliation = $(this).parent().find("#participant_affiliation").val(),
         participantRef = firebase.database().ref(parentPath);
-    participantRef.push({title: participantTitle, twitter: participantTwitter, affiliation: participantAffiliation}, onComplete)
+    participantRef.push({title: participantTitle, twitter: participantTwitter, affiliation: participantAffiliation}, onComplete);
   });
 
   function renderNewParticipantForm(){
     var form = "<div id='addParticipant'>";
     form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' placeholder='Participant Title' value=''/></label>";
-    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' placeholder='Participant Affiliation' value=''/></label>"
-    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' placeholder='Participant Twitter' value=''/></label>"
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' placeholder='Participant Affiliation' value=''/></label>";
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' placeholder='Participant Twitter' value=''/></label>";
     form += "<input id='submitParticipantButton' value='Submit' type='submit'/></div>";
     return form;
   }
 
   function renderParticipants(obj) {
     var participantsHtml = "";
-    for (variable in obj) {
+    for (var variable in obj) {
       participantsHtml += new Participant(obj[variable]).renderHtml();
     }
     return participantsHtml;
@@ -498,7 +483,7 @@ var Participant = function(attr) {
 
   function renderFormParticipants(participants){
     var participantsGroup = "";
-    for (participant in participants) {
+    for (var participant in participants) {
       var key = participant,
           child = participants[participant];
       participantsGroup += new Participant({key:participant, title: child.title, twitter: child.twitter, affiliation: child.affiliation}).renderForm();
@@ -508,7 +493,6 @@ var Participant = function(attr) {
 
 
 // FILE STORAGE
-
 
 
 function renderUploadForm(parentID) {
@@ -538,7 +522,6 @@ $("body").on("click", "#uploadFileButton", function() {
       messageHandler('Upload failed:', error);
     }, function() {
       messageHandler('Uploaded',uploadTask.snapshot.totalBytes,'bytes.');
-      alert("Your file has been uploaded");
       messageHandler(uploadTask.snapshot.metadata);
       var url = uploadTask.snapshot.metadata.downloadURLs[0];
       var upload = {title:fileTitle, url: url, filename: fileName};
@@ -560,6 +543,21 @@ $("body").on("click", "#uploadFileButton", function() {
     });
   });
   
+
+  function deleteFile(parentPath,childID) {
+    var fileName = "";
+    var fileDbRef = firebase.database().ref(parentPath + "/" + childID);
+      fileDbRef.once("value", function(snapshot) {
+        fileName = snapshot.val().filename;
+      });
+    var fileRef = storageRef.child( parentPath + "/" + fileName);
+    fileRef.delete().then(function() {
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
+
+
 
 // LINKS SEED
 
