@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
+
   var dbRef = firebase.database().ref('/');
   var conferencesRef = firebase.database().ref('conferences/');
+  var storageRef = firebase.storage().ref();
 
 
   // AUTHENTICATION
@@ -185,10 +187,13 @@ var Conference = function (attr) {
 // LINKS GROUP
     form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
-    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
+    form += "<input id='uploadFileButton' value='Upload a file' type='submit'/></div><hr>";
+
     form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
-    form += "<input id='addLinkButton' value='Add a Link' type='submit'/></div><hr>";
+    form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
+    form += "<input id='uploadFileButton' value='Upload a file' type='submit'/></div><hr>";
 
   // PARTICIPANTS GROUP
     form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
@@ -305,6 +310,7 @@ var Conference = function (attr) {
     this.key = attr.key || "";
     this.title = attr.title,
     this.url = attr.url, 
+    this.filename = attr.filename || "";
     this.renderHtml = function() {
       return "<li class='e-link-item'><div class='row'><div class='large-6 large-offset-1 column'><a href= '"+this.url+"'><p class='e-link-title'>"+this.title+"</p></a></div></div></li>";
     }
@@ -337,12 +343,34 @@ var Conference = function (attr) {
 
     $('body').on("click", '#deleteLinkButton', function() {
       if (confirm("Are you sure you want to delete this?"))  {
-        var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
-        var linkRef = firebase.database().ref(parentPath);
+        var parentPath = this.parentElement.parentElement.id;
+        var childID = this.parentElement.id;
+        var linkRef = firebase.database().ref(parentPath + "/" +this.parentElement.id);
+        deleteFile(parentPath, childID);
         linkRef.remove().then(onComplete);
       }
-
   });
+
+
+  function deleteFile(parentPath,childID) {
+    var fileName = "";
+    var fileDbRef = firebase.database().ref(parentPath + "/" + childID)
+      fileDbRef.on("value", function(snapshot) {
+        if (snapshot.child("filename").exists()) {
+          fileName = snapshot.val().filename;
+        }      
+      });
+    var fileRef = storageRef.child( parentPath + "/" + fileName);
+    if (confirm("Are you sure you want to delete this?")) {
+      fileRef.delete().then(function() {
+      }).catch(function(error) {
+        console.log(error);
+      });
+    }
+  }
+
+
+
 
     $('body').on("click", '#addLinkButton', function() {
     var parentPath = this.parentElement.id;
@@ -356,6 +384,7 @@ var Conference = function (attr) {
         linkRef = firebase.database().ref(parentPath);
     linkRef.push({title: linkTitle, url: linkURL}, onComplete)
   });
+
 
   function renderNewLinkForm(){
     var form = "<div id='addLink'>";
@@ -476,6 +505,61 @@ var Participant = function(attr) {
     }
     return participantsGroup;
   }
+
+
+// FILE STORAGE
+
+
+
+function renderUploadForm(parentID) {
+  var form = "<div class='b-form'><label>Title<input type='text' name='file_title' id='file_title' placeholder='Display Name' value=''/></label><label>Choose File</h6><input class='" + parentID + "' type='file' id='file' name='file'/></label></div>";
+  return form;
+}
+
+$("body").on("click", "#uploadFileButton", function() {
+    var parentPath = this.parentElement.id;
+    $(this.parentElement).append(renderUploadForm(parentPath));
+  });
+
+
+  function handleFileSelect(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    var file = e.target.files[0];
+    var fileDir = e.target.className;
+    var fileTitle = $(e.target).parent().parent().find("#file_title").val().split('\\').pop();
+    var fileName = e.target.files[0].name;
+    var metadata = {
+      'contentType': file.type
+    };
+
+    var uploadTask = storageRef.child(fileDir + '/' + file.name).put(file, metadata);
+    uploadTask.on('state_changed', null, function(error) {
+      messageHandler('Upload failed:', error);
+    }, function() {
+      messageHandler('Uploaded',uploadTask.snapshot.totalBytes,'bytes.');
+      alert("Your file has been uploaded");
+      messageHandler(uploadTask.snapshot.metadata);
+      var url = uploadTask.snapshot.metadata.downloadURLs[0];
+      var upload = {title:fileTitle, url: url, filename: fileName};
+      var uploadRef = firebase.database().ref(fileDir);
+      uploadRef.push(upload, onComplete);
+    });
+  }
+
+  $("body").on("change", "#file", function(e) {
+    handleFileSelect(e);
+    $('#file').prop("disabled",true);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user.email + " - User is signed in.");
+        $('#file').prop("disabled", false);
+      } else {
+        console.log("No User is signed in.");
+      }
+    });
+  });
+  
 
 // LINKS SEED
 

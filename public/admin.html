@@ -130,16 +130,18 @@
   <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-storage.js"></script>
   <script>
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyBPyKSaw7T-q4BGfJQ2OHXyTcCnDUYJZOs",
       authDomain: "mbd-crowdsourcing-smarter.firebaseapp.com",
       databaseURL: "https://mbd-crowdsourcing-smarter.firebaseio.com",
-      storageBucket: "mbd-crowdsourcing-smarter.appspot.com",
+      storageBucket: "gs://mbd-crowdsourcing-smarter.appspot.com",
     };
     firebase.initializeApp(config);
+    var storageRef = firebase.storage().ref();
+
   </script>
   <script src="js/fb-editable.js"></script>
 
