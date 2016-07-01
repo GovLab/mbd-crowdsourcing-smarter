@@ -347,7 +347,6 @@ var Conference = function (attr) {
         var childID = this.parentElement.id;
         var linkRef = firebase.database().ref(parentPath + "/" +this.parentElement.id);
         linkRef.on("value", function(snapshot) {
-          debugger
             if (snapshot.child("filename").exists()) {
               deleteFile(parentPath, childID);
             }      
