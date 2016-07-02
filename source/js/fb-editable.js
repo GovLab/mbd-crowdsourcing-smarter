@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  var converter = new showdown.Converter();
 
   var dbRef = firebase.database().ref('/');
   var conferencesRef = firebase.database().ref('conferences/');
@@ -152,8 +153,7 @@ var Conference = function (attr) {
   this.subtitle = attr.subtitle;
   this.date = attr.date;
   this.time = attr.time;
-  this.goals_description = attr.goals_description;
-  this.goals_list = attr.goals_list;
+  this.goals = attr.goals;
   this.agenda = attr.agenda;
   this.agenda_link = attr.agenda_link;
   this.problem_description = attr.problem_description;
@@ -172,8 +172,7 @@ var Conference = function (attr) {
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label><br>";
     form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label><br>";
     form+= "<label>Time<input type='text' name='time' id='time' value='" + this.time  + "'/></label><br>";
-    form+= "<label>Goals Description<textarea id='goals_description'>" + this.goals_description  + "</textarea></label><br>";
-    form+= "<label>Goals List<textarea id='goals_list'>" + this.goals_list  + "</textarea></label><br>";
+    form+= "<label>Goals<textarea id='goals'>" + this.goals + "</textarea></label><br>";
     form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label><br>";
     form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label><br>";
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label><br>";
@@ -210,14 +209,12 @@ var Conference = function (attr) {
       subtitle : attr.subtitle,
       date : attr.date,
       time : attr.time,
-      goals_description : attr.goals_description,
-      goals_list : attr.goals_list,
+      goals : attr.goals,
       agenda : attr.agenda,
       agenda_link : attr.agenda_link,
       problem_description : attr.problem_description,
       problem_description_link : attr.problem_description_link,
       pre_conference_description  : attr.pre_conference_description,
-      // participants_list : attr.participants_list,
       takeaways : attr.takeaways,
       action_items : attr.action_items,
     }, onComplete);
@@ -231,14 +228,12 @@ var Conference = function (attr) {
       subtitle : $(form).find("#subtitle").val(),
       date : $(form).find("#date").val(),
       time : $(form).find("#time").val(),
-      goals_description : $(form).find("#goals_description").val(),
-      goals_list : $(form).find("#goals_list").val(),
+      goals : $(form).find("#goals").val(),
       agenda : $(form).find("#agenda").val(),
       agenda_link : $(form).find("#agenda_link").val(),
       problem_description : $(form).find("#problem_description").val(),
       problem_description_link : $(form).find("#problem_description_link").val(),
       pre_conference_description  : $(form).find("#pre_conference_description").val(),
-      // participants_list : $(form).find("#participants_list").val(),
       takeaways : $(form).find("#takeaways").val(),
       action_items : $(form).find("#action_items").val(),
     };
@@ -273,33 +268,24 @@ var Conference = function (attr) {
 
   function renderConference(conferenceSnap){
     var pageKey = "#" + conferenceSnap.key;
-    $(pageKey).find("#title").text(conferenceSnap.val().title);
-    $(pageKey).find("#subtitle").text(conferenceSnap.val().subtitle);
-    $(pageKey).find("#date").text(conferenceSnap.val().date);
-    $(pageKey).find("#time").text(conferenceSnap.val().time);
-    $(pageKey).find("#goals_description").text(conferenceSnap.val().goals_description);
-    $(pageKey).find("#goals_list").html(textAreaToList(conferenceSnap.val().goals_list));
-    $(pageKey).find("#agenda").text(conferenceSnap.val().agenda);
+    $(pageKey).find("#title").html(converter.makeHtml(conferenceSnap.val().title));
+    $(pageKey).find("#subtitle").html(converter.makeHtml(conferenceSnap.val().subtitle));
+    $(pageKey).find("#date").html(converter.makeHtml(conferenceSnap.val().date));
+    $(pageKey).find("#time").html(converter.makeHtml(conferenceSnap.val().time));
+    $(pageKey).find("#goals").html(converter.makeHtml(conferenceSnap.val().goals));
+    $(pageKey).find("#agenda").html(converter.makeHtml(conferenceSnap.val().agenda));
     $(pageKey).find("#agenda_link").attr("href", conferenceSnap.val().agenda_link);
-    $(pageKey).find("#problem_description").text(conferenceSnap.val().problem_description);
+    $(pageKey).find("#problem_description").html(converter.makeHtml(conferenceSnap.val().problem_description));
     $(pageKey).find("#problem_description_link").attr("href", conferenceSnap.val().problem_description_link);
-    $(pageKey).find("#pre_conference_description").text(conferenceSnap.val().pre_conference_description);
+    $(pageKey).find("#pre_conference_description").html(converter.makeHtml(conferenceSnap.val().pre_conference_description));
     $(pageKey).find("#pre_conference_links").html(renderLinks(conferenceSnap.val().pre_conference_links));
     $(pageKey).find("#participants_list").html(renderParticipants(conferenceSnap.val().participants_list));
-    $(pageKey).find("#takeaways").html(textAreaToList(conferenceSnap.val().takeaways));
-    $(pageKey).find("#action_items").html(textAreaToList(conferenceSnap.val().action_items));
+    $(pageKey).find("#takeaways").html(converter.makeHtml(conferenceSnap.val().takeaways));
+    $(pageKey).find("#action_items").html(converter.makeHtml(conferenceSnap.val().action_items));
     $(pageKey).find("#shared_resources").html(renderLinks(conferenceSnap.val().shared_resources));
   }
 
 
-  function textAreaToList(obj) {
-    var listHtml = "";
-    var arr = obj.split(/\n/g);
-    arr.forEach(function(string) {
-      listHtml += "<li>" + string + "</li>";
-    });
-    return listHtml;
-  }
 
   function addLink(location, attr) {
     title = attr.title,
