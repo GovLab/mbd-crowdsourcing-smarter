@@ -7202,10 +7202,10 @@ code.m-negative {
     background-color: blue; } }
 
 .m-mbd-primary {
-  background-color: #345A6C; }
+  background-color: #04CCB7; }
 
 .m-mbd-secondary {
-  background-color: #04CCB7; }
+  background-color: #345A6C; }
 
 .m-mbd-1 {
   background-color: #EDFBF9; }
@@ -7283,6 +7283,9 @@ code.m-negative {
   .b-main-menu::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(0, 0, 0, 0.15); }
 
+.b-top-nav {
+  background-color: #345A6C; }
+
 .b-top-nav.m-transparent {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -7335,7 +7338,9 @@ code.m-negative {
   #homepage .b-highlights .b-slide {
     padding: 97px 0;
     background: no-repeat center;
-    background-size: cover; }
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(4, 204, 183, 0.4); }
     #homepage .b-highlights .b-slide .e-highlights-tag {
       font-size: 1.5rem;
       text-align: center;
@@ -7355,7 +7360,9 @@ code.m-negative {
   #homepage .b-highlights .b-small-banner {
     height: 200px;
     background: no-repeat center;
-    background-size: cover; }
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(4, 204, 183, 0.4); }
     #homepage .b-highlights .b-small-banner .e-small-banner-title {
       font-size: 1.7rem;
       margin-top: 80px;
@@ -7375,6 +7382,9 @@ code.m-negative {
   text-transform: uppercase;
   text-align: center;
   font-weight: 200; }
+
+#homepage .b-topics-banner:nth-of-type(odd) {
+  background-color: rgba(51, 51, 51, 0.05); }
 
 #topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights, #topics-page #conference-page .b-conference-header, #conference-page #topics-page .b-conference-header {
   height: 60vh;
@@ -7489,7 +7499,7 @@ code.m-negative {
     display: block; }
 
 #conference-page .b-participants .fa-twitter {
-  color: #04CCB7; }
+  color: #345A6C; }
 
 .b-admin-page #data-menu {
   border-right: solid rgba(0, 0, 0, 0.15) 2px; }
@@ -7502,7 +7512,7 @@ code.m-negative {
   height: 150px; }
 
 .b-admin-page .admin-toggle :first-child:hover {
-  color: #345A6C; }
+  color: #04CCB7; }
 
 .b-admin-page .list-menu-item {
   max-width: 200px;
