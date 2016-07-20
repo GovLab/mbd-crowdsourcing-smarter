@@ -6,6 +6,8 @@
       padding: 97px 0;
       background: no-repeat center; 
       background-size: cover;
+      background-blend-mode: multiply;
+      background-color: rgba($mbd-primary, .4);
       .e-highlights-tag { 
         font-size: 1.5rem;
         text-align: center;
@@ -30,6 +32,8 @@
       height: 200px;
       background: no-repeat center; 
       background-size: cover;
+      background-blend-mode: multiply;
+      background-color: rgba($mbd-primary, .4);
       .e-small-banner-title {
         font-size: 1.7rem;
         margin-top: 80px;
@@ -51,6 +55,9 @@
     text-transform: uppercase;
     text-align: center;
     font-weight: 200;
+  }
+  .b-topics-banner {
+    &:nth-of-type(odd) { background-color: rgba($black, .05); }
   }
 }
 
