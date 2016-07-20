@@ -7386,6 +7386,9 @@ code.m-negative {
 #homepage .b-topics-banner:nth-of-type(odd) {
   background-color: rgba(51, 51, 51, 0.05); }
 
+#homepage .b-topics-banner:nth-of-type(even) {
+  background-color: rgba(51, 51, 51, 0.1); }
+
 #topics-page .b-top-section, #topics-page #homepage .b-highlights, #homepage #topics-page .b-highlights, #topics-page #conference-page .b-conference-header, #conference-page #topics-page .b-conference-header {
   height: 60vh;
   position: relative;

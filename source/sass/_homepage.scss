@@ -58,6 +58,7 @@
   }
   .b-topics-banner {
     &:nth-of-type(odd) { background-color: rgba($black, .05); }
+    &:nth-of-type(even) { background-color: rgba($black, .1); }
   }
 }
 
