@@ -7,7 +7,7 @@
       background: no-repeat center; 
       background-size: cover;
       background-blend-mode: multiply;
-      background-color: rgba($mbd-primary, .5);
+      background-color: rgba($black, .3);
       .e-highlights-tag { 
         font-size: 1.5rem;
         text-align: center;
@@ -62,4 +62,9 @@
   }
 }
 
-
+#sc_zika_logo {
+  img {
+    text-align: center;
+    height: 100px;
+  }
+}
