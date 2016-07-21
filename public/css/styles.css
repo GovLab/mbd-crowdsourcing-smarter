@@ -7363,8 +7363,11 @@ code.m-negative {
     height: 200px;
     background: no-repeat center;
     background-size: cover;
-    background-blend-mode: multiply;
-    background-color: rgba(4, 204, 183, 0.5); }
+    background-blend-mode: multiply; }
+    #homepage .b-highlights .b-small-banner#topics-banner {
+      background-color: rgba(4, 204, 183, 0.3); }
+    #homepage .b-highlights .b-small-banner#experts-banner {
+      background-color: rgba(4, 204, 183, 0.5); }
     #homepage .b-highlights .b-small-banner .e-small-banner-title {
       font-size: 1.7rem;
       margin-top: 80px;
