@@ -7517,11 +7517,21 @@ code.m-negative {
   color: #2c4758; }
 
 .b-admin-page #data-menu {
-  border-right: solid rgba(0, 0, 0, 0.15) 2px; }
+  width: 200px;
+  top: 5%;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-bottom: 20px; }
 
-.b-admin-page #logout {
-  font-style: bold;
-  text-transform: uppercase; }
+.b-admin-page label, .b-admin-page input {
+  display: block; }
+
+.b-admin-page label {
+  margin-bottom: 0px; }
+
+.b-admin-page .admin-view {
+  padding: 0; }
 
 .b-admin-page textarea {
   height: 150px; }
@@ -7530,8 +7540,17 @@ code.m-negative {
   color: #04CCB7; }
 
 .b-admin-page .list-menu-item {
-  max-width: 200px;
-  display: block; }
+  max-width: 300px;
+  display: block;
+  padding-bottom: 30px; }
 
 .b-admin-page .material-icons {
   color: rgba(0, 0, 0, 0.6); }
+
+#active-user {
+  padding: 0 2rem; }
+  #active-user #logout {
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 5;
+    padding: 0 2rem; }
