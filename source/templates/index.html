@@ -74,7 +74,23 @@
     </div>
   </section>
 
-  <section class="b-page-section b-topics-banner">
+{% for topic in topics %}
+  <section class="b-page-section b-topics-banner" id={{topic.firebase_id}}>
+    <div class="row">
+      <div class="columns large-5 large-offset-1">
+
+        <h2>{%block topic_title%}{%endblock%}</h2>
+        <p><span class='m-caps'>Online Conference:</span><br/> <span class="topic_date">{%block topic_date%}{%endblock%}</span></p>
+      </div>
+      <div class="large-5 end columns">
+        <p class="topic_description">{%block topic_description%}{%endblock%}</p>
+        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
+      </div>
+    </div>
+  </section>
+{% endfor %}
+
+  <!-- <section class="b-page-section b-topics-banner">
     <div class="row">
       <div class="columns large-5 large-offset-1">
         <h2>Topic</h2>
@@ -137,20 +153,7 @@
         <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
       </div>
     </div>
-  </section>
-
-  <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
+  </section> -->
 
   <div class='b-divider m-mbd-primary'>
     <div class="row">
@@ -175,4 +178,27 @@
   </section>
 
 </div>
+
+{% block custom_scripts %}
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-storage.js"></script>
+
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBPyKSaw7T-q4BGfJQ2OHXyTcCnDUYJZOs",
+      authDomain: "mbd-crowdsourcing-smarter.firebaseapp.com",
+      databaseURL: "https://mbd-crowdsourcing-smarter.firebaseio.com",
+      storageBucket: "gs://mbd-crowdsourcing-smarter.appspot.com",
+    };
+    firebase.initializeApp(config);
+     // Create a root reference
+
+  </script>
+  <script src="js/fb-editable.js"></script>
+{% endblock %}
 {% endblock %}
