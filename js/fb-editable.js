@@ -105,6 +105,7 @@ $(document).ready(function() {
           }
         });
       });
+    $(view).append("<a id='addConferenceButton' class='b-button'>ADD A CONFERENCE</a>");
     });
   }
 
@@ -144,6 +145,34 @@ $(document).ready(function() {
     renderNewEditForm(parentRoot,childID);
   });
 
+  // RENDER BLANK FORM TO ADD NEW CONFERENCE
+  $("body").on("click", "#addConferenceButton", function() {
+    renderNewConferenceForm("#data-panel");
+  })
+
+
+function renderNewConferenceForm(view) {
+      var form = "";
+      form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form'>";
+      form += "<input id='parent' type='hidden' value=''";
+      form+= "<label>Title<input type='text' name='title' id='title' value=''/></label>";
+      form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''/></label>";
+      form+= "<label>Date<input type='text' name='date' id='date' value=''/></label>";
+      form+= "<label>Time<input type='text' name='time' id='time' value=''/></label>";
+      form+= "<label>Goals<textarea id='goals'></textarea></label>";
+      form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value=''/></label>";
+      form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''/></label>";
+      form+= "<label>Problem Description<textarea id='problem_description'></textarea></label>";
+      form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''/></label>";
+      form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'></textarea></label>";
+      form+= "<label>Takeaways<textarea id='takeaways'></textarea></label>";
+      form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
+      form+= "<input id='addConfButton' value='Add Conference' type='submit'/>";
+      form+= "</form></div></div></div><hr>";
+
+      $(view).append(form);
+    // }
+}
 
 // // MODELS
 // // Conference
@@ -254,6 +283,15 @@ var Conference = function (attr) {
     newConf.key = key;
     newConf.updateDB();
   });
+
+      $('body').on("click", '#addConfButton', function() {
+      var obj = grabConfObjectFromForm(this.parentElement);
+      obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
+      obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
+      obj["lastUser"] = currentUser;
+      conferencesRef.push(obj);
+    });
+
 
 
 
