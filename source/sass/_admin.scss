@@ -1,14 +1,33 @@
+
 .b-admin-page {
-
   #data-menu {
-    border-right: solid $gray-15 2px;
-    // background-color: $mbd-primary;
+    width: 200px;
+    // background-color: $gray-10;
+    // position: fixed;
+    top: 5%;
+    bottom: 0;
+    left: 0;
+    // z-index: 1000;
+    display: block;
+    padding-bottom: 20px;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+  }
+  #data-panel {
   }
 
-  #logout {
-    font-style: bold;
-    text-transform: uppercase;
+ label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+  .admin-view {
+    padding: 0;
   }
+
 
   textarea {
     height: 150px;
@@ -27,12 +46,26 @@
 
 
   .list-menu-item {
-    max-width: 200px;
+    max-width: 300px;
     display: block;
+    padding-bottom: 30px;
+
   }
 
   .material-icons {
     color: $gray-60;
   }
+
+}
+
+#active-user {
+  padding: 0 2rem;
+  #logout {
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 5;
+    padding: 0 2rem;
+  }
+  
 
 }

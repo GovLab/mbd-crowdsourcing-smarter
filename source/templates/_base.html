@@ -38,8 +38,10 @@
     </div> -->
 
     <div class="e-nav-group m-right">
-        <a href="./">Home</a>
-        <a href="./">About</a>
+        {% block nav_group %}
+            <a href="./">Home</a>
+            <a href="./">About</a>
+        {% endblock %}
     </div>
 
     <a class="e-logo" href="./"><img src="./img/govlab-logo-white.png" alt=""></a>
