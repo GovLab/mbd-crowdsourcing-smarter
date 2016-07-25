@@ -7533,6 +7533,11 @@ code.m-negative {
 .b-admin-page .admin-view {
   padding: 0; }
 
+.b-admin-page .timestamp {
+  float: right;
+  font-size: 14px;
+  color: blue; }
+
 .b-admin-page textarea {
   height: 150px; }
 

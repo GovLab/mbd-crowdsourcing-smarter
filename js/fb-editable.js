@@ -6,10 +6,12 @@ $(document).ready(function() {
   var conferencesRef = firebase.database().ref('conferences/');
   // var storageRef = firebase.storage().ref();
 
-
+  var currentUser;
   // AUTHENTICATION
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      currentUser = user.email;
+      console.log(currentUser);
       console.log(user.email + " - User is signed in.");
       renderAdminView(user);
     } else {
@@ -164,9 +166,12 @@ var Conference = function (attr) {
   this.takeaways = attr.takeaways;
   this.action_items = attr.action_items;
   this.shared_resources = attr.shared_resources;
+  this.lastUser = attr.lastUser;
+  this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
     form+= "<div class='admin-toggle main-text-fields'> <h3>" + this.title + "</h3> <form id='"+ key +"' class='b-form'>";
+    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span>"
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
     form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label>";
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label>";
@@ -217,6 +222,8 @@ var Conference = function (attr) {
       pre_conference_description  : attr.pre_conference_description,
       takeaways : attr.takeaways,
       action_items : attr.action_items,
+      updatedAt : Firebase.ServerValue.TIMESTAMP,
+      lastUser : currentUser
     }, onComplete);
   };
 };
