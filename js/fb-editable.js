@@ -267,6 +267,7 @@ var Conference = function (attr) {
         var childData = childSnapshot.val();
         results.push({key: key, value: childData});
         renderConference(childSnapshot);
+        renderTopicsIndex(childSnapshot);
       });
     });
   }
@@ -292,7 +293,13 @@ var Conference = function (attr) {
     $(pageKey).find("#shared_resources").html(renderLinks(conferenceSnap.val().shared_resources));
   }
 
-
+// RENDER  TO INDEX
+function renderTopicsIndex(conferenceSnap) {
+  var bannerKey = "#" + conferenceSnap.key + ".b-topics-banner";
+  $(bannerKey).find("h2").append(conferenceSnap.val().title);
+  $(bannerKey).find(".topic_date").append(conferenceSnap.val().date);
+  $(bannerKey).find(".topic_description").append(conferenceSnap.val().problem_description);
+}
 
   function addLink(location, attr) {
     title = attr.title,
