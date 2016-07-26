@@ -11,7 +11,7 @@
     font-weight: 700;
     left: 0;
     min-height: 100%;
-   width: 280px;
+   width: 220px;
    top: 100px;
    bottom:0px;
    .m-active {
@@ -33,7 +33,7 @@ label {
     padding: 5%;
   }
 
-.timestamp { float: right; font-size: 14px; color: blue;}
+.timestamp { float: right; font-size: 14px; color: $gray-60;}
 
   textarea {
     height: 150px;
