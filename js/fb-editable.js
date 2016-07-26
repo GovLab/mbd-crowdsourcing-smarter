@@ -72,9 +72,9 @@ $(document).ready(function() {
   }
 
   function messageHandler(message) {
-    $('#data-panel').text(message);
+    $('#admin-messages').text(message);
     setTimeout(function(){
-       $('#data-panel').fadeOut();
+       $('#admin-messages').fadeOut();
     },1000);
   }
 
@@ -118,20 +118,12 @@ $(document).ready(function() {
   function renderNewEditForm(parent, child) {
     var parentRef = dbRef.child(parent);
     var childRef = parentRef.child(child);
-    if (childRef.parent.key == 'open-expert') {
-        childRef.once("value", function(snapshot) {
-        var oe = new OpenExpert(snapshot.val());
-        oe['key'] = snapshot.key();
-        oe.renderForm(oe.key, "#data-panel");
-      });
-    } else if (childRef.parent.key == 'conferences') {
-        childRef.once("value", function(snapshot){
-          var conf = new Conference(snapshot.val());
-          conf['key'] = snapshot.key;
-          console.log(conf);
-          conf.renderForm(conf.key, "#data-panel");
-        });
-    };
+    childRef.once("value", function(snapshot){
+      var conf = new Conference(snapshot.val());
+      conf['key'] = snapshot.key;
+      console.log(conf);
+      conf.renderForm(conf.key, "#data-panel");
+    });
   }
 
 //   // RENDERS ITEM FORM WHEN CLICKED IN MENU
@@ -202,8 +194,8 @@ var Conference = function (attr) {
   this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
+    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><br/>"
     form+= "<div class='admin-toggle main-text-fields'> <h3>" + this.title + "</h3> <form id='"+ key +"' class='b-form'>";
-    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span>"
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
     form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label>";
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label>";
@@ -290,8 +282,6 @@ var Conference = function (attr) {
         obj["lastUser"] = currentUser;
         conferencesRef.push(obj);
       });
-
-
 
 
 // // PUBLIC VIEWS
