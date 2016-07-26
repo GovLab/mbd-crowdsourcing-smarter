@@ -142,6 +142,8 @@ $(document).ready(function() {
     $('#admin-list-item').remove();
     var parentRoot = $(this).parent().attr('class');
     var childID = $(this).attr('id');
+    $(this).parent().find("a").removeClass("m-active");
+    $(this).addClass("m-active");
     renderNewEditForm(parentRoot,childID);
   });
 
