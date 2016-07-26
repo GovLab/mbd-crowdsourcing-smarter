@@ -7,6 +7,7 @@ $(document).ready(function() {
   // var storageRef = firebase.storage().ref();
 
   var currentUser;
+
   // AUTHENTICATION
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -86,7 +87,6 @@ $(document).ready(function() {
       handleAdminErrors(error.valueOf(), "#login-message");
       alert(error.valueOf());
     } else {
-      // console.log('Synchronization succeeded');
       messageHandler("The database has been updated");
       $("#data-menu").empty();      
       populateEditMenu("#data-menu");
@@ -169,7 +169,6 @@ function renderNewConferenceForm(view) {
       form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
       form+= "<input id='addConfButton' value='Add Conference' type='submit'/>";
       form+= "</form></div></div></div><hr>";
-
       $(view).append(form);
     // }
 }
@@ -218,18 +217,18 @@ var Conference = function (attr) {
     form+= "</form></div></div></div><hr>";
 
 // LINKS GROUP
-    form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3>"
+    form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
-    // form += "<input id='uploadFileButton' value='Upload a file' type='submit'/></div><hr>";
+    form += "</div><hr>";
 
-    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3>"
+    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
-    // form += "<input id='uploadFileButton' value='Upload a file' type='submit'/></div><hr>";
+    form += "</div><hr>";
 
   // PARTICIPANTS GROUP
-    form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3>"
+    form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
     form += renderFormParticipants(this.participants_list);
     form += "<input id='addParticipantButton' value='Add a Participant' type='submit'/></div>";
 
@@ -396,6 +395,7 @@ function renderTopicsIndex(conferenceSnap) {
 
     $('body').on("click", '#addLinkButton', function() {
     var parentPath = this.parentElement.id;
+    debugger
     $(this.parentElement).append(renderNewLinkForm());
   });
 
@@ -489,6 +489,7 @@ var Participant = function(attr) {
 
     $('body').on("click", '#addParticipantButton', function() {
     var parentPath = this.parentElement.id;
+    debugger
     $(this.parentElement).append(renderNewParticipantForm());
   });
 
