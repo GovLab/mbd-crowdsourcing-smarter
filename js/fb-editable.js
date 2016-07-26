@@ -105,7 +105,7 @@ $(document).ready(function() {
           }
         });
       });
-    $(view).append("<a id='addConferenceButton' class='b-button'>ADD A CONFERENCE</a>");
+    $(view).append("<button id='addConferenceButton' class='b-button'>ADD A CONFERENCE</button>");
     });
   }
 
@@ -147,6 +147,8 @@ $(document).ready(function() {
 
   // RENDER BLANK FORM TO ADD NEW CONFERENCE
   $("body").on("click", "#addConferenceButton", function() {
+    $("#data-panel").empty();
+    $("#data-panel").show();
     renderNewConferenceForm("#data-panel");
   })
 
@@ -215,23 +217,19 @@ var Conference = function (attr) {
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
     form+= "</form></div></div></div><hr>";
-
 // LINKS GROUP
     form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
     form += renderFormLinks(this.pre_conference_links);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div><hr>";
-
     form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
     form += renderFormLinks(this.shared_resources);
     form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div><hr>";
-
   // PARTICIPANTS GROUP
     form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
     form += renderFormParticipants(this.participants_list);
     form += "<input id='addParticipantButton' value='Add a Participant' type='submit'/></div>";
-
     $(view).append(form);
   },
   this.updateDB = function() {
@@ -284,12 +282,12 @@ var Conference = function (attr) {
   });
 
       $('body').on("click", '#addConfButton', function() {
-      var obj = grabConfObjectFromForm(this.parentElement);
-      obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
-      obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
-      obj["lastUser"] = currentUser;
-      conferencesRef.push(obj);
-    });
+        var obj = grabConfObjectFromForm(this.parentElement);
+        obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
+        obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
+        obj["lastUser"] = currentUser;
+        conferencesRef.push(obj);
+      });
 
 
 
@@ -331,12 +329,12 @@ var Conference = function (attr) {
   }
 
 // RENDER  TO INDEX
-function renderTopicsIndex(conferenceSnap) {
-  var bannerKey = "#" + conferenceSnap.key + ".b-topics-banner";
-  $(bannerKey).find("h2").append(conferenceSnap.val().title);
-  $(bannerKey).find(".topic_date").append(conferenceSnap.val().date);
-  $(bannerKey).find(".topic_description").append(conferenceSnap.val().problem_description);
-}
+  function renderTopicsIndex(conferenceSnap) {
+    var bannerKey = "#" + conferenceSnap.key + ".b-topics-banner";
+    $(bannerKey).find("h2").append(conferenceSnap.val().title);
+    $(bannerKey).find(".topic_date").append(conferenceSnap.val().date);
+    $(bannerKey).find(".topic_description").append(conferenceSnap.val().problem_description);
+  }
 
   function addLink(location, attr) {
     title = attr.title,

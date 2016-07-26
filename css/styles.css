@@ -7518,12 +7518,19 @@ code.m-negative {
   color: #2c4758; }
 
 .b-admin-page #data-menu {
-  width: 200px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.1);
   top: 5%;
   bottom: 0;
   left: 0;
   display: block;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  font-weight: 700;
+  left: 0;
+  min-height: 100%;
+  width: 280px;
+  top: 100px;
+  bottom: 0px; }
 
 .b-admin-page label, .b-admin-page input {
   display: block; }
@@ -7532,7 +7539,7 @@ code.m-negative {
   margin-bottom: 0px; }
 
 .b-admin-page .admin-view {
-  padding: 0; }
+  padding: 5%; }
 
 .b-admin-page .timestamp {
   float: right;
