@@ -1,5 +1,6 @@
 #topics-page {
   .b-top-section {
+    display: block !important;
     .title-group {
       @include breakpoint($desktop){
         padding-top:20vh;

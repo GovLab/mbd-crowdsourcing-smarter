@@ -167,7 +167,7 @@ function generateVinyl(basePath, dataPath, fPrefix, fSuffix, dSuffix) {
 }
 
 function buildFirebasePage(templateName,firebase_id) {
-  return "<div class='b-"+ templateName + "-page fb-editable' id='"+ firebase_id +"'>{% include '"+ templateName +".html' %}</div>"
+  return "<div class='b-"+ templateName + "-page fb-editable' id='"+ firebase_id +"'>{% include '"+ templateName +".html' %}</div>";
 }
 
 function createFireBasePages() {
