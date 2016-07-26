@@ -7528,7 +7528,7 @@ code.m-negative {
   font-weight: 700;
   left: 0;
   min-height: 100%;
-  width: 280px;
+  width: 220px;
   top: 100px;
   bottom: 0px; }
   .b-admin-page #data-menu .m-active {
@@ -7546,7 +7546,7 @@ code.m-negative {
 .b-admin-page .timestamp {
   float: right;
   font-size: 14px;
-  color: blue; }
+  color: rgba(0, 0, 0, 0.6); }
 
 .b-admin-page textarea {
   height: 150px; }
