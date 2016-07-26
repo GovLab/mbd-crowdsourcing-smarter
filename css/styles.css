@@ -7518,8 +7518,8 @@ code.m-negative {
   color: #2c4758; }
 
 .b-admin-page #data-menu {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.1);
   top: 5%;
   bottom: 0;
   left: 0;
@@ -7531,6 +7531,8 @@ code.m-negative {
   width: 280px;
   top: 100px;
   bottom: 0px; }
+  .b-admin-page #data-menu .m-active {
+    font-style: italic; }
 
 .b-admin-page label, .b-admin-page input {
   display: block; }
