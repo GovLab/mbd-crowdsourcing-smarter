@@ -1,17 +1,19 @@
 
 .b-admin-page {
   #data-menu {
-    width: 200px;
-    // background-color: $gray-10;
-    // position: fixed;
+    margin: 0;
+    background-color: $gray-10;
     top: 5%;
     bottom: 0;
     left: 0;
-    // z-index: 1000;
     display: block;
     padding-bottom: 20px;
-    // overflow-x: hidden;
-    // overflow-y: auto;
+    font-weight: 700;
+    left: 0;
+    min-height: 100%;
+   width: 280px;
+   top: 100px;
+   bottom:0px;
   }
   #data-panel {
   }
@@ -25,7 +27,7 @@ label {
 }
 
   .admin-view {
-    padding: 0;
+    padding: 5%;
   }
 
 .timestamp { float: right; font-size: 14px; color: blue;}
@@ -68,5 +70,4 @@ label {
     padding: 0 2rem;
   }
   
-
 }
