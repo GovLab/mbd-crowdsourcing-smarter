@@ -1,5 +1,28 @@
 
 .b-admin-page {
+  h3 {
+    padding-bottom: 1em;
+  }
+  button {
+    padding-top: 1em;
+    font-weight: 700;
+    color: $mbd-primary;
+    i {
+      vertical-align: -6px;
+      color: $mbd-secondary;
+    }
+  }
+
+  #editLinkButton,#deleteLinkButton,#editParticipantButton {
+    color: $mbd-secondary;
+    padding: 1em 1em 1em 0;
+    font-weight: 700;
+  }
+  #deleteLinkButton,#deleteParticipantButton,#deleteParticipantButton {
+    color: red;
+    padding: 1em 1em 1em 0;
+    font-weight: 700;
+  }
   #data-menu {
     margin: 0;
     bottom: 0;
