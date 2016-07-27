@@ -7581,6 +7581,9 @@ code.m-negative {
 .b-admin-page .b-form {
   display: none; }
 
+.b-admin-page .new-conference {
+  display: inline; }
+
 .b-admin-page .list-menu-item {
   max-width: 300px;
   display: block;
