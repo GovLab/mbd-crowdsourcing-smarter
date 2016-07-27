@@ -1,9 +1,8 @@
 
 .b-admin-page {
-  h3 {
-    padding-bottom: 1em;
-  }
+
   button {
+    display: block;
     padding-top: 1em;
     font-weight: 700;
     color: $mbd-primary;
@@ -23,6 +22,8 @@
     padding: 1em 1em 1em 0;
     font-weight: 700;
   }
+
+
 
 
   #data-menu {
@@ -47,7 +48,7 @@
 
  label, input {
     display: block;
-}
+  }
 
 label {
     margin-bottom: 0px;
@@ -56,7 +57,13 @@ label {
 .admin-view {
   padding:0;
 }
-.timestamp { float: right; font-size: 14px; color: $gray-60;}
+.timestamp {
+  font-size: 14px; 
+  color: $gray-60;
+  padding-bottom: 2em;
+}
+
+.section-title {height: 30px; padding: 1em 0;}
 
   textarea {
     height: 150px;
@@ -68,11 +75,16 @@ label {
   }
 
   .admin-toggle {
-    :first-child:hover {
-      color:$mbd-primary;
+    .section-title {
+      text-transform: uppercase;
+      font-size: 20px;
+      &:hover {
+        color:$mbd-primary;
+      }
     }
   }
 
+  .b-form {display: none;}
 
   .list-menu-item {
     max-width: 300px;

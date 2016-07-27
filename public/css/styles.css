@@ -7517,10 +7517,8 @@ code.m-negative {
 #conference-page .b-participants .fa-twitter {
   color: #2c4758; }
 
-.b-admin-page h3 {
-  padding-bottom: 1em; }
-
 .b-admin-page button {
+  display: block;
   padding-top: 1em;
   font-weight: 700;
   color: #04CCB7; }
@@ -7563,15 +7561,25 @@ code.m-negative {
   padding: 0; }
 
 .b-admin-page .timestamp {
-  float: right;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.6); }
+  color: rgba(0, 0, 0, 0.6);
+  padding-bottom: 2em; }
+
+.b-admin-page .section-title {
+  height: 30px;
+  padding: 1em 0; }
 
 .b-admin-page textarea {
   height: 150px; }
 
-.b-admin-page .admin-toggle :first-child:hover {
-  color: #04CCB7; }
+.b-admin-page .admin-toggle .section-title {
+  text-transform: uppercase;
+  font-size: 20px; }
+  .b-admin-page .admin-toggle .section-title:hover {
+    color: #04CCB7; }
+
+.b-admin-page .b-form {
+  display: none; }
 
 .b-admin-page .list-menu-item {
   max-width: 300px;
