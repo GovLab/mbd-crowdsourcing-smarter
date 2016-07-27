@@ -114,8 +114,8 @@ $(document).ready(function() {
   }
 
   // TOGGLE MENU
-  $('body').on('click.adminToggle', '.admin-toggle>h3', function() {
-    $(this).parent().children().slice(1).toggle();
+  $('body').on('click.adminToggle', '.section-title', function() {
+    $(this).parent().find(".b-form").toggle();
   })
 
   // Render New Edit Form
@@ -155,15 +155,15 @@ function renderNewConferenceForm(view) {
       var form = "";
       form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form'>";
       form += "<input id='parent' type='hidden' value=''";
-      form+= "<label>Title<input type='text' name='title' id='title' value=''/></label>";
-      form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''/></label>";
-      form+= "<label>Date<input type='text' name='date' id='date' value=''/></label>";
-      form+= "<label>Time<input type='text' name='time' id='time' value=''/></label>";
+      form+= "<label>Title<input type='text' name='title' id='title' value=''></label>";
+      form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''></label>";
+      form+= "<label>Date<input type='text' name='date' id='date' value=''></label>";
+      form+= "<label>Time<input type='text' name='time' id='time' value=''></label>";
       form+= "<label>Goals<textarea id='goals'></textarea></label>";
       form+= "<label>Agenda<textarea id='agenda'></textarea></label>";
-      form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''/></label>";
+      form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''></label>";
       form+= "<label>Problem Description<textarea id='problem_description'></textarea></label>";
-      form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''/></label>";
+      form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''></label>";
       form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'></textarea></label>";
       form+= "<label>Takeaways<textarea id='takeaways'></textarea></label>";
       form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
@@ -198,38 +198,39 @@ var Conference = function (attr) {
   this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
-    form+= "<div class='admin-toggle main-text-fields'> <h3>" + this.title + "</h3> <form id='"+ key +"' class='b-form'>";
-    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><br/>"
-    form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
-    form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label>";
-    form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label>";
-    form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label>";
-    form+= "<label>Time<input type='text' name='time' id='time' value='" + this.time  + "'/></label>";
+    form+= "<div class='admin-toggle main-text-fields'><h3>"+this.title+"</h3><div class='section-title'>Main Content</div>";
+    // form += "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span>";
+    form+= "<form id='"+ key +"' class='b-form'>";
+    form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'>";
+    form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'></label>";
+    form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'></label>";
+    form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'></label>";
+    form+= "<label>Time<input type='text' name='time' id='time' value='" + this.time  + "'></label>";
     form+= "<label>Goals<textarea id='goals'>" + this.goals + "</textarea></label>";
     form+= "<label>Agenda<textarea id='agenda'>" + this.agenda  + "</textarea></label>";
-    form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label>";
+    form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'></label>";
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label>";
-    form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label>";
+    form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'></label>";
     form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'>" + this.pre_conference_description  + "</textarea></label>";
     form+= "<label>Takeaways<textarea id='takeaways'>" + this.takeaways  + "</textarea></label>";
     form+= "<label>Action Items<textarea id='action_items'>" + this.action_items  + "</textarea></label>";
     form+= "<input id='editConfButton' value='Update' type='submit'/>";
-    form+= "</form></div></div></div><hr>";
+    form+= "</form></div></div></div>";
 // LINKS GROUP
-    form += "<div class='admin-toggle pre-conference-links b-form'  id='conferences/"+ this.key +"/pre_conference_links'><h3>Pre-Conference Links</h3><br>"
+    form += "<div class='admin-toggle pre-conference-links'  id='conferences/"+ this.key +"/pre_conference_links'><div class='section-title'>Pre-Conference Links</div>"
     form += renderFormLinks(this.pre_conference_links);
-    form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
+    // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
     // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
-    form += "</div><hr>";
-    form += "<div class='admin-toggle shared-resources b-form' id='conferences/"+ this.key +"/shared_resources'> <h3>Shared Resources Links</h3><br>"
+    form += "</div>";
+    form += "<div class='admin-toggle shared-resources' id='conferences/"+ this.key +"/shared_resources'> <div class='section-title'>Shared Resources Links</div>"
     form += renderFormLinks(this.shared_resources);
-    form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
+    // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
     // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
-    form += "</div><hr>";
+    form += "</div>";
   // PARTICIPANTS GROUP
-    form += "<div class='admin-toggle participants b-form' id='conferences/"+ this.key +"/participants_list'><h3>Participants List</h3><br>"
+    form += "<div class='admin-toggle participants' id='conferences/"+ this.key +"/participants_list'><div class='section-title'>Participants List</div><br>"
     form += renderFormParticipants(this.participants_list);
-    form += "<button id='addParticipantButton'> <i class='material-icons'>add</i>Add a Participant</button></div>";
+    // form += "<button id='addParticipantButton'> <i class='material-icons'>add</i>Add a Participant</button></div>";
     $(view).append(form);
   },
   this.updateDB = function() {
@@ -350,8 +351,8 @@ var Conference = function (attr) {
     },
     this.renderForm = function() {
       var form = "<div class='b-form-links' id='"+this.key+"'>";
-      form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'/></label>";
-      form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'/></label>"
+      form += "<label>Link Title<input type='text' name='link_title' id='link_title' value='" + this.title  + "'></label>";
+      form += "<label>Link URL<input type='text' name='link_url' id='link_url' value='" + this.url  + "'></label>"
       form+= "<a id='editLinkButton'>Update</a><a id='deleteLinkButton'>Delete</a></div>";
       return form;
     },
@@ -407,8 +408,8 @@ var Conference = function (attr) {
 
   function renderNewLinkForm(){
     var form = "<div id='addLink'>";
-    form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''/></label>";
-    form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''/></label>"
+    form += "<label>Link Title<input type='text' name='link_title' id='link_title' placeholder='Link Title' value=''></label>";
+    form += "<label>Link URL<input type='text' name='link_url' id='link_url' placeholder='Link URL' value=''></label>"
     form += "<input id='submitLinkButton' value='Submit' type='submit'/></div>";
     return form;
   }
@@ -422,12 +423,13 @@ var Conference = function (attr) {
   }
 
   function renderFormLinks(links){
-    var linksGroup = "";
+    var linksGroup = "<div class='b-form'>";
     for (link in links) {
       var key = link;
       var child = links[link];
       linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
     }
+    linksGroup += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button></div>"
     return linksGroup;
   }
 
@@ -447,11 +449,11 @@ var Participant = function(attr) {
     return html;
   },
   this.renderForm = function() {
-    var form = "<div class='b-form-' id='"+this.key+"'>";
-    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'/></label>";
-    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'/></label>";
-    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'/></label>";
-    form+= "<button id='editParticipantButton'>Update</button><button id='deleteParticipantButton'>Delete</button></div><hr>";
+    var form = "<div class='b-form b-form-' id='"+this.key+"'>";
+    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'></label>";
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'></label>";
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'></label>";
+    form+= "<button id='editParticipantButton'>Update</button><button id='deleteParticipantButton'>Delete</button>";
     return form;
   },
   this.updateDB = function(refPath) {
@@ -501,9 +503,9 @@ var Participant = function(attr) {
 
   function renderNewParticipantForm(){
     var form = "<div id='addParticipant'>";
-    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' placeholder='Participant Title' value=''/></label>";
-    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' placeholder='Participant Affiliation' value=''/></label>";
-    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' placeholder='Participant Twitter' value=''/></label>";
+    form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' placeholder='Participant Title' value=''></label>";
+    form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' placeholder='Participant Affiliation' value=''></label>";
+    form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' placeholder='Participant Twitter' value=''></label>";
     form += "<input id='submitParticipantButton' value='Submit' type='submit'/></div>";
     return form;
   }
@@ -523,6 +525,7 @@ var Participant = function(attr) {
           child = participants[participant];
       participantsGroup += new Participant({key:participant, title: child.title, twitter: child.twitter, affiliation: child.affiliation}).renderForm();
     }
+    participantsGroup += "<button id='addParticipantButton'> <i class='material-icons'>add</i>Add a Participant</button></div>";
     return participantsGroup;
   }
 
@@ -531,7 +534,7 @@ var Participant = function(attr) {
 
 
 // function renderUploadForm(parentID) {
-//   var form = "<div class='b-form'><label>Title<input type='text' name='file_title' id='file_title' placeholder='Display Name' value=''/></label><label>Choose File</h6><input class='" + parentID + "' type='file' id='file' name='file'/></label></div>";
+//   var form = "<div class='b-form'><label>Title<input type='text' name='file_title' id='file_title' placeholder='Display Name' value=''></label><label>Choose File</h6><input class='" + parentID + "' type='file' id='file' name='file'></label></div>";
 //   return form;
 // }
 
