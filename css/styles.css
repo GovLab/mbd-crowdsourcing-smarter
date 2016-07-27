@@ -7517,6 +7517,27 @@ code.m-negative {
 #conference-page .b-participants .fa-twitter {
   color: #2c4758; }
 
+.b-admin-page h3 {
+  padding-bottom: 1em; }
+
+.b-admin-page button {
+  padding-top: 1em;
+  font-weight: 700;
+  color: #04CCB7; }
+  .b-admin-page button i {
+    vertical-align: -6px;
+    color: #2c4758; }
+
+.b-admin-page #editLinkButton, .b-admin-page #deleteLinkButton, .b-admin-page #editParticipantButton {
+  color: #2c4758;
+  padding: 1em 1em 1em 0;
+  font-weight: 700; }
+
+.b-admin-page #deleteLinkButton, .b-admin-page #deleteParticipantButton, .b-admin-page #deleteParticipantButton {
+  color: red;
+  padding: 1em 1em 1em 0;
+  font-weight: 700; }
+
 .b-admin-page #data-menu {
   margin: 0;
   bottom: 0;
