@@ -22,7 +22,7 @@ $(document).ready(function() {
   });
 
   // Sign In
-  $("#login").on("click", function() {
+  $("#login").on("click.login", function() {
     var email = $('#login-email').val(),
         password = $('#login-password').val();
     signIn(email, password);
@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   // Sign Out
-  $("#logout").on("click", function(){
+  $("#logout").on("click.logout", function(){
     signOut();
     renderPublicView();
     location.reload();
@@ -93,6 +93,9 @@ $(document).ready(function() {
     }
   };
 
+
+
+
   // Populate Edit Menu
   function populateEditMenu(view) {
     dbRef.once("value",function(snapshot){
@@ -110,7 +113,7 @@ $(document).ready(function() {
   }
 
   // TOGGLE MENU
-  $('body').on('click', '.admin-toggle>h3', function() {
+  $('body').on('click.adminToggle', '.admin-toggle>h3', function() {
     $(this).parent().children().slice(1).toggle();
   })
 
@@ -128,7 +131,7 @@ $(document).ready(function() {
 
 //   // RENDERS ITEM FORM WHEN CLICKED IN MENU
 //   // MENU CONTROLS
-  $("body").on("click", ".list-menu-item", function() {
+  $("body").on("click.loadMenuItem", ".list-menu-item", function() {
     $("#data-panel").empty();
     $("#data-panel").show();
     $('#admin-list-item').remove();
@@ -163,7 +166,7 @@ function renderNewConferenceForm(view) {
       form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'></textarea></label>";
       form+= "<label>Takeaways<textarea id='takeaways'></textarea></label>";
       form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
-      form+= "<input id='addConfButton' value='Add Conference' type='submit'/>";
+      form+= "<input id='saveConfButton' value='Add Conference' type='submit'/>";
       form+= "</form></div></div></div><hr>";
       $(view).append(form);
     // }
@@ -194,8 +197,8 @@ var Conference = function (attr) {
   this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
-    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><br/>"
     form+= "<div class='admin-toggle main-text-fields'> <h3>" + this.title + "</h3> <form id='"+ key +"' class='b-form'>";
+    form+= "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><br/>"
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'";
     form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'/></label>";
     form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value='" + this.subtitle  + "'/></label>";
@@ -267,21 +270,28 @@ var Conference = function (attr) {
     return obj;
   }
 
-    $('body').on("click", '#editConfButton', function() {
+  // RERENDER
+    function reRenderPageSection(pageElement, object) {
+      
+    }
+
+    $('body').on("click.editConference", '#editConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     var key = obj.key;
     var newConf = new Conference(obj);
     newConf.key = key;
     newConf.updateDB();
+    debugger
+    reRenderPageSection(this.parent, newConf)
   });
 
-      $('body').on("click", '#addConfButton', function() {
-        var obj = grabConfObjectFromForm(this.parentElement);
-        obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
-        obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
-        obj["lastUser"] = currentUser;
-        conferencesRef.push(obj);
-      });
+  $('body').on("click.saveConference", '#saveConfButton', function() {
+    var obj = grabConfObjectFromForm(this.parentElement);
+    obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
+    obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
+    obj["lastUser"] = currentUser;
+    conferencesRef.push(obj);
+  });
 
 
 // // PUBLIC VIEWS
@@ -366,6 +376,7 @@ var Conference = function (attr) {
       });
     link.key = this.parentElement.id;
     link.updateDB(parentPath);
+    location.reload();
   });
 
     $('body').on("click", '#deleteLinkButton', function() {
@@ -385,16 +396,15 @@ var Conference = function (attr) {
 
     $('body').on("click", '#addLinkButton', function() {
     var parentPath = this.parentElement.id;
-    debugger
     $(this.parentElement).append(renderNewLinkForm());
   });
 
-    $('body').on("click", '#submitLinkButton', function() {
+    $('body').on("click.submitLink", '#submitLinkButton', function() {
     var parentPath = this.parentElement.parentElement.id,
         linkTitle = $(this).parent().find("#link_title").val(),
         linkURL = $(this).parent().find("#link_url").val(),
         linkRef = firebase.database().ref(parentPath);
-    linkRef.push({title: linkTitle, url: linkURL}, onComplete)
+    linkRef.push({title: linkTitle, url: linkURL}, onComplete);
   });
 
 
@@ -458,7 +468,7 @@ var Participant = function(attr) {
 };
 
 
-  $('body').on("click", '#editParticipantButton', function() {
+  $('body').on("click.editParticipant", '#editParticipantButton', function() {
     var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
     var participant = new Participant({
       title: $(this).parent().find("#participant_title").val(), 
@@ -469,7 +479,7 @@ var Participant = function(attr) {
     participant.updateDB(parentPath);
   });
 
-    $('body').on("click", '#deleteParticipantButton', function() {
+    $('body').on("click.deleteParticipant", '#deleteParticipantButton', function() {
       if (confirm("Are you sure you want to delete this?")) {
         var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
         var participantRef = firebase.database().ref(parentPath);
@@ -477,13 +487,13 @@ var Participant = function(attr) {
       }
   });
 
-    $('body').on("click", '#addParticipantButton', function() {
+    $('body').on("click.addParticipant", '#addParticipantButton', function() {
     var parentPath = this.parentElement.id;
     debugger
     $(this.parentElement).append(renderNewParticipantForm());
   });
 
-    $('body').on("click", '#submitParticipantButton', function() {
+    $('body').on("click.submitParticipant", '#submitParticipantButton', function() {
     var parentPath = this.parentElement.parentElement.id,
         participantTitle = $(this).parent().find("#participant_title").val(),
         participantTwitter = $(this).parent().find("#participant_twitter").val(),
