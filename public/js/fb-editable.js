@@ -153,7 +153,7 @@ $(document).ready(function() {
 
 function renderNewConferenceForm(view) {
       var form = "";
-      form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form'>";
+      form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form new-conference'>";
       form += "<input id='parent' type='hidden' value=''";
       form+= "<label>Title<input type='text' name='title' id='title' value=''></label>";
       form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''></label>";
