@@ -87,8 +87,9 @@ $(document).ready(function() {
       handleAdminErrors(error.valueOf(), "#login-message");
       alert(error.valueOf());
     } else {
+      $("#data-panel").empty();  
+      $("#data-menu").empty();  
       messageHandler("The database has been updated");
-      $("#data-menu").empty();      
       populateEditMenu("#data-menu");
     }
   };
@@ -270,10 +271,6 @@ var Conference = function (attr) {
     return obj;
   }
 
-  // RERENDER
-    function reRenderPageSection(pageElement, object) {
-      
-    }
 
     $('body').on("click.editConference", '#editConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
@@ -281,8 +278,6 @@ var Conference = function (attr) {
     var newConf = new Conference(obj);
     newConf.key = key;
     newConf.updateDB();
-    debugger
-    reRenderPageSection(this.parent, newConf)
   });
 
   $('body').on("click.saveConference", '#saveConfButton', function() {
