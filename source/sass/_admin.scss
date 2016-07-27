@@ -23,7 +23,10 @@
     padding: 1em 1em 1em 0;
     font-weight: 700;
   }
+
+
   #data-menu {
+    background-color: $gray-10;
     margin: 0;
     bottom: 0;
     left: 0;
@@ -39,6 +42,7 @@
    }
   }
   #data-panel {
+
   }
 
  label, input {
@@ -49,10 +53,9 @@ label {
     margin-bottom: 0px;
 }
 
-  .admin-view {
-    padding: 5%;
-  }
-
+.admin-view {
+  padding:0;
+}
 .timestamp { float: right; font-size: 14px; color: $gray-60;}
 
   textarea {

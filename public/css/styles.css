@@ -7539,6 +7539,7 @@ code.m-negative {
   font-weight: 700; }
 
 .b-admin-page #data-menu {
+  background-color: rgba(0, 0, 0, 0.1);
   margin: 0;
   bottom: 0;
   left: 0;
@@ -7559,7 +7560,7 @@ code.m-negative {
   margin-bottom: 0px; }
 
 .b-admin-page .admin-view {
-  padding: 5%; }
+  padding: 0; }
 
 .b-admin-page .timestamp {
   float: right;
