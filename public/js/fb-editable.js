@@ -160,7 +160,7 @@ function renderNewConferenceForm(view) {
       form+= "<label>Date<input type='text' name='date' id='date' value=''/></label>";
       form+= "<label>Time<input type='text' name='time' id='time' value=''/></label>";
       form+= "<label>Goals<textarea id='goals'></textarea></label>";
-      form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value=''/></label>";
+      form+= "<label>Agenda<textarea id='agenda'></textarea></label>";
       form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''/></label>";
       form+= "<label>Problem Description<textarea id='problem_description'></textarea></label>";
       form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''/></label>";
@@ -206,7 +206,7 @@ var Conference = function (attr) {
     form+= "<label>Date<input type='text' name='date' id='date' value='" + this.date  + "'/></label>";
     form+= "<label>Time<input type='text' name='time' id='time' value='" + this.time  + "'/></label>";
     form+= "<label>Goals<textarea id='goals'>" + this.goals + "</textarea></label>";
-    form+= "<label>Agenda<input type='text' name='agenda' id='agenda' value='" + this.agenda  + "'/></label>";
+    form+= "<label>Agenda<textarea id='agenda'>" + this.agenda  + "</textarea></label>";
     form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value='" + this.agenda_link  + "'/></label>";
     form+= "<label>Problem Description<textarea id='problem_description'>" + this.problem_description  + "</textarea></label>";
     form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value='" + this.problem_description_link  + "'/></label>";
