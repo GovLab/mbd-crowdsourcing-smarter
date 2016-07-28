@@ -23,9 +23,6 @@
     font-weight: 700;
   }
 
-
-
-
   #data-menu {
     background-color: $gray-10;
     margin: 0;
@@ -63,7 +60,12 @@ label {
   padding-bottom: 2em;
 }
 
-.section-title {height: 30px; padding: 1em 0;}
+.section-title {
+  height: 30px; 
+  padding: 1em 0 2em 0;
+  opacity: 0.6;
+  border-bottom: solid 1px $gray-15;
+}
 
   textarea {
     height: 150px;
@@ -84,8 +86,9 @@ label {
     }
   }
 
-  .b-form {display: none;}
+  .b-form {display: none; }
   .new-conference {display: inline;}
+  .main-text-fields form {display:inline;}
 
   .list-menu-item {
     max-width: 300px;

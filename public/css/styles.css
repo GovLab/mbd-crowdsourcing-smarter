@@ -7567,7 +7567,9 @@ code.m-negative {
 
 .b-admin-page .section-title {
   height: 30px;
-  padding: 1em 0; }
+  padding: 1em 0 2em 0;
+  opacity: 0.6;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.15); }
 
 .b-admin-page textarea {
   height: 150px; }
@@ -7582,6 +7584,9 @@ code.m-negative {
   display: none; }
 
 .b-admin-page .new-conference {
+  display: inline; }
+
+.b-admin-page .main-text-fields form {
   display: inline; }
 
 .b-admin-page .list-menu-item {
