@@ -22,7 +22,7 @@ $(document).ready(function() {
   });
 
   // Sign In
-  $("#login").on("click.login", function() {
+  $("#login").on("click", function() {
     var email = $('#login-email').val(),
         password = $('#login-password').val();
     signIn(email, password);
@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   // Sign Out
-  $("#logout").on("click.logout", function(){
+  $("#logout").on("click", function(){
     signOut();
     renderPublicView();
     location.reload();
@@ -114,7 +114,7 @@ $(document).ready(function() {
   }
 
   // TOGGLE MENU
-  $('body').on('click.adminToggle', '.section-title', function() {
+  $('body').on('click', '.section-title', function() {
     $(this).parent().find(".b-form").toggle();
   })
 
@@ -132,7 +132,7 @@ $(document).ready(function() {
 
 //   // RENDERS ITEM FORM WHEN CLICKED IN MENU
 //   // MENU CONTROLS
-  $("body").on("click.loadMenuItem", ".list-menu-item", function() {
+  $("body").on("click", ".list-menu-item", function() {
     $("#data-panel").empty();
     $("#data-panel").show();
     $('#admin-list-item').remove();
@@ -218,18 +218,18 @@ var Conference = function (attr) {
     form+= "</form></div></div></div>";
 // LINKS GROUP
     form += "<div class='admin-toggle pre-conference-links'  id='conferences/"+ this.key +"/pre_conference_links'><div class='section-title'>Pre-Conference Links</div>"
-    form += renderFormLinks(this.pre_conference_links);
+    form += renderFormLinks(this.key, this.pre_conference_links);
     // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
     // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div>";
     form += "<div class='admin-toggle shared-resources' id='conferences/"+ this.key +"/shared_resources'> <div class='section-title'>Shared Resources Links</div>"
-    form += renderFormLinks(this.shared_resources);
+    form += renderFormLinks(this.key, this.shared_resources);
     // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
     // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div>";
   // PARTICIPANTS GROUP
     form += "<div class='admin-toggle participants' id='conferences/"+ this.key +"/participants_list'><div class='section-title'>Participants List</div><br>"
-    form += renderFormParticipants(this.participants_list);
+    form += renderFormParticipants(this.key, this.participants_list);
     // form += "<button id='addParticipantButton'> <i class='material-icons'>add</i>Add a Participant</button></div>";
     $(view).append(form);
   },
@@ -275,7 +275,7 @@ var Conference = function (attr) {
   }
 
 
-    $('body').on("click.editConference", '#editConfButton', function() {
+    $('body').on("click", '#editConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     var key = obj.key;
     var newConf = new Conference(obj);
@@ -283,7 +283,7 @@ var Conference = function (attr) {
     newConf.updateDB();
   });
 
-  $('body').on("click.saveConference", '#saveConfButton', function() {
+  $('body').on("click", '#saveConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
     obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
@@ -367,7 +367,7 @@ var Conference = function (attr) {
 
 
   $('body').on("click", '#editLinkButton', function() {
-    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+    var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
       url: $(this).parent().find("#link_url").val()
@@ -377,19 +377,31 @@ var Conference = function (attr) {
     location.reload();
   });
 
-    $('body').on("click", '#deleteLinkButton', function() {
-      if (confirm("Are you sure you want to delete this?"))  {
-        var parentPath = this.parentElement.parentElement.id;
-        var childID = this.parentElement.id;
-        var linkRef = firebase.database().ref(parentPath + "/" +this.parentElement.id);
-        linkRef.on("value", function(snapshot) {
-            if (snapshot.child("filename").exists()) {
-              deleteFile(parentPath, childID);
-            }      
-          });
-        linkRef.remove().then(onComplete);
-      }
+
+// DELETE LINK ONLY
+  $('body').on("click", '#deleteLinkButton', function() {
+    if (confirm("Are you sure you want to delete this?"))  {
+      var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
+      var linkRef = firebase.database().ref(parentPath);
+      linkRef.remove().then(onComplete);
+    }
+
   });
+// DELETE LINK OR FILE
+
+  //   $('body').on("click", '#deleteLinkButton', function() {
+  //     if (confirm("Are you sure you want to delete this?"))  {
+  //       var parentPath = this.parentElement.parentElement.id;
+  //       var childID = this.parentElement.id;
+  //       var linkRef = firebase.database().ref(parentPath + "/" +this.parentElement.id);
+  //       linkRef.on("value", function(snapshot) {
+  //           if (snapshot.child("filename").exists()) {
+  //             deleteFile(parentPath, childID);
+  //           }      
+  //         });
+  //       linkRef.remove().then(onComplete);
+  //     }
+  // });
 
 
     $('body').on("click", '#addLinkButton', function() {
@@ -397,8 +409,8 @@ var Conference = function (attr) {
     $(this.parentElement).append(renderNewLinkForm());
   });
 
-    $('body').on("click.submitLink", '#submitLinkButton', function() {
-    var parentPath = this.parentElement.parentElement.id,
+    $('body').on("click", '#submitLinkButton', function() {
+    var parentPath = this.parentElement.parentElement.parentElement.id,
         linkTitle = $(this).parent().find("#link_title").val(),
         linkURL = $(this).parent().find("#link_url").val(),
         linkRef = firebase.database().ref(parentPath);
@@ -422,13 +434,14 @@ var Conference = function (attr) {
     return linksHtml;
   }
 
-  function renderFormLinks(links){
-    var linksGroup = "<div class='b-form'>";
+  function renderFormLinks(parentKey, links){
+    var linksGroup = "<div class='b-form' id='"+ parentKey +"'>";
     for (link in links) {
       var key = link;
       var child = links[link];
       linksGroup += new Link({key:link, title: child.title, url: child.url}).renderForm();
     }
+    // debugger
     linksGroup += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button></div>"
     return linksGroup;
   }
@@ -449,7 +462,7 @@ var Participant = function(attr) {
     return html;
   },
   this.renderForm = function() {
-    var form = "<div class='b-form b-form-' id='"+this.key+"'>";
+    var form = "<div class='b-form-participants' id='"+this.key+"'>";
     form += "<label>Participant Title<input type='text' name='participant_title' id='participant_title' value='" + this.title  + "'></label>";
     form += "<label>Participant Affiliation<input type='text' name='participant_affiliation' id='participant_affiliation' value='" + this.affiliation  + "'></label>";
     form += "<label>Participant Twitter<input type='text' name='participant_twitter' id='participant_twitter' value='" + this.twitter  + "'></label>";
@@ -467,8 +480,8 @@ var Participant = function(attr) {
 };
 
 
-  $('body').on("click.editParticipant", '#editParticipantButton', function() {
-    var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+  $('body').on("click", '#editParticipantButton', function() {
+    var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
     var participant = new Participant({
       title: $(this).parent().find("#participant_title").val(), 
       twitter: $(this).parent().find("#participant_twitter").val(), 
@@ -478,22 +491,21 @@ var Participant = function(attr) {
     participant.updateDB(parentPath);
   });
 
-    $('body').on("click.deleteParticipant", '#deleteParticipantButton', function() {
+    $('body').on("click", '#deleteParticipantButton', function() {
       if (confirm("Are you sure you want to delete this?")) {
-        var parentPath = this.parentElement.parentElement.id + "/" +this.parentElement.id;
+        var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
         var participantRef = firebase.database().ref(parentPath);
         participantRef.remove().then(onComplete);
       }
   });
 
-    $('body').on("click.addParticipant", '#addParticipantButton', function() {
+    $('body').on("click", '#addParticipantButton', function() {
     var parentPath = this.parentElement.id;
-    debugger
     $(this.parentElement).append(renderNewParticipantForm());
   });
 
-    $('body').on("click.submitParticipant", '#submitParticipantButton', function() {
-    var parentPath = this.parentElement.parentElement.id,
+    $('body').on("click", '#submitParticipantButton', function() {
+    var parentPath = this.parentElement.parentElement.parentElement.id,
         participantTitle = $(this).parent().find("#participant_title").val(),
         participantTwitter = $(this).parent().find("#participant_twitter").val(),
         participantAffiliation = $(this).parent().find("#participant_affiliation").val(),
@@ -518,8 +530,8 @@ var Participant = function(attr) {
     return participantsHtml;
   }
 
-  function renderFormParticipants(participants){
-    var participantsGroup = "";
+  function renderFormParticipants(parentKey,participants){
+    var participantsGroup = "<div class=''b-form id='"+ parentKey +"'>";
     for (var participant in participants) {
       var key = participant,
           child = participants[participant];
