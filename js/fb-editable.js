@@ -198,8 +198,8 @@ var Conference = function (attr) {
   this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
-    form+= "<div class='admin-toggle main-text-fields'><h3>"+this.title+"</h3><div class='section-title'>Main Content</div>";
     // form += "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span>";
+    form+= "<div class='admin-toggle main-text-fields'><h3>"+this.title+"</h3><span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><div class='section-title'>Main Content</div>";
     form+= "<form id='"+ key +"' class='b-form'>";
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'>";
     form+= "<label>Title<input type='text' name='title' id='title' value='" + this.title  + "'></label>";
