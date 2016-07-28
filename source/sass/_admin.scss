@@ -1,6 +1,6 @@
 
 .b-admin-page {
-  button {
+  #addLinkButton,#addParticipantButton {
     display: block;
     padding-top: 1em;
     font-weight: 700;
@@ -32,7 +32,6 @@
     display: block;
     padding: 0;
     font-weight: 700;
-    min-height: 200vh;
     bottom:0px;
     vertical-align: 10px;
    .m-active {

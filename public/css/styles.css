@@ -7517,12 +7517,12 @@ code.m-negative {
 #conference-page .b-participants .fa-twitter {
   color: #2c4758; }
 
-.b-admin-page button {
+.b-admin-page #addLinkButton, .b-admin-page #addParticipantButton {
   display: block;
   padding-top: 1em;
   font-weight: 700;
   color: #04CCB7; }
-  .b-admin-page button i {
+  .b-admin-page #addLinkButton i, .b-admin-page #addParticipantButton i {
     vertical-align: -6px;
     color: #2c4758; }
 
@@ -7544,7 +7544,6 @@ code.m-negative {
   display: block;
   padding: 0;
   font-weight: 700;
-  min-height: 200vh;
   bottom: 0px;
   vertical-align: 10px; }
   .b-admin-page #data-menu h3 {
