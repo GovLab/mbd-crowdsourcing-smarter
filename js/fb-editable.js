@@ -531,7 +531,7 @@ var Participant = function(attr) {
   }
 
   function renderFormParticipants(parentKey,participants){
-    var participantsGroup = "<div class=''b-form id='"+ parentKey +"'>";
+    var participantsGroup = "<div class='b-form id='"+ parentKey +"'>";
     for (var participant in participants) {
       var key = participant,
           child = participants[participant];
