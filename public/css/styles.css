@@ -7526,6 +7526,9 @@ code.m-negative {
     vertical-align: -6px;
     color: #2c4758; }
 
+.b-admin-page #addConferenceButton {
+  color: #04CCB7; }
+
 .b-admin-page #editLinkButton, .b-admin-page #deleteLinkButton, .b-admin-page #editParticipantButton {
   color: #2c4758;
   padding: 1em 1em 1em 0;
@@ -7537,19 +7540,18 @@ code.m-negative {
   font-weight: 700; }
 
 .b-admin-page #data-menu {
-  background-color: rgba(0, 0, 0, 0.1);
-  margin: 0;
-  bottom: 0;
-  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: block;
-  padding-bottom: 20px;
+  padding: 0;
   font-weight: 700;
-  left: 0;
-  min-height: 100%;
-  top: 100px;
-  bottom: 0px; }
+  min-height: 200vh;
+  bottom: 0px;
+  vertical-align: 10px; }
+  .b-admin-page #data-menu h3 {
+    padding-left: 10px; }
   .b-admin-page #data-menu .m-active {
-    font-style: italic; }
+    opacity: 0.6;
+    background-color: #2c4758; }
 
 .b-admin-page label, .b-admin-page input {
   display: block; }
@@ -7589,10 +7591,13 @@ code.m-negative {
 .b-admin-page .main-text-fields form {
   display: inline; }
 
-.b-admin-page .list-menu-item {
-  max-width: 300px;
+.b-admin-page .list-menu-item, .b-admin-page #addConferenceButton {
   display: block;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  text-align: left; }
+  .b-admin-page .list-menu-item .b-button, .b-admin-page .list-menu-item .b-form input[type="submit"], .b-form .b-admin-page .list-menu-item input[type="submit"], .b-admin-page #addConferenceButton .b-button, .b-admin-page #addConferenceButton .b-form input[type="submit"], .b-form .b-admin-page #addConferenceButton input[type="submit"] {
+    padding: 0;
+    width: 100%; }
 
 .b-admin-page .material-icons {
   color: rgba(0, 0, 0, 0.6); }

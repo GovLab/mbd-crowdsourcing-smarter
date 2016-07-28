@@ -1,6 +1,5 @@
 
 .b-admin-page {
-
   button {
     display: block;
     padding-top: 1em;
@@ -10,6 +9,10 @@
       vertical-align: -6px;
       color: $mbd-secondary;
     }
+  }
+
+  #addConferenceButton {
+    color: $mbd-primary;
   }
 
   #editLinkButton,#deleteLinkButton,#editParticipantButton {
@@ -24,23 +27,20 @@
   }
 
   #data-menu {
-    background-color: $gray-10;
-    margin: 0;
-    bottom: 0;
-    left: 0;
+    h3 {padding-left: 10px;}
+    background-color: $gray-50;
     display: block;
-    padding-bottom: 20px;
+    padding: 0;
     font-weight: 700;
-    left: 0;
-    min-height: 100%;
-    top: 100px;
+    min-height: 200vh;
     bottom:0px;
+    vertical-align: 10px;
    .m-active {
-    font-style: italic;
+    opacity: 0.6;
+    background-color: $mbd-secondary;
    }
   }
   #data-panel {
-
   }
 
  label, input {
@@ -90,10 +90,15 @@ label {
   .new-conference {display: inline;}
   .main-text-fields form {display:inline;}
 
-  .list-menu-item {
-    max-width: 300px;
+  .list-menu-item,#addConferenceButton {
+    // max-width: 300px;
     display: block;
     padding-bottom: 30px;
+    text-align: left;
+    .b-button {
+      padding: 0;
+      width: 100%;
+    }
 
   }
 
@@ -102,6 +107,7 @@ label {
   }
 
 }
+
 
 #active-user {
   padding: 0 2rem;

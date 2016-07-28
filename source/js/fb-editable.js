@@ -105,11 +105,11 @@ $(document).ready(function() {
         snap.forEach(function(s) {
           var selector = snap.key;
           if (selector == s.ref.parent.key) {
-            $("div[class*='"+selector+"']").append("<a id='"+s.key+"' class='list-menu-item'"+ s.ref.parent.key +">"+ s.val().title +"</a>");
+            $("div[class*='"+selector+"']").append("<a id='"+s.key+"' class='list-menu-item b-button m-naked'"+ s.ref.parent.key +">"+ s.val().title +"</a>");
           }
         });
       });
-    $(view).append("<button id='addConferenceButton'><i class='material-icons'>add</i> ADD A CONFERENCE</button>");
+    $(view).append("<a class='b-button m-naked' id='addConferenceButton'><i class='material-icons'>add</i> ADD A CONFERENCE</a>");
     });
   }
 
