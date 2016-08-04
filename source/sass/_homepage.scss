@@ -62,6 +62,42 @@
     text-align: center;
     font-weight: 200;
   }
+
+  .b-slide {
+    text-align: center;
+  }
+  .b-slider .slick-arrow {
+    top: 20%;
+  }
+  .b-slider .slick-arrow:before, .b-slider .slick-arrow:after {
+    color: rgba(0, 0, 0, 0.1);
+
+  }
+
+  .slick-dots {
+    text-align: center;
+    li {
+      list-style: none;
+      display: inline-block;
+      padding: 15px;
+      button {
+        font-size: 0;
+        color: transparent;
+      }
+      &::after {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12;
+        color: rgba(0, 0, 0, 0.2);
+        content: "radio_button_unchecked";
+      }
+      &.slick-active::after {
+        content: "lens";
+      }
+    }
+  }
+
   .b-topics-banner {
     &:nth-of-type(odd) { background-color: rgba($black, .05); }
     &:nth-of-type(even) { background-color: rgba($black, .1); }
