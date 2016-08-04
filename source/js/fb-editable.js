@@ -58,7 +58,7 @@ $(document).ready(function() {
   }
 
   function renderAdminView(user) {
-    $(".b-top-section").hide();
+    $(".admin-top-section").hide();
     $(".admin-view").show();
     $("#auth").show();
     $('#current-user').text(user.email);
