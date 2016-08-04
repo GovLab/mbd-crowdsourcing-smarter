@@ -63,18 +63,19 @@
     font-weight: 200;
   }
 
-  .b-slide {
+  .m-imagine {
     text-align: center;
   }
-  .b-slider .slick-arrow {
+  .b-slider.m-imagine .slick-arrow {
     top: 20%;
   }
-  .b-slider .slick-arrow:before, .b-slider .slick-arrow:after {
+  .b-slider.m-imagine .slick-arrow:before, .b-slider .slick-arrow:after {
     color: rgba(0, 0, 0, 0.1);
 
   }
 
   .slick-dots {
+    margin:0;
     text-align: center;
     li {
       list-style: none;
@@ -88,7 +89,7 @@
         font-family: 'Material Icons';
         font-style: normal;
         font-weight: 400;
-        font-size: 12;
+        font-size: 12px;
         color: rgba(0, 0, 0, 0.2);
         content: "radio_button_unchecked";
       }

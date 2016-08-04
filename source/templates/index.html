@@ -69,7 +69,7 @@
     </div>
   </section>
 
-  <div class="b-slider slick m-imagine m-white">
+  <div class="b-slider slick m-imagine m-white" id="imagine-slider">
       <section id="slide-id" class="b-slide m-imagine m-white">
           <div class="row e-content">
               <div class="large-8 large-centered columns">
@@ -94,98 +94,48 @@
   </div>
 
 
-<!--     <div class="row">
+  <div class="b-page-section">
+    <div class="row">
       <div class="large-10 large-offset-1 columns">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit. Proin faucibus, lacus ut laoreet rhoncus, dui mauris posuere risus, nec euismod urna augue at libero. In hac habitasse platea dictumst. Duis bibendum consequat orci, sit amet luctus diam fringilla ut. Curabitur congue pellentesque nisl, sit amet ornare turpis luctus a. Pellentesque ipsum arcu, venenatis laoreet ornare non, finibus ut eros. In id nisi et turpis placerat ullamcorper. Phasellus non magna libero. Fusce suscipit nibh eu ultricies efficitur.</p>
+      <p>Global and complex public health emergencies, such as Zika, Dengue and Chikungunya, threaten public health and well-being, risk disruption to global and regional trade and economic stability, and cause widespread uncertainty and concern.</p>
+
+      <p>In response, the Governance Lab and the Inter-American Development Bank in partnership with  the Governments of Rio de Janeiro, Argentina, Colombia and Panama, are hosting a series of online conferences taking place August-October 2016.</p>
+
+      <p>Instead of a handful of people meeting once at great expense in a conference room, we will use the Internet to mobilize and curate diverse and distributed expertise -- both credentialed know-how and experiential wisdom -- to identify, design and iterate upon implementable ideas that governments can use.<p>
+
+      <p>The goal? Bring the best thinking to bear and translate good ideas into actionable proposals backed by evidence.</p>
       </div>
     </div>
-  </section> -->
-
-{% for topic in topics %}
-  <section class="b-page-section b-topics-banner" id={{topic.firebase_id}}>
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-
-        <h2>{%block topic_title%}{%endblock%}</h2>
-        <p><span class='m-caps'>Online Conference:</span><br/> <span class="topic_date">{%block topic_date%}{%endblock%}</span></p>
-      </div>
-      <div class="large-5 end columns">
-        <p class="topic_description">{%block topic_description%}{%endblock%}</p>
-        <a href='{{topic.id}}-{{topic.title | slug}}.html' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
-{% endfor %}
-
-  <!-- <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="b-page-section b-topics-banner">
-    <div class="row">
-      <div class="columns large-5 large-offset-1">
-        <h2>Topic</h2>
-        <p><span class='m-caps'>Online Conference:</span> <br> July 16, 2016</p>
-      </div>
-      <div class="large-5 end columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
-        <a href='#' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
-      </div>
-    </div>
-  </section> -->
+  </div>
 
   <div class='b-divider m-mbd-primary'>
     <div class="row">
       <div class="large-12 large-centered column">
-      <h2>Experts</h2>
+      <h2>Topics</h2>
+      </div>
+    </div>
+  </div>
+
+  {% for topic in topics %}
+    <section class="b-page-section b-topics-banner" id={{topic.firebase_id}}>
+      <div class="row">
+        <div class="columns large-5 large-offset-1">
+
+          <h2>{%block topic_title%}{%endblock%}</h2>
+          <p><span class='m-caps'>Online Conference:</span><br/> <span class="topic_date">{%block topic_date%}{%endblock%}</span></p>
+        </div>
+        <div class="large-5 end columns">
+          <p class="topic_description">{%block topic_description%}{%endblock%}</p>
+          <a href='{{topic.id}}-{{topic.title | slug}}.html' class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+
+  <div class='b-divider m-mbd-primary'>
+    <div class="row">
+      <div class="large-12 large-centered column">
+      <h2>More information</h2>
       </div>
     </div>
   </div>
@@ -193,12 +143,16 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+        For more background about Smarter Crowdsourcing - Zika [link to the playbook]
+
+        For the schedule [link to the list of problems with dates] and to view the steering committee [link to bios]
+
+        To participate [link to the sign up page]
       </div>
     </div>
       <div class='row'>
         <div class='small-5 small-centered column'>
-          <a class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
+          <!-- <a class='b-button e-mbd-button m-mbd-secondary'>Link to Playbook</a> -->
         </div>
       </div>
     </div>
