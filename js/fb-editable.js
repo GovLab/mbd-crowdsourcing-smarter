@@ -22,9 +22,9 @@ $(document).ready(function() {
   });
 
   // Sign In
-  $("#login").on("click", function() {
+  $("#login").on("click.login", function() {
     var email = $('#login-email').val(),
-        password = $('#login-password').val();
+      password = $('#login-password').val();
     signIn(email, password);
   });
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
   }
 
   // Sign Out
-  $("#logout").on("click", function(){
+  $("#logout").on("click.logout", function(){
     signOut();
     renderPublicView();
     location.reload();
@@ -72,9 +72,9 @@ $(document).ready(function() {
   }
 
   function messageHandler(message) {
-    $('#admin-messages').text(message);
+    $('#data-panel').text(message);
     setTimeout(function(){
-       $('#admin-messages').fadeOut();
+       $('#data-panel').fadeOut();
     },1000);
   }
 
@@ -84,18 +84,15 @@ $(document).ready(function() {
       messageHandler("There was an error");
       console.log('Synchronization failed');
       console.log(error);
-      handleAdminErrors(error.valueOf(), "#login-message");
+      handleAdminErrors(error.valueOf(), "#data-panel");
       alert(error.valueOf());
     } else {
-      $("#data-panel").empty();  
-      $("#data-menu").empty();  
+      // $("#data-panel").empty();  
+      // $("#data-menu").empty();  
       messageHandler("The database has been updated");
-      populateEditMenu("#data-menu");
+      // populateEditMenu("#data-menu");
     }
   };
-
-
-
 
   // Populate Edit Menu
   function populateEditMenu(view) {
@@ -114,7 +111,7 @@ $(document).ready(function() {
   }
 
   // TOGGLE MENU
-  $('body').on('click', '.section-title', function() {
+  $('body').on('click.toggleMenu', '.section-title', function() {
     $(this).parent().find(".b-form").toggle();
   })
 
@@ -132,7 +129,7 @@ $(document).ready(function() {
 
 //   // RENDERS ITEM FORM WHEN CLICKED IN MENU
 //   // MENU CONTROLS
-  $("body").on("click", ".list-menu-item", function() {
+  $("body").on("click.listMenuItem", ".list-menu-item", function() {
     $("#data-panel").empty();
     $("#data-panel").show();
     $('#admin-list-item').remove();
@@ -144,34 +141,33 @@ $(document).ready(function() {
   });
 
   // RENDER BLANK FORM TO ADD NEW CONFERENCE
-  $("body").on("click", "#addConferenceButton", function() {
+  $("body").on("click.newConferenceForm", "#addConferenceButton", function() {
     $("#data-panel").empty();
     $("#data-panel").show();
     renderNewConferenceForm("#data-panel");
   })
 
 
-function renderNewConferenceForm(view) {
-      var form = "";
-      form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form new-conference'>";
-      form += "<input id='parent' type='hidden' value=''";
-      form+= "<label>Title<input type='text' name='title' id='title' value=''></label>";
-      form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''></label>";
-      form+= "<label>Date<input type='text' name='date' id='date' value=''></label>";
-      form+= "<label>Time<input type='text' name='time' id='time' value=''></label>";
-      form+= "<label>Goals<textarea id='goals'></textarea></label>";
-      form+= "<label>Agenda<textarea id='agenda'></textarea></label>";
-      form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''></label>";
-      form+= "<label>Problem Description<textarea id='problem_description'></textarea></label>";
-      form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''></label>";
-      form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'></textarea></label>";
-      form+= "<label>Takeaways<textarea id='takeaways'></textarea></label>";
-      form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
-      form+= "<input id='saveConfButton' value='Add Conference' type='submit'/>";
-      form+= "</form></div></div></div><hr>";
-      $(view).append(form);
-    // }
-}
+  function renderNewConferenceForm(view) {
+    var form = "";
+    form+= "<div class='admin-toggle main-text-fields'> <h3>New Conference</h3> <form id='' class='b-form new-conference'>";
+    form += "<input id='parent' type='hidden' value=''";
+    form+= "<label>Title<input type='text' name='title' id='title' value=''></label>";
+    form+= "<label>Subtitle<input type='text' name='subtitle' id='subtitle' value=''></label>";
+    form+= "<label>Date<input type='text' name='date' id='date' value=''></label>";
+    form+= "<label>Time<input type='text' name='time' id='time' value=''></label>";
+    form+= "<label>Goals<textarea id='goals'></textarea></label>";
+    form+= "<label>Agenda<textarea id='agenda'></textarea></label>";
+    form+= "<label>Agenda Link<input type='text' name='agenda_link' id='agenda_link' value=''></label>";
+    form+= "<label>Problem Description<textarea id='problem_description'></textarea></label>";
+    form+= "<label>Problem Description Link<input type='text' name='problem_description_link' id='problem_description_link' value=''></label>";
+    form+= "<label>Pre-Conference Description<textarea id='pre_conference_description'></textarea></label>";
+    form+= "<label>Takeaways<textarea id='takeaways'></textarea></label>";
+    form+= "<label>Action Items<textarea id='action_items'></textarea></label>";
+    form+= "<input id='saveConfButton' value='Add Conference' type='submit'/>";
+    form+= "</form></div></div></div><hr>";
+    $(view).append(form);
+  }
 
 // // MODELS
 // // Conference
@@ -198,7 +194,6 @@ var Conference = function (attr) {
   this.updatedAt = attr.updatedAt;
   this.renderForm = function(key, view) {
     var form = "";
-    // form += "<span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span>";
     form+= "<div class='admin-toggle main-text-fields'><h3>"+this.title+"</h3><span class='timestamp'>Last updated by " + this.lastUser + " at " + new Date(this.updatedAt) + "</span><div class='section-title'>Main Content</div>";
     form+= "<form id='"+ key +"' class='b-form'>";
     form += "<input id='parent' type='hidden' value='"+ this.collectionName +"'>";
@@ -219,18 +214,13 @@ var Conference = function (attr) {
 // LINKS GROUP
     form += "<div class='admin-toggle pre-conference-links'  id='conferences/"+ this.key +"/pre_conference_links'><div class='section-title'>Pre-Conference Links</div>"
     form += renderFormLinks(this.key, this.pre_conference_links);
-    // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
-    // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div>";
     form += "<div class='admin-toggle shared-resources' id='conferences/"+ this.key +"/shared_resources'> <div class='section-title'>Shared Resources Links</div>"
     form += renderFormLinks(this.key, this.shared_resources);
-    // form += "<button id='addLinkButton'><i class='material-icons'>add</i> Add a Link</button>"
-    // form += "<input id='addLinkButton' value='Add a Link' type='submit'/>";
     form += "</div>";
   // PARTICIPANTS GROUP
     form += "<div class='admin-toggle participants' id='conferences/"+ this.key +"/participants_list'><div class='section-title'>Participants List</div><br>"
     form += renderFormParticipants(this.key, this.participants_list);
-    // form += "<button id='addParticipantButton'> <i class='material-icons'>add</i>Add a Participant</button></div>";
     $(view).append(form);
   },
   this.updateDB = function() {
@@ -275,7 +265,7 @@ var Conference = function (attr) {
   }
 
 
-    $('body').on("click", '#editConfButton', function() {
+    $('body').on("click.editConference", '#editConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     var key = obj.key;
     var newConf = new Conference(obj);
@@ -283,7 +273,7 @@ var Conference = function (attr) {
     newConf.updateDB();
   });
 
-  $('body').on("click", '#saveConfButton', function() {
+  $('body').on("click.saveConference", '#saveConfButton', function() {
     var obj = grabConfObjectFromForm(this.parentElement);
     obj["createdAt"] = Firebase.ServerValue.TIMESTAMP;
     obj["updatedAt"] = Firebase.ServerValue.TIMESTAMP;
@@ -366,7 +356,7 @@ var Conference = function (attr) {
   };
 
 
-  $('body').on("click", '#editLinkButton', function() {
+  $('body').on("click.editLink", '#editLinkButton', function() {
     var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
     var link = new Link({
       title: $(this).parent().find("#link_title").val(), 
@@ -374,12 +364,11 @@ var Conference = function (attr) {
       });
     link.key = this.parentElement.id;
     link.updateDB(parentPath);
-    location.reload();
   });
 
 
 // DELETE LINK ONLY
-  $('body').on("click", '#deleteLinkButton', function() {
+  $('body').on("click.deleteLink", '#deleteLinkButton', function() {
     if (confirm("Are you sure you want to delete this?"))  {
       var parentPath = this.parentElement.parentElement.parentElement.id + "/" +this.parentElement.id;
       var linkRef = firebase.database().ref(parentPath);
@@ -404,12 +393,12 @@ var Conference = function (attr) {
   // });
 
 
-    $('body').on("click", '#addLinkButton', function() {
+    $('body').on("click.addLink", '#addLinkButton', function() {
     var parentPath = this.parentElement.id;
     $(this.parentElement).append(renderNewLinkForm());
   });
 
-    $('body').on("click", '#submitLinkButton', function() {
+    $('body').on("click.submitLink", '#submitLinkButton', function() {
     var parentPath = this.parentElement.parentElement.parentElement.id,
         linkTitle = $(this).parent().find("#link_title").val(),
         linkURL = $(this).parent().find("#link_url").val(),
