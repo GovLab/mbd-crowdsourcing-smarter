@@ -1,7 +1,13 @@
 {% extends '_base.html' %}
+{% block nav_group %}
+<div id="active-user">
+  <button id="logout" value="Log Out">Logout</button>
+  <span id="current-user"></span>
+</div>
+{% endblock %}
 {% block main %}
-
 <div class="b-admin-page">
+
 
   <div class="b-top-section">
     <h3>Admin</h3>
@@ -19,21 +25,22 @@
     </div>
   </div>
 
-  <div class="b-page-section" id='auth'>
+<!--   <div class="b-page-section" id='auth'>
     <div class="row">
     <div class="small-3 column"">
-    <button id="logout" value="Log Out">Logout</button>
-    <span id="current-user"></span>
     </div>
     <div class="small-9 column" id="admin-messages"></div>
     </div>
   </div>
-
-  <div class="b-page-section admin-view">
-    <div class='row'>
-      <div class="small-3 column" id="data-menu">
+ -->
+  <div class="b-page-section admin-view ">
+    <div class="row expanded" id="auth">
+      <div class="small-9 small-offset-3 column" id="admin-messages"></div>
     </div>
-    <div class="small-9 column" id="data-panel">
+    <div class='row expanded flex-section'>
+        <div class="small-3 column" id="data-menu"></div>
+        <div class="small-9 column" id="data-panel"></div>
+    </div>
   </div>
 
 </div>
@@ -54,10 +61,10 @@
       apiKey: "AIzaSyBPyKSaw7T-q4BGfJQ2OHXyTcCnDUYJZOs",
       authDomain: "mbd-crowdsourcing-smarter.firebaseapp.com",
       databaseURL: "https://mbd-crowdsourcing-smarter.firebaseio.com",
-      storageBucket: "gs://mbd-crowdsourcing-smarter.appspot.com",
+      // storageBucket: "gs://mbd-crowdsourcing-smarter.appspot.com",
     };
     firebase.initializeApp(config);
-    var storageRef = firebase.storage().ref();
+    // var storageRef = firebase.storage().ref();
 
   </script>
   <script src="js/fb-editable.js"></script>

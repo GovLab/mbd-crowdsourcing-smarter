@@ -166,7 +166,30 @@ function generateVinyl(basePath, dataPath, fPrefix, fSuffix, dSuffix) {
   return require('stream').Readable({ objectMode: true }).wrap(es.readArray(files));
 }
 
+function buildFirebasePage(templateName,firebase_id) {
+  return "<div class='b-"+ templateName + "-page fb-editable' id='"+ firebase_id +"'>{% include '"+ templateName +".html' %}</div>";
+}
+
+function createFireBasePages() {
+  var fb_data = require('./source/data/topics.json').data;
+  fb_data.forEach(function(data,index) {
+    console.log(data.firebase_id);
+
+    fs.writeFile("./source/templates/" + slugify(data.title) + "-conference.html", buildFirebasePage("conference", data.firebase_id),function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    }); 
+  })
+}
 // define gulp tasks ///////////////////////////////////
+
+// file from firebase id in yaml
+gulp.task('create-fb-editable', function()  {
+  createFireBasePages();
+});
+
 
 gulp.task('sass', function() {
   return gulp.src('source/sass/styles.scss')

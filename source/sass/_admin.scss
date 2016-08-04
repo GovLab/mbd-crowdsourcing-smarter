@@ -1,14 +1,70 @@
+
 .b-admin-page {
+  #addLinkButton,#addParticipantButton {
+    display: block;
+    padding-top: 1em;
+    font-weight: 700;
+    color: $mbd-primary;
+    i {
+      vertical-align: -6px;
+      color: $mbd-secondary;
+    }
+  }
+
+  #addConferenceButton {
+    color: $mbd-primary;
+  }
+
+  #editLinkButton,#deleteLinkButton,#editParticipantButton {
+    color: $mbd-secondary;
+    padding: 1em 1em 1em 0;
+    font-weight: 700;
+  }
+  #deleteLinkButton,#deleteParticipantButton,#deleteParticipantButton {
+    color: red;
+    padding: 1em 1em 1em 0;
+    font-weight: 700;
+  }
 
   #data-menu {
-    border-right: solid $gray-15 2px;
-    // background-color: $mbd-primary;
+    h3 {padding-left: 10px;}
+    background-color: $gray-50;
+    display: block;
+    padding: 0;
+    font-weight: 700;
+    bottom:0px;
+    vertical-align: 10px;
+   .m-active {
+    opacity: 0.6;
+    background-color: $mbd-secondary;
+   }
+  }
+  #data-panel {
   }
 
-  #logout {
-    font-style: bold;
-    text-transform: uppercase;
+ label, input {
+    display: block;
   }
+
+label {
+    margin-bottom: 0px;
+}
+
+.admin-view {
+  padding:0;
+}
+.timestamp {
+  font-size: 14px; 
+  color: $gray-60;
+  padding-bottom: 2em;
+}
+
+.section-title {
+  height: 30px; 
+  padding: 1em 0 2em 0;
+  opacity: 0.6;
+  border-bottom: solid 1px $gray-15;
+}
 
   textarea {
     height: 150px;
@@ -20,19 +76,45 @@
   }
 
   .admin-toggle {
-    :first-child:hover {
-      color:$mbd-primary;
+    .section-title {
+      text-transform: uppercase;
+      font-size: 20px;
+      &:hover {
+        color:$mbd-primary;
+      }
     }
   }
 
+  .b-form {display: none; }
+  .new-conference {display: inline;}
+  .main-text-fields form {display:inline;}
 
-  .list-menu-item {
-    max-width: 200px;
+  .list-menu-item,#addConferenceButton {
+    // max-width: 300px;
     display: block;
+    padding-bottom: 30px;
+    text-align: left;
+    .b-button {
+      padding: 0;
+      width: 100%;
+    }
+
   }
 
   .material-icons {
     color: $gray-60;
   }
 
+}
+
+
+#active-user {
+  padding: 0 2rem;
+  #logout {
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 5;
+    padding: 0 2rem;
+  }
+  
 }

@@ -6,16 +6,15 @@
 
 <div id="conference-page">
 
+
   <div class="b-conference-header" style="background-image: url(./img/background-images/main.jpeg)"> 
     <div class="row">
       <div class="row expanded">
       <div class="e-shade"></div>
         <div class='title-group'>
-        {# #title #}
           {% block title %}
           <h2 id="title" class="e-title"></h2>
           {% endblock %}
-          {# #subtitle #}
           {% block subtitle %}
           <h3 id="subtitle" class="e-subtitle"></h3>
           {% endblock %}
@@ -30,16 +29,14 @@
         <div class="row">
           <div class="large-6 column">
             <h3 class="e-detail-date">Date<br></h3>
-            {# #date #}
             {%block date%}
-            <h2 id="date"class="e-detail-date" id="date">July 7, 2016</h2>
+              <h2 id="date"class="e-detail-date" id="date"></h2>
             {% endblock %}
             </div>
             <div class="large-6 column">
-            <h3 class="e-detail-time">Time<br></h3>
-            {# #time #}
+              <h3 class="e-detail-time">Time<br></h3>
             {%block time %}
-            <h2 id="time" class="e-detail-time" id="time">9:00 AM EST</h2>
+            <h2 id="time" class="e-detail-time" id="time"></h2>
             {%endblock%}
             </div>
           </div>
@@ -59,21 +56,7 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-
       <div id="goals"></div>
-      {# #goals #}
-        {% block goals_description %}
-        <p id="goals_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt.</p>
-        {% endblock %}
-        <ul id="goals_list">
-        {% block goals_list %}
-<!-- {#           <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li> #} -->
-        {% endblock %}
-        </ul>
       </div>
     </div>
   </section>
@@ -89,7 +72,6 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-      {# #agenda #}
       {% block agenda%}
         <p id="agenda"></p>
       {% endblock %}
@@ -97,7 +79,6 @@
     </div>
     <div class='row'>
       <div class='small-5 small-centered column'>
-      {# #agenda-link #}
       {% block agenda_link %}
         <a id="agenda_link" href= "#" class='b-button e-mbd-button m-mbd-secondary'>See Latest Agenda</a>
       {% endblock %}
@@ -116,7 +97,6 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-      {# #problem_description #}
       {% block problem_description %}
         <p id="problem_description"></p>
       {% endblock %}
@@ -124,7 +104,6 @@
     </div>
     <div class='row'>
       <div class='small-5 small-centered column'>
-      {# #problem_description_link #}
       {% block problem_description_link %}
         <a id="problem_description_link" href="#" class='b-button e-mbd-button m-mbd-secondary'>Read Latest Problem Description</a>
       {% endblock %}
@@ -143,7 +122,6 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-      {# #pre_conference_description #}
       {% block pre_conference_description %}
         <p id='pre_conference_description'></p>
       {% endblock %}
@@ -153,34 +131,7 @@
 
   <div class="b-preconference-links">
     <ul id="pre_conference_links" class="b-links-list">
-    {% block pre_conference_links %}
-      <<!-- li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li>
-      <li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li>
-      <li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li> -->
+      {% block pre_conference_links %}
       {% endblock %}
     </ul>
   </div>
@@ -196,20 +147,7 @@
   <section class="b-page-section b-participants">
     <div class="row">
       <ul id="participants_list" class="large-10 column large-offset-1">
-      {%block participants_list %}
-        <!-- <li><strong>Stefaan Verhulst <a href="https://twitter.com/thegovlab" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>
-          The GovLab, NYU Tandon School of Engineering (Co-chair)</li>
-        <li><strong>Francois van Schalkwyk <a href="https://twitter.com/francois_fvs2" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>World Wide Web Foundation / University of Stellenbosch (Co-chair)</li>
-        <li><strong>Emmy Chirchir <a href="https://twitter.com/ChirchirEmmy" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>Munster University</li>
-        <li><strong>Katie Clancy <a href="https://twitter.com/landofkatie" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>International Development Research Centre / Open Data for Development </li>
-        <li><strong>Gisele Craveiro</strong>University of Sao Paulo</li>
-        <li><strong>Tim Davies <a href="https://twitter.com/timdavies" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of Southampton</li>
-        <li><strong>Kyujin Jung</strong>Tennessee State University</li>
-        <li><strong>Gustavo Magalhaes <a href="https://twitter.com/freddygusto" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of Austin Texas</li>
-        <li><strong>Michelle McLeod <a href="https://twitter.com/DrMTMcLeod" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of the West Indies</li>
-        <li><strong>Stefania Milan <a href="https://twitter.com/annliffey" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>University of Amsterdam</li>
-        <li><strong>Fernando Perini <a href="https://twitter.com/fperini" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>International Development Research Centre</li>
-        <li><strong>Andrew Young <a href="https://twitter.com/_AndrewYoung" target="_blank"><span class="fa fa-twitter" aria-hidden="true"></span></a></strong>The GovLab, NYU Tandon School of Engineering</li> -->
+        {%block participants_list %}
         {% endblock %}
       </ul>
     </div>
@@ -254,33 +192,6 @@
   <div class="b-shared-resources-links">
     <ul id="shared_resources" class="b-links-list">
     {% block shared_resources_links %}
-      <li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li>
-      <li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li>
-      <li class="e-link-item">
-        <div class="row">
-          <div class="large-6 large-offset-1 column">
-          <a href= "#">
-            <p class="e-link-title">Linked Relevent Website/Resource</p>
-          </a>
-          </div>
-        </div>
-      </li>
     {% endblock %}
     </ul>
   </div>
