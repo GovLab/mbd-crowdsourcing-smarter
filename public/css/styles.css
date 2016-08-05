@@ -7637,3 +7637,10 @@ code.m-negative {
     text-transform: uppercase;
     line-height: 5;
     padding: 0 2rem; }
+
+#form-page .field-required::after {
+  content: "*";
+  color: red; }
+
+#form-page ul {
+  list-style: none; }

@@ -1,0 +1,9 @@
+#form-page {
+  .field-required::after {
+    content:"*";
+    color: red;
+  }
+  ul {
+    list-style: none;
+  }
+}
