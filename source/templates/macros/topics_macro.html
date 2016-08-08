@@ -1,6 +1,6 @@
-{% extends '_base.html' %}
-{% block header %} class="b-top-nav m-transparent" {% endblock %}>
-{% block main %}
+{% macro renderTopicsPage(image, title, subtitle, issue, problem, question,problem_description, conference_description, conference_link) %}
+
+
 <div id='topics-page'>
   <div class="b-top-section" style='background-image: url(./img/background-images/{{image}})'>
     <div class="row expanded">
@@ -11,6 +11,7 @@
       </div>
     </div>
   </div>
+
 
   <section class="b-page-section b-topics">
     <div class="row">
@@ -55,7 +56,7 @@
     <div class="row">
       <div class="large-12 large-centered column">
       <h1></h1>
-      <h2>Experts</h2>
+      <h2>Participants</h2>
       </div>
     </div>
   </div>
@@ -63,12 +64,12 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+      {{problem_description | safe}}
       </div>
     </div>
       <div class='row'>
         <div class='small-5 small-centered column'>
-          <a class='b-button e-mbd-button m-mbd-secondary'>Request an Invite</a>
+          <a href="./form1.html" class='b-button e-mbd-button m-mbd-secondary'>Request an Invite</a>
         </div>
       </div>
     </div>
@@ -86,12 +87,12 @@
   <section class='b-page-section'>
     <div class="row">
       <div class="large-10 large-offset-1 columns">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat risus quis est fermentum, a ullamcorper elit tincidunt. Donec rhoncus nisl neque, eu ornare arcu imperdiet quis. In pretium mattis est, quis varius ligula vulputate eu. Nulla cursus, erat ac posuere auctor, tellus nibh hendrerit ex, in venenatis tellus ligula a sem. Morbi sed rhoncus elit.</p>
+      {{conference_description}}
       </div>
     </div>
       <div class='row'>
         <div class='small-5 small-centered column'>
-          <a href="{{title|slug}}-conference.html" class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
+          <a href="{{conference_link}}" class='b-button e-mbd-button m-mbd-secondary'>Learn More</a>
         </div>
       </div>
     </div>
@@ -109,8 +110,7 @@
     </div>
   </div>
 
-
-
 </div>
 
-{% endblock %}
+
+{% endmacro %}

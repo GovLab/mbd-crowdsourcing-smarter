@@ -1,0 +1,12 @@
+{% extends '_base.html' %}
+{% block header %} class="b-top-nav m-transparent" {% endblock %}>
+
+{% block main %}
+  {% import 'macros/topics_macro.html' as render %}
+  {% for topic in topics %}
+    {% if topic.slug == "trash-and-standing-water" %}
+      {{render.renderTopicsPage(topic.image, topic.title, topic.subtitle, topic.issue, topic.problem, topic.question,topic.problem_description, topic.conference.description, topic.conference.link)}}
+      {% endif %}
+    {% endfor %}
+
+{% endblock %}
