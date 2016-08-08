@@ -1,0 +1,16 @@
+#all-topics-page {
+  .b-topics-banner {
+      &:nth-of-type(odd) { background-color: rgba($black, .05); }
+      &:nth-of-type(even) { background-color: rgba($black, .1); }
+    }
+    
+    .b-button {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: $black;
+      &:hover {
+        background-color: $mbd-secondary;
+        color: $white;
+      }
+    }
+  
+}
