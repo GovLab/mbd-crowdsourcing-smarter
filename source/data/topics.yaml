@@ -1,6 +1,7 @@
 ---
 # Topics
 - title: "Trash & Standing Water"
+  slug: trash-and-standing-water
   firebase_id: -KLHU5llqXmAmPZBzFfh
   image: main.jpeg
   subtitle: "What can be done to eliminate standing water in waste that breeds Aedes Aegypti mosquitoes?"
@@ -18,6 +19,7 @@
     link: "#"
 
 - title: "Conference 2"
+  slug: conference-2
   firebase_id: -KLIR40URSpfiPFhI-4x
   image: main.jpeg
   url: '#'
