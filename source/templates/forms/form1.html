@@ -5,24 +5,31 @@
       <div class="row">
           <div class="large-10 large-offset-1 columns">
 
+          <div class="error-messages"></div>
+
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='./confirmation.html';}"></iframe>
  <!-- GOOGLE FORM -->
  <form class="b-form" action="https://docs.google.com/a/thegovlab.org/forms/d/e/1FAIpQLSc1KlsdEiAEzSPrHmxB36DZIjvAYFAC74ne4GL7PmtM-94j9w/formResponse" method="POST" onsubmit="submitted=true;" target="hidden_iframe">
     <!-- FIRST NAME -->
    <label class="form-field-label" for="entry_1253314825"><div class="form-field-title field-required">First Name</div></label>
-   <input type="text" name="entry.1253314825" value="" class="ss-q-short" id="entry_1253314825" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></label>
+   <input type="text" name="entry.1253314825" value="" class="ss-q-short" id="entry_1253314825" dir="auto" aria-label="First Name  " aria-required="true" required="" title="" required></label>
+  
 
    <!-- LAST NAME -->
   <label class="form-field-label" for="entry_579020446"><div class="form-field-title field-required">Last Name</div></label>
   <input type="text" name="entry.579020446" value="" class="ss-q-short" id="entry_579020446" dir="auto" aria-label="Last Name  " aria-required="true" required="" title="">
 
+
+
   <!-- EMAIL -->
    <label class="form-field-label" for="entry_945637751"><div class="form-field-title field-required">Email</div></label>
    <input type="text" name="entry.945637751" value="" class="ss-q-short" id="entry_945637751" dir="auto" aria-label="Email  " aria-required="true" required="" title="">
+  
 
    <!-- ORGANIZATION -->
    <label class="form-field-label" for="entry_1431036681"><div class="form-field-title field-required">Organization</div></label>
    <input type="text" name="entry.1431036681" value="" class="ss-q-short" id="entry_1431036681" dir="auto" aria-label="Organization  " title="">
+  
 
   <!-- CONFERENCE SELECTION -->
 
@@ -33,7 +40,7 @@
 
     <li>
       <div class="e-checkbox">
-        <input id="group_1463462154_1" name= "entry.1463462154" role="checkbox" type="checkbox" value="Conference 1"><label for="group_1463462154_1">Conference 1</label>
+        <input id="group_1463462154_1" name="entry.1463462154" role="checkbox" type="checkbox" value="Conference 1"><label for="group_1463462154_1">Conference 1</label>
       </div>
     </li> 
 
@@ -44,7 +51,6 @@
     </li>
 
   </ul>
-
 
    <!-- PAST PARTICIPANTS -->
    <label for="entry_553977394"><div class="form-field-title">Have you applied to participate in any of the other conferences?</div></label>
@@ -67,6 +73,7 @@
     </li>
 
    </ul>
+  
 
   <!-- ABOUT ME - REQUIRED -->
    <label class="form-field-label" for="entry_2034790886"><div class="form-field-title field-required">Please briefly describe your background and your expertise (experience, skills and interests) in connection with the conferences you have specified.</div></label>
@@ -92,8 +99,8 @@
    ">
    <input type="hidden" name="pageHistory" value="0">
    <input type="hidden" name="fbzx" value="933836574473359503">
-   <input type="submit" name="submit" value="Submit" id="form-submit" class="jfk-button jfk-button-action ">
-
+   <input type="submit" name="submit" value="Submit" id="form-submit" onclick="validateForm()" class="jfk-button jfk-button-action ">
+   <!-- <button id="ButtonSubmit" onclick="validateForm()" type="button">Send</button>  -->
    </form>
 
 
@@ -105,5 +112,133 @@
       </div>
   </div>
 
-   <script src="./js/formcheck.js"></script>
+  <script>
+
+// $("#entry_1253314825").val("firstName!!");
+// $("#entry_579020446").val("lastName!!");
+// $("#entry_945637751").val("email!!");
+// $("#entry_1431036681").val("organization!!");
+// $("#entry_2034790886").val("aboutMeRequired!!");
+// $("#entry_1375254264").val("aboutMeNotRequired!!");
+// $("#entry_1389641910").val("city!!");
+// $("#entry_344739365").val("country!!");
+// $("#entry_2129327437").val("otherParticipants!!");
+    // $('#form-submit').on("click", function(e) {
+    //   if (validated) {
+    //     console.log("yay");
+    //   } else {
+    //     e.preventDefault();
+    //   }
+    // });
+  var firstNameInput = $("#entry_1253314825"),
+      lastNameInput = $("#entry_579020446"),
+      emailInput = $("#entry_945637751"),
+      organizationInput = $("#entry_1431036681"),
+      conferenceSelection1Input = $('input[name="entry.1463462154"]:checked'),
+      conferenceSelection1Input = $("#group_1463462154_1").is(':checked'),
+      conferenceSelection2Input = $("#group_1463462154_2").is(':checked'),
+      pastParticipantsYesInput = $('#group_351358348_1').is(":checked"),
+      pastParticipantsNoInput = $('#group_351358348_2').is(":checked"),
+      aboutMeRequiredInput = $("#entry_2034790886"),
+      aboutMeNotRequiredInput = $("#entry_1375254264"),
+      cityInput = $("#entry_1389641910"),
+      countryInput = $("#entry_344739365"),
+      otherParticipantsInput = $("#entry_2129327437")
+
+  // var firstName = $("#entry_1253314825").val(),
+  //     lastName = $("#entry_579020446").val(),
+  //     email = $("#entry_945637751").val(),
+  //     organization = $("#entry_1431036681").val(),
+  //     conferenceSelection1 = $('input[name="entry.1463462154"]:checked').val(),
+  //     conferenceSelection1 = $("#group_1463462154_1").is(':checked'),
+  //     conferenceSelection2 = $("#group_1463462154_2").is(':checked'),
+  //     pastParticipantsYes = $('#group_351358348_1').is(":checked"),
+  //     pastParticipantsNo = $('#group_351358348_2').is(":checked"),
+  //     aboutMeRequired = $("#entry_2034790886").val(),
+  //     aboutMeNotRequired = $("#entry_1375254264").val(),
+  //     city = $("#entry_1389641910").val(),
+  //     country = $("#entry_344739365").val(),
+  //     otherParticipants = $("#entry_2129327437").val();
+
+
+
+ var requiredFields = [firstNameInput,lastNameInput,organizationInput, cityInput, countryInput];
+
+  function noNullFields() { 
+    var noBlankFields=true;
+    requiredFields.forEach(function(data) {
+      if (data.val()) {
+        console.log(data.val());
+        $(data).removeClass("invalid").addClass("valid");
+      } else {
+        $(data).removeClass("valid").addClass("invalid");
+        noBlankFields = false;
+      }
+    });
+      if (!noBlankFields) {
+        $('.error-messages').append('<li>Please fill out all required fields</li>');
+      }
+    console.log("No BLANK FIELDS", noBlankFields);
+  }
+
+  function validateEmailAddress() {
+      var email = emailInput.val();
+      var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      var valid_email=regex.test(email);
+      if(valid_email) {
+        emailInput.removeClass("invalid").addClass("valid");
+      }
+      else {
+        emailInput.removeClass("valid").addClass("invalid");
+        $('.error-messages').append('<li>Please provide a valid email address</li>');
+        validatedEmail = false;
+      }
+      console.log("EMAIL", valid_email);
+  }
+
+  var pastParticipantCheck = $('input[name="entry.351358348"]');
+
+  pastParticipantCheck.change(function() {
+    if ($('#group_351358348_1').is(":checked")) {
+
+      aboutMeRequiredInput.val("SEE PREVIOUS APPLICATION").hide();
+      var labelR = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
+      labelR.hide();
+
+      aboutMeNotRequiredInput.val("").show();
+      var labelNR = $('label[for="'+ aboutMeNotRequiredInput.attr("id") +'"]');
+      labelNR.show();
+
+    } else if ($('#group_351358348_2').is(":checked")) {
+      aboutMeRequiredInput.val("").show();
+      var labelR = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
+      labelR.show();
+
+      aboutMeNotRequiredInput.val("").hide();
+      var labelNR = $('label[for="'+ aboutMeNotRequiredInput.attr("id") +'"]');
+      labelNR.hide();
+    }
+  })
+
+  var validated = false;
+
+  function validateForm() {
+    console.log('validatiing');
+    $('.error-messages').text("");
+      validateEmailAddress();
+      noNullFields();
+      console.log(validated);
+    $('#form-submit').on("click", function(e) {
+        if (!validated) {
+          e.preventDefault();
+          console.log('hell no');
+        } else {
+           console.log("yay");
+        }
+    });
+  }
+
+   
+  </script>
+   <!-- <script src="./js/formcheck.js"></script> -->
 {% endblock %}
