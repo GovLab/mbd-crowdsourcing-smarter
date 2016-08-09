@@ -72,10 +72,13 @@ $(document).ready(function() {
   $("#form-submit").on("click", function(e) {
     validateForm();
     if (!validated) {
+      $('html, body').animate({
+        scrollTop: $(".error-messages").offset().top
+    }, 200);
+      console.log("Form not submitted");
       e.preventDefault();
-      console.log('hell no');
     } else {
-      console.log("yay");
+      console.log('Form submitted successfully!');
     }
 
   });
