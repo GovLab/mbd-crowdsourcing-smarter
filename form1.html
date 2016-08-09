@@ -97,24 +97,31 @@
       <div class="row">
           <div class="large-10 large-offset-1 columns">
 
+          <div class="error-messages"></div>
+
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='./confirmation.html';}"></iframe>
  <!-- GOOGLE FORM -->
  <form class="b-form" action="https://docs.google.com/a/thegovlab.org/forms/d/e/1FAIpQLSc1KlsdEiAEzSPrHmxB36DZIjvAYFAC74ne4GL7PmtM-94j9w/formResponse" method="POST" onsubmit="submitted=true;" target="hidden_iframe">
     <!-- FIRST NAME -->
    <label class="form-field-label" for="entry_1253314825"><div class="form-field-title field-required">First Name</div></label>
-   <input type="text" name="entry.1253314825" value="" class="ss-q-short" id="entry_1253314825" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></label>
+   <input type="text" name="entry.1253314825" value="" class="ss-q-short" id="entry_1253314825" dir="auto" aria-label="First Name  " aria-required="true" required="" title="" required></label>
+  
 
    <!-- LAST NAME -->
   <label class="form-field-label" for="entry_579020446"><div class="form-field-title field-required">Last Name</div></label>
   <input type="text" name="entry.579020446" value="" class="ss-q-short" id="entry_579020446" dir="auto" aria-label="Last Name  " aria-required="true" required="" title="">
 
+
+
   <!-- EMAIL -->
    <label class="form-field-label" for="entry_945637751"><div class="form-field-title field-required">Email</div></label>
    <input type="text" name="entry.945637751" value="" class="ss-q-short" id="entry_945637751" dir="auto" aria-label="Email  " aria-required="true" required="" title="">
+  
 
    <!-- ORGANIZATION -->
    <label class="form-field-label" for="entry_1431036681"><div class="form-field-title field-required">Organization</div></label>
    <input type="text" name="entry.1431036681" value="" class="ss-q-short" id="entry_1431036681" dir="auto" aria-label="Organization  " title="">
+  
 
   <!-- CONFERENCE SELECTION -->
 
@@ -125,7 +132,7 @@
 
     <li>
       <div class="e-checkbox">
-        <input id="group_1463462154_1" name= "entry.1463462154" role="checkbox" type="checkbox" value="Conference 1"><label for="group_1463462154_1">Conference 1</label>
+        <input id="group_1463462154_1" name="entry.1463462154" role="checkbox" type="checkbox" value="Conference 1"><label for="group_1463462154_1">Conference 1</label>
       </div>
     </li> 
 
@@ -136,7 +143,6 @@
     </li>
 
   </ul>
-
 
    <!-- PAST PARTICIPANTS -->
    <label for="entry_553977394"><div class="form-field-title">Have you applied to participate in any of the other conferences?</div></label>
@@ -159,6 +165,7 @@
     </li>
 
    </ul>
+  
 
   <!-- ABOUT ME - REQUIRED -->
    <label class="form-field-label" for="entry_2034790886"><div class="form-field-title field-required">Please briefly describe your background and your expertise (experience, skills and interests) in connection with the conferences you have specified.</div></label>
@@ -184,8 +191,8 @@
    ">
    <input type="hidden" name="pageHistory" value="0">
    <input type="hidden" name="fbzx" value="933836574473359503">
-   <input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action ">
-
+   <input type="submit" name="submit" value="Submit" id="form-submit" class="jfk-button jfk-button-action ">
+   <!-- <button id="ButtonSubmit" onclick="validateForm()" type="button">Send</button>  -->
    </form>
 
 
@@ -196,6 +203,8 @@
           </div>
       </div>
   </div>
+
+   <script src="./js/formcheck.js"></script>
 
 
   <div class="b-page-section">
@@ -209,7 +218,6 @@
   </div>
 
 </div>
-
 
     </main>
 

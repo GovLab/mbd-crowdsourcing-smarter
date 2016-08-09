@@ -292,7 +292,6 @@ var Conference = function (attr) {
         var childData = childSnapshot.val();
         results.push({key: key, value: childData});
         renderConference(childSnapshot);
-        renderTopicsIndex(childSnapshot);
       });
     });
   }
