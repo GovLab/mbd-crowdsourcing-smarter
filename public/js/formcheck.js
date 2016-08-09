@@ -59,15 +59,11 @@ $(document).ready(function() {
       aboutMeRequiredInput.removeAttr('required')
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
       label.find(".form-field-title").removeClass('field-required');
-      noNullFields(requiredFields);
-      console.log(requiredFields.length)
     } else if ($('#group_351358348_2').is(":checked")) {
       aboutMeRequiredInput.attr("required", true);
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
       label.find(".form-field-title").addClass('field-required')
       requiredFields.push(aboutMeRequiredInput);
-      console.log(requiredFields.length)
-       noNullFields(requiredFields);
     }
   });
 
@@ -98,10 +94,8 @@ $(document).ready(function() {
     requiredFields.forEach(function(field) {
       field.on("input", function() {
         if (!field.val()) {
-          console.log("empty")
           $(this).removeClass("valid").addClass("invalid");
         } else {
-          console.log(field.val());
           $(this).removeClass("invalid").addClass("valid");
         }
       })
