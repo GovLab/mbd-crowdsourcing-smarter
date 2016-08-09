@@ -52,6 +52,7 @@ $(document).ready(function() {
 
   pastParticipantCheck.change(function() {
     if ($('#group_351358348_1').is(":checked")) {
+      debugger
       aboutMeRequiredInput.removeAttr('required')
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
       label.find(".form-field-title").removeClass('field-required');
@@ -70,6 +71,7 @@ $(document).ready(function() {
   var validated = false;
 
   $("#form-submit").on("click", function(e) {
+    debugger
     validateForm();
     if (!validated) {
       $('html, body').animate({
