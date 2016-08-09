@@ -7645,6 +7645,12 @@ code.m-negative {
 #form-page ul {
   list-style: none; }
 
+#form-page .error-messages {
+  color: red; }
+
+#form-page .invalid {
+  border: red solid 1px; }
+
 #all-topics-page .b-topics-banner:nth-of-type(odd) {
   background-color: rgba(51, 51, 51, 0.05); }
 

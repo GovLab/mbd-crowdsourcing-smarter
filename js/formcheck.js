@@ -14,7 +14,7 @@ $(document).ready(function() {
       countryInput = $("#entry_344739365"),
       otherParticipantsInput = $("#entry_2129327437");
 
-  var requiredFields = [firstNameInput,lastNameInput,organizationInput, aboutMeRequiredInput, cityInput, countryInput];
+  var requiredFields = [firstNameInput,lastNameInput,emailInput, organizationInput, aboutMeRequiredInput, cityInput, countryInput];
 
   function noNullFields() { 
     var noBlankFields=true;
@@ -52,14 +52,13 @@ $(document).ready(function() {
 
   pastParticipantCheck.change(function() {
     if ($('#group_351358348_1').is(":checked")) {
-      debugger
-      aboutMeRequiredInput.removeAttr('required')
-      var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
-      label.find(".form-field-title").removeClass('field-required');
       var i = requiredFields.indexOf(aboutMeRequiredInput);
       if ( i != -1) {
         requiredFields.splice(i, 1);
       }
+      aboutMeRequiredInput.removeAttr('required')
+      var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
+      label.find(".form-field-title").removeClass('field-required');
     } else if ($('#group_351358348_2').is(":checked")) {
       aboutMeRequiredInput.attr("required", true);
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
@@ -71,7 +70,6 @@ $(document).ready(function() {
   var validated = false;
 
   $("#form-submit").on("click", function(e) {
-    debugger
     validateForm();
     if (!validated) {
       $('html, body').animate({
