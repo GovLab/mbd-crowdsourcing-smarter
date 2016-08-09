@@ -6,4 +6,12 @@
   ul {
     list-style: none;
   }
+
+  .error-messages {
+    color: red;
+  }
+
+  .invalid {
+    border: red solid 1px;
+  }
 }
