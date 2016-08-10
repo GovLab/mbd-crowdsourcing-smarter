@@ -7651,3 +7651,21 @@ code.m-negative {
 
 #about-page .e-govt-partner-cards {
   text-align: center; }
+
+#people-page .e-partner-country h3 {
+  text-align: right;
+  font-weight: 300;
+  font-size: 30px; }
+
+#people-page .e-partner {
+  list-style: none;
+  width: 46%;
+  padding: 0 4%;
+  float: left; }
+  #people-page .e-partner .e-partner-name {
+    color: #333;
+    font-weight: 600; }
+  #people-page .e-partner .e-partner-title {
+    color: rgba(0, 0, 0, 0.5); }
+  #people-page .e-partner .e-partner-affiliation {
+    color: rgba(0, 0, 0, 0.5); }

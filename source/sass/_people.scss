@@ -1,0 +1,19 @@
+#people-page {
+  .e-partner-country {
+    h3 {
+      text-align: right;
+      // display: inline;
+      font-weight: 300;
+      font-size: 30px;
+    }
+  }
+  .e-partner {
+    list-style: none;
+    width: 46%;
+    padding: 0 4%;
+    float:left;
+    .e-partner-name {color: $black; font-weight: 600;}
+    .e-partner-title {color: $gray-50;}
+    .e-partner-affiliation {color: $gray-50;}
+  }
+}
