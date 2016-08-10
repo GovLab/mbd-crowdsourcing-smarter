@@ -7648,3 +7648,6 @@ code.m-negative {
 .b-divider.m-next div a:hover h2 {
   color: white;
   transition: all .4s ease; }
+
+#about-page .e-govt-partner-cards {
+  text-align: center; }
