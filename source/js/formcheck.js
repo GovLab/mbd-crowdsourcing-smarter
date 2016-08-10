@@ -56,14 +56,22 @@ $(document).ready(function() {
       if ( i != -1) {
         requiredFields.splice(i, 1);
       }
-      aboutMeRequiredInput.removeAttr('required')
+      aboutMeRequiredInput.removeClass("invalid").addClass("valid");
+      // aboutMeRequiredInput.val("See Previous Application")
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
       label.find(".form-field-title").removeClass('field-required');
+      var existingContent = aboutMeRequiredInput.val();
+      console.log("yo");
+      console.log(existingContent);
+      aboutMeRequiredInput.val("See Previous Application: " + existingContent);
     } else if ($('#group_351358348_2').is(":checked")) {
       aboutMeRequiredInput.attr("required", true);
       var label = $('label[for="'+ aboutMeRequiredInput.attr("id") +'"]');
       label.find(".form-field-title").addClass('field-required')
       requiredFields.push(aboutMeRequiredInput);
+      var existingContent = aboutMeRequiredInput.val();
+      var newContent = existingContent.replace("See Previous Application","");
+      aboutMeRequiredInput.val(newContent)
     }
   });
 
