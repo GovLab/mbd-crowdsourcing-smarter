@@ -15,7 +15,7 @@
     background: no-repeat center; 
     background-size: cover;
     .e-title {
-      font-size: 3em;
+      font-size: 2.5em;
       font-weight: 400;
     }
     .e-subtitle {
@@ -28,8 +28,8 @@
     margin: 40px 0px;
     padding: 10px;
     .e-description-title {
-      // color: rgba($black, .4);
-      // line-height: 1.5;
+      color: rgba($black, .6);
+      line-height: 1.5;
       padding-left: 0;
       text-transform: uppercase;
       font-weight: 400;
@@ -44,33 +44,8 @@
     .e-description, .e-description + p {
       // font-size: 1.2rem;
       // font-weight: 300;
+      line-height: 1.8;
       margin:0;
     }
   }
 }
-
-.b-divider.m-next div h1 {
-    text-transform: uppercase;
-    font-size: 17px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.3);
-    text-align: left
-  }
-  .b-divider.m-next div h2 {
-    text-align: left;
-    text-transform: none;
-    font-size: 18px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    transition: all .4s ease;
-    .material-icons {
-      vertical-align: -5.5px;
-      color: rgba(255, 255, 255, 0.3);
-    }
-  }
-  .b-divider.m-next div a:hover {
-      text-decoration: none; }
-      .b-divider.m-next div a:hover h2 {
-        color: white;
-        transition: all .4s ease; }

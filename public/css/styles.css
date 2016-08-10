@@ -7254,9 +7254,7 @@ code.m-negative {
 
 .no-padding {
   padding: 0;
-  padding-bottom: 0;
-  height: 100%;
-  vertical-align: -20px; }
+  height: 100%; }
 
 .b-top-nav .e-nav-group.m-right a {
   text-transform: uppercase;
@@ -7340,10 +7338,10 @@ code.m-negative {
     background: no-repeat center;
     background-size: cover;
     background-blend-mode: multiply;
-    background-color: rgba(51, 51, 51, 0.3); }
+    background-color: rgba(51, 51, 51, 0.3);
+    text-align: center; }
     #homepage .b-highlights .b-slide .e-highlights-tag {
       font-size: 1.5rem;
-      text-align: center;
       margin-top: -34px;
       text-transform: uppercase;
       font-weight: 400; }
@@ -7354,7 +7352,6 @@ code.m-negative {
     #homepage .b-highlights .b-slide .e-highlights-subtitle {
       font-size: 1.5rem;
       font-weight: 400;
-      text-align: center;
       line-height: 1;
       text-transform: uppercase; }
     #homepage .b-highlights .b-slide .e-mbd-button {
@@ -7374,19 +7371,6 @@ code.m-negative {
       vertical-align: center;
       text-transform: uppercase;
       font-weight: 400; }
-
-#homepage .main-title {
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  line-height: 1;
-  text-align: center; }
-
-#homepage .main-subtitle {
-  font-size: 1.7rem;
-  line-height: 1;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 200; }
 
 #homepage .m-imagine {
   text-align: center; }
@@ -7443,7 +7427,7 @@ code.m-negative {
       #topics-page .b-top-section .title-group, #topics-page #homepage .b-highlights .title-group, #homepage #topics-page .b-highlights .title-group, #topics-page #conference-page .b-conference-header .title-group, #conference-page #topics-page .b-conference-header .title-group {
         padding-top: 20vh; } }
   #topics-page .b-top-section .e-title, #topics-page #homepage .b-highlights .e-title, #homepage #topics-page .b-highlights .e-title, #topics-page #conference-page .b-conference-header .e-title, #conference-page #topics-page .b-conference-header .e-title {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: 400; }
   #topics-page .b-top-section .e-subtitle, #topics-page #homepage .b-highlights .e-subtitle, #homepage #topics-page .b-highlights .e-subtitle, #topics-page #conference-page .b-conference-header .e-subtitle, #conference-page #topics-page .b-conference-header .e-subtitle {
     font-size: 1.5em;
@@ -7455,6 +7439,8 @@ code.m-negative {
   #topics-page .b-topics .row {
     margin-top: 20px; }
   #topics-page .b-topics .e-description-title {
+    color: rgba(51, 51, 51, 0.6);
+    line-height: 1.5;
     padding-left: 0;
     text-transform: uppercase;
     font-weight: 400;
@@ -7464,33 +7450,8 @@ code.m-negative {
       #topics-page .b-topics .e-description-title {
         text-align: right; } }
   #topics-page .b-topics .e-description, #topics-page .b-topics .e-description + p {
+    line-height: 1.8;
     margin: 0; }
-
-.b-divider.m-next div h1 {
-  text-transform: uppercase;
-  font-size: 17px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.3);
-  text-align: left; }
-
-.b-divider.m-next div h2 {
-  text-align: left;
-  text-transform: none;
-  font-size: 18px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  transition: all .4s ease; }
-  .b-divider.m-next div h2 .material-icons {
-    vertical-align: -5.5px;
-    color: rgba(255, 255, 255, 0.3); }
-
-.b-divider.m-next div a:hover {
-  text-decoration: none; }
-
-.b-divider.m-next div a:hover h2 {
-  color: white;
-  transition: all .4s ease; }
 
 #conference-page .b-conference-header {
   position: relative;
@@ -7501,7 +7462,7 @@ code.m-negative {
   #conference-page .b-conference-header .title-group {
     padding: 50px; }
   #conference-page .b-conference-header .e-title {
-    font-size: 3em;
+    font-size: 2.5rem;
     font-weight: 400; }
   #conference-page .b-conference-header .e-subtitle {
     font-size: 1.5em;
@@ -7663,3 +7624,29 @@ code.m-negative {
   #all-topics-page .b-button:hover, #all-topics-page .b-form input[type="submit"]:hover, .b-form #all-topics-page input[type="submit"]:hover {
     background-color: #2c4758;
     color: white; }
+
+.b-divider.m-next div h1 {
+  text-transform: uppercase;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: left; }
+
+.b-divider.m-next div h2 {
+  text-align: left;
+  text-transform: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  transition: all .4s ease; }
+  .b-divider.m-next div h2 .material-icons {
+    vertical-align: -5.5px;
+    color: rgba(255, 255, 255, 0.3); }
+
+.b-divider.m-next div a:hover {
+  text-decoration: none; }
+
+.b-divider.m-next div a:hover h2 {
+  color: white;
+  transition: all .4s ease; }

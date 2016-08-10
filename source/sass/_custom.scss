@@ -29,17 +29,16 @@
   }
 
 
-// padding adujustments
-.no-padding {
-  padding: 0;
-  padding-bottom: 0;
-  height: 100%;
-  vertical-align: -20px;
-}
+// padding adjustments
+  .no-padding {
+    padding: 0;
+    // padding-bottom: 0;
+    height: 100%;
+    // vertical-align: -20px;
+  }
 
 
 // HEADER MENU
-
 
 .b-top-nav .e-nav-group.m-right {
   a {

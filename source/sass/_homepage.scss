@@ -8,9 +8,9 @@
       background-size: cover;
       background-blend-mode: multiply;
       background-color: rgba($black, .3);
+      text-align: center;
       .e-highlights-tag { 
         font-size: 1.5rem;
-        text-align: center;
         margin-top: -34px;
         text-transform: uppercase;
         font-weight: 400;
@@ -23,11 +23,10 @@
       .e-highlights-subtitle {
         font-size: 1.5rem;
         font-weight: 400;
-        text-align: center;
         line-height: 1;
         text-transform: uppercase;
       }
-      .e-mbd-button {color:white;}
+      .e-mbd-button {color: white;}
     }
     .b-small-banner {
       height: 200px;
@@ -49,19 +48,19 @@
       }
     }
   }
-  .main-title {
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    line-height: 1;
-    text-align: center;
-  }
-  .main-subtitle {
-    font-size: 1.7rem;
-    line-height: 1;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 200;
-  }
+  // .main-title {
+  //   font-size: 2.5rem;
+  //   text-transform: uppercase;
+  //   line-height: 1;
+  //   text-align: center;
+  // }
+  // .main-subtitle {
+  //   font-size: 1.7rem;
+  //   line-height: 1;
+  //   text-transform: uppercase;
+  //   text-align: center;
+  //   font-weight: 200;
+  // }
 
   .m-imagine {
     text-align: center;
