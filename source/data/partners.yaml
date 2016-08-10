@@ -57,6 +57,32 @@
       title: 
       affiliation: Vice-Minister of Health
 
+- partner_name: Inter-American Development Bank
+  people:
+    - name: Rafael Anta
+      title: Lead Specialist, Competitiveness and Innovation Division
+      affiliation: Inter-American Development Bank
+    - name: Ralf Moreno
+      title: Project Manager
+      affiliation: Inter-American Development Bank
+    - name: Diana Pinto
+      title: Health Lead Specialist, USA
+      affiliation: Inter-American Development Bank
+
+- partner_name: The GovLab
+  people:
+    - name: Dr. Rafael Ayoub
+      title: Health Research Advisor
+      affiliation: The GovLab
+    - name: Professor Beth Simone Noveck
+      title: Director/NYU
+      affiliation: The GovLab
+    - name: María Hermosilla
+      title: Project Manager
+      affiliation: The GovLab
+    - name: Eleonore Pauwels
+      title: Health Research Advisor
+      affiliation: The GovLab
 
   # - partner_name: 
   #   people:
